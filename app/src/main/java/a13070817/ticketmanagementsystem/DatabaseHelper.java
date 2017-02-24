@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     JOB_ASSET + " TEXT," +
                     JOB_STATUS + " INTEGER," +
                     JOB_SEVERITY + " INTEGER," +
-                    JOB_DATE + " TEXT," +
+                    JOB_DATE + " DATE," +
                     "FOREIGN KEY(" + JOB_ASSET + ") REFERENCES " + ASSET_TABLE_NAME + "(TAG)" + ")";
 
     //creates an asset table

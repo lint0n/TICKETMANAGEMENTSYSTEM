@@ -14,7 +14,8 @@
         android:layout_width="wrap_content"
         android:id="@+id/create_job_intro_text"
         android:layout_height="wrap_content"
-        android:text="Create a job"/>
+        android:text="Create a job"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
 
     <Button
@@ -35,7 +36,8 @@
         android:layout_below="@+id/create_job_intro_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="46dp" />
+        android:layout_marginTop="46dp"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:text="@string/create_job_engineer"
@@ -44,7 +46,8 @@
         android:id="@+id/job_engineer_text"
         android:layout_below="@+id/job_title"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
         android:layout_width="350dp"
@@ -65,7 +68,8 @@
         android:id="@+id/job_asset_text"
         android:layout_below="@+id/job_engineer"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
         android:layout_width="350dp"
@@ -87,7 +91,8 @@
         android:id="@+id/job_customer_text"
         android:layout_below="@+id/job_asset"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
         android:layout_width="350dp"
@@ -108,7 +113,8 @@
         android:id="@+id/job_description_text"
         android:layout_below="@+id/job_customer"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <EditText
         android:layout_width="350dp"

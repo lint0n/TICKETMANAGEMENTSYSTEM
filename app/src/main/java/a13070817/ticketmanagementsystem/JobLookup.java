@@ -17,6 +17,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class JobLookup extends Activity {
 
     //Fields
@@ -61,7 +63,7 @@ public class JobLookup extends Activity {
         try {
 
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
 
             cursor.moveToFirst();
             String idText = cursor.getString(0);
@@ -71,6 +73,7 @@ public class JobLookup extends Activity {
             String customerText = cursor.getString(4);
             String descriptionText = cursor.getString(5);
             Integer complete = cursor.getInt(6);
+            Integer date = cursor.getInt(7);
 
             //ensures that EditText elements are empty before setting text
             jobDescription.setText("");
