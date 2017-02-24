@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Ticket</string>
+    <string name="welcome">Welcome, what would you like to do?</string>
+    <string name="create_job">Create Job</string>
+    <string name="job_lookup">Job Lookup</string>
+    <string name="job_list">Job List</string>
+    <string name="assets">Assets</string>
+    <string name="create_job_title">Job Title</string>
+    <string name="create_job_description">Job Description</string>
+    <string name="create_job_engineer">Job Engineer</string>
+    <string name="create_job_asset">Asset ID</string>
+    <string name="create_job_customer">Customer</string>
+    <string name="create_button">ADD JOB</string>
+    <string name="job_lookup_head">Job lookup</string>
+    <string name="job_lookup_button">Lookup</string>
+    <string name="job_lookup_text">Enter Job ID:</string>
+    <string name="job_lookup_title">Title:</string>
+    <string name="job_lookup_ID">ID:</string>
+    <string name="job_lookup_engineer">Engineer:</string>
+    <string name="job_lookup_asset">Asset:</string>
+    <string name="job_lookup_customer">Customer:</string>
+    <string name="job_lookup_description">Description:</string>
+    <string name="lookup_checkbox">Completed?</string>
+    <string name="lookup_update">Update</string>
+</resources>
