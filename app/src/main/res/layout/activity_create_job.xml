@@ -8,7 +8,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#f2f2f2"
     tools:context="a13070817.ticketmanagementsystem.CreateJob">
 
     <TextView
@@ -50,13 +49,14 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|number"
         android:ems="6"
         android:id="@+id/job_engineer"
         android:layout_below="@+id/job_engineer_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:maxLength="6"/>
 
     <TextView
         android:text="@string/create_job_asset"
@@ -70,14 +70,15 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|number"
         android:ems="6"
         android:id="@+id/job_asset"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/job_engineer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:maxLines="1"/>
+        android:maxLines="1"
+        android:maxLength="6" />
 
     <TextView
         android:text="@string/create_job_customer"
@@ -91,13 +92,14 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|number"
         android:ems="6"
         android:id="@+id/job_customer"
         android:layout_below="@+id/job_customer_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:maxLength="6"/>
 
     <TextView
         android:text="@string/create_job_description"
@@ -110,23 +112,23 @@
 
     <EditText
         android:layout_width="350dp"
-        android:layout_height="75dp"
-        android:maxLength="75"
+        android:layout_height="90dp"
         android:ems="6"
         android:id="@+id/job_description"
         android:layout_below="@+id/job_description_text"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/createButton" />
 
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:ems="6"
         android:id="@+id/job_title"
         android:layout_below="@+id/job_title_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:maxLines="1" />
+        android:maxLines="1"/>
 
 </RelativeLayout>
