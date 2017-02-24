@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CreateJob extends Activity{
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
@@ -38,6 +41,10 @@ public class CreateJob extends Activity{
             String ja = jobAsset.getText().toString();
             String jc = jobCustomer.getText().toString();
 
+            //http://stackoverflow.com/questions/754684/how-to-insert-a-sqlite-record-with-a-datetime-set-to-now-in-android-applicatio
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            Date d = new Date();
+
             jobDescription.setText("");
             jobTitle.setText("");
             jobEngineer.setText("");
@@ -51,9 +58,10 @@ public class CreateJob extends Activity{
             values.put(DatabaseHelper.JOB_CUSTOMER, jc);
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
             values.put(DatabaseHelper.JOB_STATUS, 0);
+            values.put(DatabaseHelper.JOB_DATE, dateFormat.format(d));
 
             long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
-            Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job " + newRowId + " created at: \n " + d, Toast.LENGTH_LONG).show();
         }
 
         catch(Exception exc){
