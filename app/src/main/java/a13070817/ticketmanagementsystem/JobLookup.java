@@ -24,11 +24,14 @@ public class JobLookup extends Activity {
     private Button lookupButton, updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
+    Font font = new Font();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_lookup);
+
+        font.loadFont(this);
 
         //EditText instances
         jobLookup = (EditText) findViewById(R.id.job_lookup_input);
