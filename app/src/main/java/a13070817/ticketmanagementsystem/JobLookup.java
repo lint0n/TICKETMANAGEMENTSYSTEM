@@ -31,14 +31,13 @@ public class JobLookup extends AppCompatActivity{
     private Button lookupButton, updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_lookup);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //EditText instances
