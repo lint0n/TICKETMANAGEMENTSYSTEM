@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //onclick take user to JobLookup activity
-    public void jobLookup(MenuItem menu) {
+    public void jobLookup(MenuItem menuItem) {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
     }
@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     public void displayList(View view) {
         Intent newList = new Intent(this, JobList.class);
         startActivity(newList);
+    }
+
+    public void about(MenuItem menuItem) {
+        Intent newAbout = new Intent(this, About.class);
+        startActivity(newAbout);
     }
 
 }

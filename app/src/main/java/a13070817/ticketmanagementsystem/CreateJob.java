@@ -4,7 +4,6 @@ package a13070817.ticketmanagementsystem;
  * Created by Sam on 24/02/2017.
  */
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -41,7 +40,7 @@ public class CreateJob extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.create_back, menu);
+        menuInflater.inflate(R.menu.menu_create, menu);
         return true;
     }
 
