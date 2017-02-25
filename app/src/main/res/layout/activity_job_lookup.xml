@@ -170,7 +170,9 @@
         android:layout_below="@+id/JobDescription"
         android:layout_alignLeft="@+id/JobDescription"
         android:layout_alignStart="@+id/JobDescription"
-        android:layout_alignBottom="@+id/lookup_update_button" />
+        android:layout_alignBottom="@+id/lookup_update_button"
+        android:layout_alignRight="@+id/job_lookup_input"
+        android:layout_alignEnd="@+id/job_lookup_input" />
 
     <EditText
         android:layout_height="100dp"
