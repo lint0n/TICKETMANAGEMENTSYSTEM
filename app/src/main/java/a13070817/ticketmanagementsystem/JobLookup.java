@@ -166,13 +166,13 @@ public class JobLookup extends AppCompatActivity{
                 values.put(DatabaseHelper.JOB_STATUS, 0);
             }
 
-            //take user back to home screen
-            Intent mainIntent = new Intent(this, MainActivity.class);
-            startActivity(mainIntent);
-
             //Toast confirming job + jobID has been updated
             db.update(DatabaseHelper.JOB_TABLE_NAME, values, DatabaseHelper.JOB_ID + "=" + ji, null);
             Toast.makeText(this, "Job " + ji + " updated", Toast.LENGTH_LONG).show();
+
+            //take user back to home screen
+            Intent mainIntent = new Intent(this, MainActivity.class);
+            startActivity(mainIntent);
         }
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query

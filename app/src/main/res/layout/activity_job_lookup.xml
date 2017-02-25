@@ -34,7 +34,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="none"
         android:ems="10"
         android:id="@+id/JobCustomer"
         android:layout_alignBaseline="@+id/JobAsset"
@@ -42,12 +41,13 @@
         android:layout_alignRight="@+id/JobDescription"
         android:layout_alignEnd="@+id/JobDescription"
         android:layout_toRightOf="@+id/JobAsset"
-        android:layout_toEndOf="@+id/JobAsset" />
+        android:layout_toEndOf="@+id/JobAsset"
+        android:inputType="number" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:ems="10"
         android:id="@+id/JobEngineer"
         android:layout_alignBaseline="@+id/JobID"
@@ -99,7 +99,7 @@
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:inputType="none|textPersonName"
+        android:inputType="number"
         android:ems="10"
         android:id="@+id/JobAsset"
         android:layout_marginBottom="17dp"
@@ -187,9 +187,9 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="none"
         android:ems="10"
         android:id="@+id/JobTitle"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:layout_above="@+id/text_JobEngineer"
         android:layout_alignLeft="@+id/JobID"
         android:layout_alignStart="@+id/JobID" />

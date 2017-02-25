@@ -52,7 +52,7 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName|number"
+        android:inputType="number"
         android:ems="6"
         android:id="@+id/job_engineer"
         android:layout_below="@+id/job_engineer_text"
@@ -74,7 +74,7 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName|number"
+        android:inputType="number"
         android:ems="6"
         android:id="@+id/job_asset"
         android:layout_marginTop="15dp"
@@ -124,7 +124,8 @@
         android:layout_below="@+id/job_description_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/createButton" />
+        android:layout_above="@+id/createButton"
+        android:inputType="textCapSentences|textAutoCorrect" />
 
     <EditText
         android:layout_width="350dp"
