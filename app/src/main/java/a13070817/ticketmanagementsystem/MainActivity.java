@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
     }
+
+    public void displayList(View view) {
+        Intent newList = new Intent(this, JobList.class);
+        startActivity(newList);
+    }
 }

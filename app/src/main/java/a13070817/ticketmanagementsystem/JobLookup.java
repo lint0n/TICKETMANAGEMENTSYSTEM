@@ -55,7 +55,7 @@ public class JobLookup extends Activity {
         //Local String instance getting text from JobLookup EditText
         String jl = jobLookup.getText().toString();
 
-        //Local instance of DatabaseHelper clas
+        //Local instance of DatabaseHelper class
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getReadableDatabase();
 
@@ -63,7 +63,7 @@ public class JobLookup extends Activity {
         try {
 
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("JOB", new String[]{"_id", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "DATE_CREATED"}, "_id = ?", new String[]{jl}, null, null, null, null);
 
             cursor.moveToFirst();
             String idText = cursor.getString(0);
@@ -104,7 +104,7 @@ public class JobLookup extends Activity {
                     INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
-            //if the entitie's COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
+            //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
             if(complete == 1){
 
                 lookupCheckbox.setChecked(true);

@@ -22,4 +22,5 @@
     <string name="job_lookup_description">Description:</string>
     <string name="lookup_checkbox">Completed?</string>
     <string name="lookup_update">Update</string>
+    <string name="list_text">Open jobs</string>
 </resources>
