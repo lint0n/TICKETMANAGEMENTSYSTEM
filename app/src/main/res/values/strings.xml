@@ -21,7 +21,7 @@
     <string name="job_lookup_customer">Customer:</string>
     <string name="job_lookup_description">Description:</string>
     <string name="job_lookup_created">Created:</string>
-    <string name="lookup_checkbox">Completed?</string>
+    <string name="lookup_checkbox">Completed</string>
     <string name="lookup_update">Update</string>
     <string name="list_text">Open jobs</string>
     <string name="about">About</string>

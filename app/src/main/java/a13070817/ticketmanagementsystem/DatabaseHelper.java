@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Job table columns
     static final String JOB_TABLE_NAME = "JOB";
-    static final String JOB_ID = "_id";
+    static final String JOB_ID = "ID";
     static final String JOB_ENGINEER = "ENGINEER";
     static final String JOB_TITLE = "TITLE";
     static final String JOB_ASSET = "ASSET";

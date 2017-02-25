@@ -36,8 +36,8 @@ public class CreateJob extends Activity{
         db = dbHelper.getWritableDatabase();
 
         //http://stackoverflow.com/questions/754684/how-to-insert-a-sqlite-record-with-a-datetime-set-to-now-in-android-applicatio
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date d = new Date();
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//        Date d = new Date();
 
         try {
             String jd = jobDescription.getText().toString();
@@ -59,7 +59,7 @@ public class CreateJob extends Activity{
             values.put(DatabaseHelper.JOB_CUSTOMER, jc);
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
             values.put(DatabaseHelper.JOB_STATUS, 0);
-            values.put(DatabaseHelper.JOB_DATE, dateFormat.format(d));
+            values.put(DatabaseHelper.JOB_DATE, System.currentTimeMillis());
 
             long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
             Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
