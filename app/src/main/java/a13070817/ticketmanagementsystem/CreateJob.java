@@ -8,12 +8,11 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CreateJob extends Activity{
 
@@ -30,6 +29,12 @@ public class CreateJob extends Activity{
         jobAsset = (EditText) findViewById(R.id.job_asset);
         jobCustomer = (EditText) findViewById(R.id.job_customer);
     }
+
+//        public boolean onCreateOptionsMenu(Menu menu){
+//            MenuInflater menuInflater = getMenuInflater();
+//            menuInflater.inflate(R.menu.menu_back, menu);
+//            return true;
+//    }
 
     public void insertData(View view) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);

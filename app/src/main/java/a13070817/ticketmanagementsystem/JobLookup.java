@@ -10,6 +10,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,18 +24,22 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-public class JobLookup extends Activity {
+public class JobLookup extends AppCompatActivity{
 
     //Fields
     private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate;
     private Button lookupButton, updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_lookup);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //EditText instances
         jobLookup = (EditText) findViewById(R.id.job_lookup_input);
@@ -48,6 +57,15 @@ public class JobLookup extends Activity {
         //CheckBox instance
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_back, menu);
+        return true;
     }
 
     public void lookupJob(View view) {
@@ -123,9 +141,6 @@ public class JobLookup extends Activity {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
 
-        //creates an Intent that when called will return the user to the Main activity
-        Intent mainIntent = new Intent(this, MainActivity.class);
-
         //takes the EditText and puts them to String
         try{
             String jd = jobDescription.getText().toString();
@@ -152,16 +167,22 @@ public class JobLookup extends Activity {
             }
 
             //take user back to home screen
+            Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
 
             //Toast confirming job + jobID has been updated
             db.update(DatabaseHelper.JOB_TABLE_NAME, values, DatabaseHelper.JOB_ID + "=" + ji, null);
-            Toast.makeText(this, "Job updated.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job " + ji + " updated", Toast.LENGTH_LONG).show();
         }
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query
         catch(Exception exc){
-            Toast.makeText(this, "Error: Job not updated.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error: Job not updated", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void returnMain(MenuItem menuItem){
+        Intent mainIntent = new Intent(this, MainActivity.class);
+        startActivity(mainIntent);
     }
 }

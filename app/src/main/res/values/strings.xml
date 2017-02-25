@@ -25,4 +25,7 @@
     <string name="lookup_update">Update</string>
     <string name="list_text">Open jobs</string>
     <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="shutdown">Shutdown</string>
+    <string name="back">Back</string>
 </resources>
