@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:title="@string/job_lookup_text"
+        android:icon="@drawable/search"
+        app:showAsAction="always"
+        android:onClick="jobLookup"/>
+    <item
+        android:id="@+id/create"
+        android:title="@string/create_job"
+        android:icon="@drawable/create"
+        app:showAsAction="always"
+        android:onClick="createJob"/>
+
+    <item
+        android:id="@+id/menu"
+        android:title="@string/about"
+        android:checkable="false" />
+</menu>

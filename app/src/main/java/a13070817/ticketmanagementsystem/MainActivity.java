@@ -1,14 +1,20 @@
 package a13070817.ticketmanagementsystem;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    //https://www.youtube.com/watch?v=LpiIBjLzhh4
+    Toolbar toolbar;
 
 
     @Override
@@ -16,16 +22,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseHelper dbHelper = new DatabaseHelper(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
     //onclick take user to CreateJob activity
-    public void createJob(View view) {
+    //http://stackoverflow.com/a/17396896/7087139
+    public void createJob(MenuItem menuItem) {
         Intent newCreate = new Intent(this, CreateJob.class);
         startActivity(newCreate);
     }
 
     //onclick take user to JobLookup activity
-    public void jobLookup(View view) {
+    public void jobLookup(MenuItem menu) {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
     }

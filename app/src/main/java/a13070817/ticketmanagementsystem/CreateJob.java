@@ -62,11 +62,11 @@ public class CreateJob extends Activity{
             values.put(DatabaseHelper.JOB_DATE, dateFormat.format(d));
 
             long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
-            Toast.makeText(this, "Job " + newRowId + " created at: \n " + d, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
         }
 
         catch(Exception exc){
-            Toast.makeText(this, "ERROR: Job not created", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error: Job not created", Toast.LENGTH_LONG).show();
         }
     }
 }
