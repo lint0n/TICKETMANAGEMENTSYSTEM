@@ -60,11 +60,18 @@ public class JobLookup extends AppCompatActivity{
 
     }
 
+    //http://stackoverflow.com/a/4780009/7087139
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_back, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent newCreate = new Intent(this, MainActivity.class);
+        startActivity(newCreate);
     }
 
     public void lookupJob(View view) {

@@ -46,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //http://stackoverflow.com/a/3725042/7087139
+    @Override
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+        finish();
+    }
 
     //onclick take user to CreateJob activity
     //http://stackoverflow.com/a/17396896/7087139
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
         TextView tv = new TextView(this);
-        tv.setText("     Jobs currently open:");
+        tv.setText("   Jobs currently open:");
 
         lv = (ListView) findViewById(R.id.listview);
         lv.addHeaderView(tv);
@@ -103,5 +112,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
     }
+
+
 
 }

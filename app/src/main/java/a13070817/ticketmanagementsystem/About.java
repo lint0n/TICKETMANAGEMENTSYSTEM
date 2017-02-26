@@ -27,6 +27,13 @@ public class About extends AppCompatActivity {
         return true;
     }
 
+    //http://stackoverflow.com/a/4780009/7087139
+    @Override
+    public void onBackPressed() {
+        Intent newCreate = new Intent(this, MainActivity.class);
+        startActivity(newCreate);
+    }
+
     public void returnMain(MenuItem menuItem){
         Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);

@@ -44,14 +44,16 @@ public class CreateJob extends AppCompatActivity{
         return true;
     }
 
+    //http://stackoverflow.com/a/4780009/7087139
+    @Override
+    public void onBackPressed() {
+        Intent newCreate = new Intent(this, MainActivity.class);
+        startActivity(newCreate);
+    }
+
     public void insertData(View view) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
-
-        //http://stackoverflow.com/questions/754684/how-to-insert-a-sqlite-record-with-a-datetime-set-to-now-in-android-applicatio
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-//        Date d = new Date();
-
         try {
             String jd = jobDescription.getText().toString();
             String jt = jobTitle.getText().toString();
