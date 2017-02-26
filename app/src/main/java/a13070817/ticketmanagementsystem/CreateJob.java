@@ -76,8 +76,15 @@ public class CreateJob extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_STATUS, 0);
             values.put(DatabaseHelper.JOB_DATE, System.currentTimeMillis());
 
-            long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
-            Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
+            //if editText contains unpopulated fields do not create job otherwise create
+            if((jt.equals("")) || (je.equals("")) || (ja.equals("")) || (jc.equals("")) || (jd.equals("")))
+            {
+                Toast.makeText(this, "Job not created due to missing fields", Toast.LENGTH_LONG).show();
+            }
+            else {
+                long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
+                Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
+            }
         }
 
         catch(Exception exc){

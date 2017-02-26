@@ -104,11 +104,21 @@ public class MainActivity extends AppCompatActivity {
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
         TextView tv = new TextView(this);
-        tv.setText("   Jobs currently open:");
+        tv.setTextSize(24);
+        tv.setPadding(200,0,200,0);
+        tv.setSingleLine(true);
 
+        if(results.size() == 0){
+            tv.setText("You have no open jobs!");
+        }
+        else if(results.size() == 1){
+            tv.setText("   You have " + results.size() + " open job");
+        }
+        else {
+            tv.setText("   You have " + results.size() + " open jobs");
+        }
         lv = (ListView) findViewById(R.id.listview);
         lv.addHeaderView(tv);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
     }
