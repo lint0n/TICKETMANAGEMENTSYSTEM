@@ -29,15 +29,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String JOB_CUSTOMER = "CUSTOMER";
     static final String JOB_DESCRIPTION = "DESCRIPTION";
     static final String JOB_SEVERITY = "SEVERITY";
-    static String JOB_STATUS = "COMPLETE";
-    static String JOB_DATE = "DATE_CREATED";
+    static final String JOB_STATUS = "COMPLETE";
+    static final String JOB_DATE = "DATE_CREATED";
 
     //    Asset table variables
     static final String ASSET_TABLE_NAME = "ASSET";
     static final String ASSET_DESCRIPTION = "DESCRIPTION";
     static final String ASSET_TAG = "TAG";
     static final String ASSET_CLIENT = "CLIENT_ID";
-    static String ASSET_LOCATION = "LOCATION";
+    static final String ASSET_LOCATION = "LOCATION";
 
     static final String CLIENT_TABLE_NAME = "CLIENT";
     static final String CLIENT_NAME = "NAME";
