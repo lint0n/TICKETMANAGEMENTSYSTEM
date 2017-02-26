@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_create_job"
     android:layout_width="match_parent"
@@ -9,24 +10,6 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/create_job_intro_text"
-        android:layout_height="wrap_content"
-        android:text="Create a job"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="90dp"
-        android:ems="6"
-        android:id="@+id/job_description"
-        android:inputType="textCapSentences|textAutoCorrect"
-        android:layout_marginBottom="38dp"
-        android:layout_above="@+id/createButton"
-        android:layout_alignLeft="@+id/createButton"
-        android:layout_alignStart="@+id/createButton" />
 
     <Button
         android:id="@+id/createButton"
@@ -40,59 +23,36 @@
         android:layout_marginBottom="20dp" />
 
     <TextView
-        android:text="@string/create_job_description"
+        android:text="@string/create_job_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/job_description_text"
+        android:id="@+id/job_title_text"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/job_description"
-        android:layout_alignLeft="@+id/job_description"
-        android:layout_alignStart="@+id/job_description" />
+        android:layout_below="@+id/toolbar"
+        android:layout_alignLeft="@+id/job_title"
+        android:layout_alignStart="@+id/job_title"
+        android:layout_marginTop="14dp" />
 
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName|number"
+        android:inputType="textCapSentences|textAutoCorrect"
         android:ems="6"
-        android:id="@+id/job_customer"
+        android:id="@+id/job_title"
         android:maxLines="1"
-        android:maxLength="6"
-        android:layout_above="@+id/job_description_text"
-        android:layout_alignLeft="@+id/job_description_text"
-        android:layout_alignStart="@+id/job_description_text" />
+        android:layout_below="@+id/job_title_text"
+        android:layout_alignLeft="@+id/job_engineer_text"
+        android:layout_alignStart="@+id/job_engineer_text" />
 
     <TextView
-        android:text="@string/create_job_customer"
+        android:text="@string/create_job_engineer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/job_customer_text"
+        android:id="@+id/job_engineer_text"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/job_customer"
-        android:layout_alignLeft="@+id/job_customer"
-        android:layout_alignStart="@+id/job_customer" />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="6"
-        android:id="@+id/job_asset"
-        android:maxLines="1"
-        android:maxLength="6"
-        android:layout_above="@+id/job_customer_text"
-        android:layout_alignLeft="@+id/job_customer_text"
-        android:layout_alignStart="@+id/job_customer_text" />
-
-    <TextView
-        android:text="@string/create_job_asset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/job_asset_text"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/job_customer_text"
-        android:layout_alignLeft="@+id/job_asset"
-        android:layout_alignStart="@+id/job_asset"
-        android:layout_marginBottom="44dp" />
+        android:layout_below="@+id/job_title"
+        android:layout_alignLeft="@+id/job_engineer"
+        android:layout_alignStart="@+id/job_engineer" />
 
     <EditText
         android:layout_width="350dp"
@@ -102,39 +62,73 @@
         android:id="@+id/job_engineer"
         android:maxLines="1"
         android:maxLength="6"
-        android:layout_above="@+id/job_asset_text"
+        android:layout_below="@+id/job_engineer_text"
         android:layout_alignLeft="@+id/job_asset_text"
         android:layout_alignStart="@+id/job_asset_text" />
 
     <TextView
-        android:text="@string/create_job_engineer"
+        android:text="@string/create_job_asset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/job_engineer_text"
+        android:id="@+id/job_asset_text"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/job_engineer"
-        android:layout_alignLeft="@+id/job_engineer"
-        android:layout_alignStart="@+id/job_engineer" />
+        android:layout_below="@+id/job_engineer"
+        android:layout_alignLeft="@+id/job_asset"
+        android:layout_alignStart="@+id/job_asset" />
 
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textCapSentences|textAutoCorrect"
+        android:inputType="number"
         android:ems="6"
-        android:id="@+id/job_title"
+        android:id="@+id/job_asset"
         android:maxLines="1"
-        android:layout_above="@+id/job_engineer_text"
-        android:layout_alignLeft="@+id/job_engineer_text"
-        android:layout_alignStart="@+id/job_engineer_text" />
+        android:maxLength="6"
+        android:layout_below="@+id/job_engineer"
+        android:layout_alignLeft="@+id/job_customer_text"
+        android:layout_alignStart="@+id/job_customer_text"
+        android:layout_marginTop="14dp" />
 
     <TextView
-        android:text="@string/create_job_title"
+        android:text="@string/create_job_customer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/job_title_text"
+        android:id="@+id/job_customer_text"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/job_title"
-        android:layout_alignLeft="@+id/job_title"
-        android:layout_alignStart="@+id/job_title" />
+        android:layout_below="@+id/job_asset"
+        android:layout_alignLeft="@+id/job_customer"
+        android:layout_alignStart="@+id/job_customer" />
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName|number"
+        android:ems="6"
+        android:id="@+id/job_customer"
+        android:maxLines="1"
+        android:maxLength="6"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/job_description_text"
+        android:layout_alignStart="@+id/job_description_text" />
+
+    <TextView
+        android:text="@string/create_job_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/job_description_text"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@+id/job_customer"
+        android:layout_alignLeft="@+id/job_description"
+        android:layout_alignStart="@+id/job_description" />
+
+    <EditText
+        android:layout_width="350dp"
+        android:layout_height="90dp"
+        android:ems="6"
+        android:id="@+id/job_description"
+        android:inputType="textCapSentences|textAutoCorrect"
+        android:layout_below="@+id/job_description_text"
+        android:layout_alignLeft="@+id/createButton"
+        android:layout_alignStart="@+id/createButton" />
 
 </RelativeLayout>

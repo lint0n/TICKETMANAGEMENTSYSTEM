@@ -117,9 +117,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_LOCATION_TABLE);
         onCreate(db);
     }
-
-    public void addData(){
-        //db = this.getWritableDatabase();
-        //add example data
-    }
 }

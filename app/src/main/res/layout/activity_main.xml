@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -7,7 +8,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:weightSum="1"
-    tools:context="a13070817.ticketmanagementsystem.MainActivity">
+    tools:context="a13070817.ticketmanagementsystem.MainActivity"
+    android:baselineAligned="false">
 
     <include
         android:id="@+id/toolbar"
@@ -17,7 +19,24 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="83dp"
+        android:layout_weight="0.98"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
-
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/plus24"
+        android:id="@+id/floatingCreate"
+        android:layout_marginRight="34dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="createJob"/>
+</RelativeLayout>

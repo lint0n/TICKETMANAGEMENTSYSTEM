@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     //onclick take user to CreateJob activity
     //http://stackoverflow.com/a/17396896/7087139
-    public void createJob(MenuItem menuItem) {
+    public void createJob(View view) {
         Intent newCreate = new Intent(this, CreateJob.class);
         startActivity(newCreate);
     }
