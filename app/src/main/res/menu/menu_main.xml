@@ -24,5 +24,6 @@
         android:id="@+id/about"
         android:title="@string/about"
         android:icon="@drawable/about"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:onClick="about"/>
 </menu>
