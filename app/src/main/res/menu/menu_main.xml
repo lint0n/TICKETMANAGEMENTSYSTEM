@@ -9,15 +9,12 @@
         android:icon="@drawable/search"
         app:showAsAction="always"
         android:onClick="jobLookup"/>
-    <item
-        android:id="@+id/help"
-        android:title="@string/help"
-        android:icon="@drawable/help"
-        app:showAsAction="never"/>
+
+
     <item
         android:id="@+id/about"
         android:title="@string/about"
         android:icon="@drawable/about"
-        app:showAsAction="never"
+        app:showAsAction="always"
         android:onClick="about"/>
 </menu>
