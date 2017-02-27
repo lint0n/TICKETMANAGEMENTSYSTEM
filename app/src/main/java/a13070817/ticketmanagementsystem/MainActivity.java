@@ -1,5 +1,6 @@
 package a13070817.ticketmanagementsystem;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -104,19 +105,17 @@ public class MainActivity extends AppCompatActivity {
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
         TextView tv = new TextView(this);
-        tv.setTextSize(24);
-        tv.setPadding(200,0,200,0);
+        tv.setTextSize(18);
+        tv.setGravity(4);
         tv.setSingleLine(true);
 
         if(results.size() == 0){
             tv.setText("You have no open jobs!");
         }
-        else if(results.size() == 1){
-            tv.setText("   You have " + results.size() + " open job");
-        }
         else {
-            tv.setText("   You have " + results.size() + " open jobs");
+            tv.setText("Job List");
         }
+
         lv = (ListView) findViewById(R.id.listview);
         lv.addHeaderView(tv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);

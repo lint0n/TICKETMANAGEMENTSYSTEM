@@ -30,13 +30,11 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         app:fabSize="normal"
-        app:srcCompat="@drawable/fabplus"
+        app:srcCompat="@drawable/ic_create_white_48dp"
         android:id="@+id/fabCreate"
-        android:layout_marginRight="34dp"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="34dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="createJob"/>
 </RelativeLayout>

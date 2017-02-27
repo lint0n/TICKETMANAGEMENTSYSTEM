@@ -118,33 +118,6 @@
         android:layout_alignLeft="@+id/JobDescription"
         android:layout_alignStart="@+id/JobDescription" />
 
-    <Button
-        android:text="@string/lookup_update"
-        android:layout_height="wrap_content"
-        android:id="@+id/lookup_update_button"
-        android:onClick="updateJob"
-        android:layout_marginBottom="11dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/JobDescription"
-        android:layout_alignEnd="@+id/JobDescription"
-        android:layout_width="100dp"
-        android:layout_toRightOf="@+id/text_JobEngineer"
-        android:layout_toEndOf="@+id/text_JobEngineer" />
-
-    <Button
-        android:id="@+id/lookup_button"
-        android:layout_height="50dp"
-        android:text="@string/job_lookup_button"
-        android:layout_gravity="bottom"
-        android:onClick="lookupJob"
-
-        android:layout_width="100dp"
-        android:layout_alignTop="@+id/job_lookup_input"
-        android:layout_alignRight="@+id/JobCustomer"
-        android:layout_alignEnd="@+id/JobCustomer"
-        android:layout_toRightOf="@+id/text_JobEngineer"
-        android:layout_toEndOf="@+id/text_JobEngineer" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -167,7 +140,6 @@
         android:checked="false"
         android:duplicateParentState="false"
         android:textAllCaps="false"
-        android:layout_below="@+id/JobDescription"
         android:layout_alignLeft="@+id/JobDescription"
         android:layout_alignStart="@+id/JobDescription"
         android:layout_alignBottom="@+id/lookup_update_button"
@@ -193,6 +165,35 @@
         android:layout_above="@+id/text_JobEngineer"
         android:layout_alignLeft="@+id/JobID"
         android:layout_alignStart="@+id/JobID" />
+
+    <Button
+        android:id="@+id/lookup_button"
+        android:layout_height="50dp"
+        android:text="@string/job_lookup_button"
+        android:layout_gravity="bottom"
+        android:onClick="lookupJob"
+        android:drawableLeft="@drawable/ic_search_white_36dp"
+        android:layout_width="100dp"
+        android:layout_alignTop="@+id/job_lookup_input"
+        android:layout_alignRight="@+id/JobTitle"
+        android:layout_alignEnd="@+id/JobTitle"
+        android:layout_toRightOf="@+id/text_JobEngineer"
+        android:layout_toEndOf="@+id/text_JobEngineer" />
+
+    <Button
+        android:text="@string/lookup_update"
+        android:layout_height="50dp"
+        android:id="@+id/lookup_update_button"
+        android:onClick="updateJob"
+        android:drawableLeft="@drawable/ic_update_white_36dp"
+        android:layout_marginBottom="13dp"
+        android:layout_width="100dp"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/JobDescription"
+        android:layout_alignEnd="@+id/JobDescription"
+        android:layout_toRightOf="@+id/text_JobEngineer"
+        android:layout_toEndOf="@+id/text_JobEngineer" />
 
 
 </RelativeLayout>
