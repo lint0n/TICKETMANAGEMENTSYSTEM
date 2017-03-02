@@ -4,17 +4,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/main_searchview"
+        android:title="Search"
+        android:hint="Job ID"
+        android:icon="@drawable/ic_search_white_24dp"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+   <!-- <item
         android:id="@+id/search"
         android:title="@string/job_lookup_text"
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="always"
-        android:onClick="jobLookup"/>
+        android:onClick="jobLookup"/> -->
 
 
     <item
         android:id="@+id/about"
         android:title="@string/about"
         android:icon="@drawable/ic_info_outline_white_24dp"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:onClick="about"/>
 </menu>

@@ -2,13 +2,17 @@ package a13070817.ticketmanagementsystem;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,8 +21,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.SearchView;
 
 import java.util.ArrayList;
+
+import static android.support.design.R.id.center;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,9 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
+        new ComponentName(this, JobLookup.class);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
+
+        SearchView sv = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.main_searchview));
+        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+        sv.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
+
     }
 
     //http://stackoverflow.com/a/3725042/7087139
@@ -65,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //onclick take user to JobLookup activity
-    public void jobLookup(MenuItem menuItem) {
+    public void jobLookup() {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
     }
@@ -104,20 +117,17 @@ public class MainActivity extends AppCompatActivity {
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
-        TextView tv = new TextView(this);
-        tv.setTextSize(18);
-        tv.setGravity(4);
-        tv.setSingleLine(true);
+        lv = (ListView) findViewById(R.id.listview);
 
         if(results.size() == 0){
-            tv.setText("You have no open jobs!");
-        }
-        else {
-            tv.setText("Job List");
+            TextView tv = new TextView(this);
+            tv.setTextSize(18);
+            tv.setPadding(10,10,10,10);
+            tv.setGravity(Gravity.CENTER);
+            tv.setText("You currently have no open jobs");
+            lv.addHeaderView(tv);
         }
 
-        lv = (ListView) findViewById(R.id.listview);
-        lv.addHeaderView(tv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
     }

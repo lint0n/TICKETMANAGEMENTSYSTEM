@@ -36,5 +36,6 @@
         android:layout_marginEnd="34dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="createJob"/>
+        android:onClick="createJob"
+        style="@style/Widget.Design.FloatingActionButton" />
 </RelativeLayout>
