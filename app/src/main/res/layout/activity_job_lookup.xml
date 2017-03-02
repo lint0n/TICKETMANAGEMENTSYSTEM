@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_job_lookup"
     android:layout_width="match_parent"
@@ -38,9 +39,7 @@
         android:id="@+id/JobCustomer"
         android:layout_alignBaseline="@+id/JobAsset"
         android:layout_alignBottom="@+id/JobAsset"
-        android:layout_alignRight="@+id/JobDescription"
         android:layout_alignEnd="@+id/JobDescription"
-        android:layout_toRightOf="@+id/JobAsset"
         android:layout_toEndOf="@+id/JobAsset"
         android:inputType="number" />
 
@@ -131,31 +130,6 @@
         android:layout_alignLeft="@+id/text_JobTitle"
         android:layout_alignStart="@+id/text_JobTitle" />
 
-    <CheckBox
-        android:text="@string/lookup_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:checked="false"
-        android:duplicateParentState="false"
-        android:textAllCaps="false"
-        android:layout_alignLeft="@+id/JobDescription"
-        android:layout_alignStart="@+id/JobDescription"
-        android:layout_alignBottom="@+id/lookup_update_button"
-        android:layout_alignRight="@+id/job_lookup_input"
-        android:layout_alignEnd="@+id/job_lookup_input" />
-
-    <EditText
-        android:layout_height="100dp"
-        android:inputType="textCapSentences|textAutoCorrect"
-        android:ems="10"
-        android:id="@+id/JobDescription"
-        android:layout_marginBottom="36dp"
-        android:layout_width="350dp"
-        android:layout_above="@+id/lookup_update_button"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -180,20 +154,40 @@
         android:layout_toRightOf="@+id/text_JobEngineer"
         android:layout_toEndOf="@+id/text_JobEngineer" />
 
-    <Button
-        android:text="@string/lookup_update"
-        android:layout_height="50dp"
-        android:id="@+id/lookup_update_button"
-        android:onClick="updateJob"
-        android:drawableLeft="@drawable/ic_update_white_36dp"
-        android:layout_marginBottom="13dp"
-        android:layout_width="100dp"
-        style="@android:style/Widget.DeviceDefault.Button"
+    <EditText
+        android:layout_height="100dp"
+        android:inputType="textCapSentences|textAutoCorrect"
+        android:ems="10"
+        android:id="@+id/JobDescription"
+        android:layout_marginBottom="104dp"
+        android:layout_width="350dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/JobDescription"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:text="@string/lookup_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkBox"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:checked="false"
+        android:duplicateParentState="false"
+        android:textAllCaps="false"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/JobDescription" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_update_white_48dp"
+        android:id="@+id/fabUpdate"
+        android:layout_marginEnd="28dp"
+        android:layout_alignTop="@+id/checkBox"
         android:layout_alignEnd="@+id/JobDescription"
-        android:layout_toRightOf="@+id/text_JobEngineer"
-        android:layout_toEndOf="@+id/text_JobEngineer" />
+        android:onClick="updateJob"/>
 
 
 </RelativeLayout>

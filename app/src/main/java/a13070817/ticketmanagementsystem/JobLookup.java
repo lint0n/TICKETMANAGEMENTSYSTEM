@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -28,7 +29,8 @@ public class JobLookup extends AppCompatActivity{
 
     //Fields
     private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate;
-    private Button lookupButton, updateButton;
+    private Button lookupButton;
+    private FloatingActionButton updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
 
@@ -51,7 +53,7 @@ public class JobLookup extends AppCompatActivity{
 
         //Button instances
         lookupButton = (Button) findViewById(R.id.lookup_button);
-        updateButton = (Button) findViewById(R.id.lookup_update_button);
+        updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
 
         //CheckBox instance
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
@@ -64,7 +66,7 @@ public class JobLookup extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_back, menu);
+        menuInflater.inflate(R.menu.menu_update, menu);
         return true;
     }
 

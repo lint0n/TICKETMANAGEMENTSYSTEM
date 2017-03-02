@@ -5,9 +5,11 @@ package a13070817.ticketmanagementsystem;
  */
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -51,7 +53,7 @@ public class CreateJob extends AppCompatActivity{
         startActivity(newCreate);
     }
 
-    public void insertData(View view) {
+    public void insertData(MenuItem menuItem) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         try {
@@ -79,7 +81,7 @@ public class CreateJob extends AppCompatActivity{
             //if editText contains unpopulated fields do not create job otherwise create
             if((jt.equals("")) || (je.equals("")) || (ja.equals("")) || (jc.equals("")) || (jd.equals("")))
             {
-                Toast.makeText(this, "Job not created due to missing fields", Toast.LENGTH_LONG).show();
+                throw new Exception();
             }
             else {
                 long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
@@ -88,12 +90,29 @@ public class CreateJob extends AppCompatActivity{
         }
 
         catch(Exception exc){
-            Toast.makeText(this, "Error: Job not created", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job not created", Toast.LENGTH_LONG).show();
         }
     }
 
     public void returnMain(MenuItem menuItem){
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+        final Intent mainIntent = new Intent(this, MainActivity.class);
+        //http://stackoverflow.com/a/2478662/7087139
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //yes
+                        startActivity(mainIntent);
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //no
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 }

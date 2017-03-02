@@ -11,18 +11,6 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-    <Button
-        android:id="@+id/createButton"
-        android:layout_width="175dp"
-        android:layout_height="50dp"
-        android:text="@string/create_button"
-        android:layout_gravity="bottom"
-        android:onClick="insertData"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:drawableLeft="@drawable/ic_create_white_36dp"/>
-
     <TextView
         android:text="@string/create_job_title"
         android:layout_width="wrap_content"
@@ -108,8 +96,7 @@
         android:id="@+id/job_customer"
         android:maxLines="1"
         android:maxLength="6"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/job_description_text"
+        android:layout_below="@+id/job_customer_text"
         android:layout_alignStart="@+id/job_description_text" />
 
     <TextView
@@ -119,7 +106,6 @@
         android:id="@+id/job_description_text"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:layout_below="@+id/job_customer"
-        android:layout_alignLeft="@+id/job_description"
         android:layout_alignStart="@+id/job_description" />
 
     <EditText

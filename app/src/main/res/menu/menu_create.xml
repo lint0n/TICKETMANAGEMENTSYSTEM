@@ -3,11 +3,19 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<item
-    android:id="@+id/back"
-    android:title="@string/back"
-    android:icon="@drawable/ic_arrow_back_white_24dp"
-    app:showAsAction="always"
-    android:onClick="returnMain"
-    />
+    <item
+        android:id="@+id/menu_create_back"
+        android:title="Back"
+        android:icon="@drawable/ic_arrow_back_white_24dp"
+        app:showAsAction="always"
+        android:onClick="returnMain" />
+
+    <item
+        android:id="@+id/menu_create_create"
+        android:title="Create"
+        android:icon="@drawable/ic_create_white_24dp"
+        app:showAsAction="always|withText"
+        android:onClick="insertData"
+
+        />
 </menu>
