@@ -31,7 +31,6 @@ public class JobLookup extends AppCompatActivity{
 
     //Fields
     private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate;
-    private Button lookupButton;
     private FloatingActionButton updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
@@ -195,11 +194,9 @@ public class JobLookup extends AppCompatActivity{
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        //yes
                         startActivity(mainIntent);
 
                     case DialogInterface.BUTTON_NEGATIVE:
-                        //no
                         break;
                 }
             }

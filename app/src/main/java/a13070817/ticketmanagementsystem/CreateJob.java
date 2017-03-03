@@ -22,8 +22,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import org.xml.sax.DTDHandler;
 
 public class CreateJob extends AppCompatActivity{
 
@@ -31,6 +35,7 @@ public class CreateJob extends AppCompatActivity{
     private TextInputLayout layoutTitle;
     private SQLiteDatabase db;
     private Toolbar toolbar;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,12 @@ public class CreateJob extends AppCompatActivity{
         jobAsset = (EditText) findViewById(R.id.job_asset);
         jobCustomer = (EditText) findViewById(R.id.job_customer);
 
-//        jobTitle.addTextChangedListener(new MyTextWatcher(jobTitle));
+        //https://developer.android.com/guide/topics/ui/controls/spinner.html
+        spinner = (Spinner) findViewById(R.id.createspinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.create_severity, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,11 +101,8 @@ public class CreateJob extends AppCompatActivity{
             String ja = jobAsset.getText().toString();
             String jc = jobCustomer.getText().toString();
 
-            jobDescription.setText("");
-            jobTitle.setText("");
-            jobEngineer.setText("");
-            jobAsset.setText("");
-            jobCustomer.setText("");
+            //Head First Android Chapter 2 p 63
+            String sev = String.valueOf(spinner.getSelectedItem());
 
             ContentValues values = new ContentValues();
             values.put(DatabaseHelper.JOB_TITLE, jt);
@@ -105,9 +112,20 @@ public class CreateJob extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
             values.put(DatabaseHelper.JOB_STATUS, 0);
             values.put(DatabaseHelper.JOB_DATE, System.currentTimeMillis());
+            if (sev.contains("1-Critical")) {
+                values.put(DatabaseHelper.JOB_SEVERITY, 1);
+            } else if (sev.contains("2-High")) {
+                values.put(DatabaseHelper.JOB_SEVERITY, 2);
+            } else if (sev.contains("3-Medium")) {
+                values.put(DatabaseHelper.JOB_SEVERITY, 3);
+            } else if (sev.contains("4-Low")) {
+                values.put(DatabaseHelper.JOB_SEVERITY, 4);
+            }
+
+
 
             //if editText contains unpopulated fields do not create job otherwise create
-            if((jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))))
+            if(sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty())))))
             {
                 throw new Exception();
             }
@@ -147,33 +165,29 @@ public class CreateJob extends AppCompatActivity{
         builder.setMessage("Input will not be saved. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 
-//    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
-//    private void requestFocus(View view){
-//        if (view.requestFocus()){
-//            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-//        }
-//    }
+    public void erase(MenuItem menuItem){
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //yes
+                        jobDescription.setText("");
+                        jobTitle.setText("");
+                        jobEngineer.setText("");
+                        jobAsset.setText("");
+                        jobCustomer.setText("");
 
-//    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
-//    private class MyTextWatcher implements TextWatcher{
-//        private View view;
-//
-//        private MyTextWatcher(View view){
-//            this.view = view;
-//        }
-//
-//        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//        }
-//
-//        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//        }
-//
-//        public void afterTextChanged(Editable editable){
-//            switch (view.getId()){
-//                case R.id.job_title:
-//                    validateTitle();
-//                    break;
-//            }
-//        }
-//    }
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //no
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Erase data");
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+    }
 }

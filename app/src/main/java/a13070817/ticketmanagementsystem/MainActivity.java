@@ -98,15 +98,30 @@ public class MainActivity extends AppCompatActivity {
         try {
             DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
             db = dbHelper.getWritableDatabase();
-            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION FROM " + dbHelper.JOB_TABLE_NAME +
-            " where COMPLETE = 0", null);
+            String severity = new String();
+            //http://www.1keydata.com/sql/sqlorderby.html
+            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.JOB_TABLE_NAME +
+            " WHERE COMPLETE = 0 ORDER BY SEVERITY ASC", null);
 
             if (c != null){
                 if (c.moveToFirst()){
                     do {
+
+                        if (c.getInt(c.getColumnIndex("SEVERITY")) == 1){
+                            severity = "[Critical]";
+                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 2) {
+                            severity = "[High]";
+                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 3) {
+                            severity = "[Medium]";
+                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 4) {
+                            severity = "[Low]";
+                        } else {
+                            severity = null;
+                        }
+
                         int ID = c.getInt(c.getColumnIndex("ID"));
                         String Title = c.getString(c.getColumnIndex("TITLE"));
-                        results.add("Job ID: " + ID + "   " + Title);
+                        results.add(severity + " - ID: " + ID + " - " + Title);
                     }while (c.moveToNext());
                 }
             }

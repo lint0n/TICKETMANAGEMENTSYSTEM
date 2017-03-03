@@ -14,6 +14,7 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <!--https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html-->
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,5 +103,10 @@
             android:hint="@string/create_job_description"
             style="@style/FullWidthEditText" />
     </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/createspinner" />
 
 </LinearLayout>
