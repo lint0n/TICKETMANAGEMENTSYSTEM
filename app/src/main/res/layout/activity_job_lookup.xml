@@ -139,7 +139,8 @@
         android:id="@+id/JobDescription"
         android:layout_width="350dp"
         android:layout_below="@+id/text_JobDescription"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
     <EditText
         android:layout_width="80dp"
@@ -148,7 +149,8 @@
         android:id="@+id/JobCustomer"
         android:inputType="number"
         android:layout_below="@+id/text_JobEngineer"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+         />
 
 
 </RelativeLayout>

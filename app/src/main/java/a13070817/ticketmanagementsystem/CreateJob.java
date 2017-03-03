@@ -5,24 +5,31 @@ package a13070817.ticketmanagementsystem;
  */
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class CreateJob extends AppCompatActivity{
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
-    SQLiteDatabase db;
+    private TextInputLayout layoutTitle;
+    private SQLiteDatabase db;
     private Toolbar toolbar;
 
     @Override
@@ -35,6 +42,8 @@ public class CreateJob extends AppCompatActivity{
         jobAsset = (EditText) findViewById(R.id.job_asset);
         jobCustomer = (EditText) findViewById(R.id.job_customer);
 
+//        jobTitle.addTextChangedListener(new MyTextWatcher(jobTitle));
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -46,11 +55,31 @@ public class CreateJob extends AppCompatActivity{
         return true;
     }
 
+    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
+//    private boolean validateTitle() {
+//        if (jobTitle.getText().toString().trim().isEmpty()) {
+//            layoutTitle.setError(getString(R.string.error_title));
+////            requestFocus(jobTitle);
+//            return false;
+//        } else {
+//            layoutTitle.setErrorEnabled(false);
+//        }
+//
+//        return true;
+//    }
+
     //http://stackoverflow.com/a/4780009/7087139
     @Override
-    public void onBackPressed() {
+    public void onBackPressed(){
         returnMain();
     }
+
+//    @Override
+//    public void onClick(View view) {
+//        InputMethodManager imm = (InputMethodManager) view.getContext()
+//                .getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//    }
 
     public void insertData(MenuItem menuItem) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -78,7 +107,7 @@ public class CreateJob extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_DATE, System.currentTimeMillis());
 
             //if editText contains unpopulated fields do not create job otherwise create
-            if((jt.equals("")) || (je.equals("")) || (ja.equals("")) || (jc.equals("")) || (jd.equals("")))
+            if((jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))))
             {
                 throw new Exception();
             }
@@ -114,6 +143,37 @@ public class CreateJob extends AppCompatActivity{
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+        builder.setTitle("Exit");
+        builder.setMessage("Input will not be saved. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
+
+//    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
+//    private void requestFocus(View view){
+//        if (view.requestFocus()){
+//            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+//        }
+//    }
+
+//    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
+//    private class MyTextWatcher implements TextWatcher{
+//        private View view;
+//
+//        private MyTextWatcher(View view){
+//            this.view = view;
+//        }
+//
+//        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        }
+//
+//        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//        }
+//
+//        public void afterTextChanged(Editable editable){
+//            switch (view.getId()){
+//                case R.id.job_title:
+//                    validateTitle();
+//                    break;
+//            }
+//        }
+//    }
 }
