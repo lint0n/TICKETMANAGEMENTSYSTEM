@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         new ComponentName(this, JobLookup.class);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
-
-        SearchView sv = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.main_searchview));
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        sv.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//
+//        SearchView sv = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.main_searchview));
+//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+//        sv.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
 
     }
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //onclick take user to JobLookup activity
-    public void jobLookup() {
+    public void jobLookup(MenuItem menuItem) {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
     }

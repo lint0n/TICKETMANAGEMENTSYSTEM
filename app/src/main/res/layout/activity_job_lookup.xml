@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar1"/>
 
 
     <TextView
@@ -21,148 +21,6 @@
         android:layout_above="@+id/JobCustomer"
         android:layout_alignLeft="@+id/JobCustomer"
         android:layout_alignStart="@+id/JobCustomer" />
-
-    <TextView
-        android:text="@string/job_lookup_engineer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_JobEngineer"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/JobEngineer"
-        android:layout_alignLeft="@+id/JobEngineer"
-        android:layout_alignStart="@+id/JobEngineer" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/JobCustomer"
-        android:layout_alignBaseline="@+id/JobAsset"
-        android:layout_alignBottom="@+id/JobAsset"
-        android:layout_alignEnd="@+id/JobDescription"
-        android:layout_toEndOf="@+id/JobAsset"
-        android:inputType="number" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/JobEngineer"
-        android:layout_alignBaseline="@+id/JobID"
-        android:layout_alignBottom="@+id/JobID"
-        android:layout_alignRight="@+id/JobDescription"
-        android:layout_alignEnd="@+id/JobDescription" />
-
-    <TextView
-        android:text="@string/job_lookup_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_JobTitle"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/JobTitle"
-        android:layout_alignLeft="@+id/JobTitle"
-        android:layout_alignStart="@+id/JobTitle" />
-
-    <TextView
-        android:text="@string/job_lookup_ID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_JobID"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_below="@+id/JobTitle"
-        android:layout_alignLeft="@+id/JobTitle"
-        android:layout_alignStart="@+id/JobTitle" />
-
-    <TextView
-        android:text="@string/job_lookup_asset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_JobAsset"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_below="@+id/JobID"
-        android:layout_alignLeft="@+id/JobID"
-        android:layout_alignStart="@+id/JobID" />
-
-    <EditText
-        android:layout_height="wrap_content"
-        android:inputType="none"
-        android:ems="10"
-        android:id="@+id/JobID"
-        android:layout_width="100dp"
-        android:layout_above="@+id/text_JobCustomer"
-        android:layout_toLeftOf="@+id/text_JobEngineer"
-        android:layout_alignLeft="@+id/JobAsset"
-        android:layout_alignStart="@+id/JobAsset" />
-
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/JobAsset"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/text_JobDescription"
-        android:layout_toLeftOf="@+id/JobEngineer"
-        android:layout_alignLeft="@+id/text_JobDescription"
-        android:layout_alignStart="@+id/text_JobDescription" />
-
-    <TextView
-        android:text="@string/job_lookup_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/text_JobDescription"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/JobDescription"
-        android:layout_alignLeft="@+id/JobDescription"
-        android:layout_alignStart="@+id/JobDescription" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/job_lookup_input"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:hint="Enter Job ID"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/toolbar"
-        android:layout_alignLeft="@+id/text_JobTitle"
-        android:layout_alignStart="@+id/text_JobTitle" />
-
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/JobTitle"
-        android:inputType="textCapSentences|textAutoCorrect"
-        android:layout_above="@+id/text_JobEngineer"
-        android:layout_alignLeft="@+id/JobID"
-        android:layout_alignStart="@+id/JobID" />
-
-    <Button
-        android:id="@+id/lookup_button"
-        android:layout_height="50dp"
-        android:text="@string/job_lookup_button"
-        android:layout_gravity="bottom"
-        android:onClick="lookupJob"
-        android:drawableLeft="@drawable/ic_search_white_36dp"
-        android:layout_width="100dp"
-        android:layout_alignTop="@+id/job_lookup_input"
-        android:layout_alignRight="@+id/JobTitle"
-        android:layout_alignEnd="@+id/JobTitle"
-        android:layout_toRightOf="@+id/text_JobEngineer"
-        android:layout_toEndOf="@+id/text_JobEngineer" />
-
-    <EditText
-        android:layout_height="100dp"
-        android:inputType="textCapSentences|textAutoCorrect"
-        android:ems="10"
-        android:id="@+id/JobDescription"
-        android:layout_marginBottom="104dp"
-        android:layout_width="350dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 
     <CheckBox
         android:text="@string/lookup_checkbox"
@@ -188,6 +46,109 @@
         android:layout_alignTop="@+id/checkBox"
         android:layout_alignEnd="@+id/JobDescription"
         android:onClick="updateJob"/>
+
+    <TextView
+        android:text="@string/job_lookup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_JobTitle"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignStart="@+id/JobTitle"
+        android:layout_marginTop="11dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/JobTitle"
+        android:inputType="textCapSentences|textAutoCorrect"
+        android:layout_below="@+id/text_JobTitle"
+        android:layout_alignEnd="@+id/JobDescription"
+        android:layout_toEndOf="@+id/JobID" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:ems="10"
+        android:id="@+id/JobID"
+        android:layout_width="80dp"
+        android:layout_alignBaseline="@+id/JobTitle"
+        android:layout_alignBottom="@+id/JobTitle"
+        android:layout_alignStart="@+id/JobDescription" />
+
+    <TextView
+        android:text="@string/job_lookup_ID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_JobID"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_above="@+id/JobID"
+        android:layout_alignStart="@+id/JobID" />
+
+    <TextView
+        android:text="@string/job_lookup_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_JobAsset"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@+id/JobID"
+        android:layout_alignStart="@+id/JobID" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/JobAsset"
+        android:layout_below="@+id/text_JobAsset"
+        android:layout_alignStart="@+id/text_JobAsset" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/JobEngineer"
+        android:layout_alignBaseline="@+id/JobCustomer"
+        android:layout_alignBottom="@+id/JobCustomer"
+        android:layout_alignEnd="@+id/JobTitle" />
+
+    <TextView
+        android:text="@string/job_lookup_engineer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_JobEngineer"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@+id/JobTitle"
+        android:layout_alignStart="@+id/JobEngineer" />
+
+    <TextView
+        android:text="@string/job_lookup_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_JobDescription"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@+id/JobAsset"
+        android:layout_alignStart="@+id/JobAsset" />
+
+    <EditText
+        android:layout_height="100dp"
+        android:inputType="textCapSentences|textAutoCorrect"
+        android:ems="10"
+        android:id="@+id/JobDescription"
+        android:layout_width="350dp"
+        android:layout_below="@+id/text_JobDescription"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/JobCustomer"
+        android:inputType="number"
+        android:layout_below="@+id/text_JobEngineer"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

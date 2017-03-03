@@ -91,7 +91,7 @@
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName|number"
+        android:inputType="number"
         android:ems="6"
         android:id="@+id/job_customer"
         android:maxLines="1"

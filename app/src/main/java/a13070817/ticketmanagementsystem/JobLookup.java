@@ -6,11 +6,13 @@ package a13070817.ticketmanagementsystem;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -43,7 +45,7 @@ public class JobLookup extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         //EditText instances
-        jobLookup = (EditText) findViewById(R.id.job_lookup_input);
+        jobLookup = (EditText) findViewById(R.id.lookupEditText);
         jobID = (EditText) findViewById(R.id.JobID);
         jobTitle = (EditText) findViewById(R.id.JobTitle);
         jobAsset = (EditText) findViewById(R.id.JobAsset);
@@ -52,7 +54,6 @@ public class JobLookup extends AppCompatActivity{
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
 
         //Button instances
-        lookupButton = (Button) findViewById(R.id.lookup_button);
         updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
 
         //CheckBox instance
@@ -72,11 +73,10 @@ public class JobLookup extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        Intent newCreate = new Intent(this, MainActivity.class);
-        startActivity(newCreate);
+        returnMain();
     }
 
-    public void lookupJob(View view) {
+    public void lookupJob(MenuItem menuItem) {
 
         //Local String instance getting text from JobLookup EditText
         String jl = jobLookup.getText().toString();
@@ -121,8 +121,6 @@ public class JobLookup extends AppCompatActivity{
             jobLookup.setClickable(false);
             jobID.setFocusable(false);
             jobID.setClickable(false);
-            lookupButton.setFocusable(false);
-            lookupButton.setClickable(false);
 
             //hides virtual keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(
@@ -189,8 +187,25 @@ public class JobLookup extends AppCompatActivity{
         }
     }
 
-    public void returnMain(MenuItem menuItem){
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        startActivity(mainIntent);
+    public void returnMain(){
+        final Intent mainIntent = new Intent(this, MainActivity.class);
+        //http://stackoverflow.com/a/2478662/7087139
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //yes
+                        startActivity(mainIntent);
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //no
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 }

@@ -49,8 +49,7 @@ public class CreateJob extends AppCompatActivity{
     //http://stackoverflow.com/a/4780009/7087139
     @Override
     public void onBackPressed() {
-        Intent newCreate = new Intent(this, MainActivity.class);
-        startActivity(newCreate);
+        returnMain();
     }
 
     public void insertData(MenuItem menuItem) {
@@ -86,15 +85,17 @@ public class CreateJob extends AppCompatActivity{
             else {
                 long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
                 Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
             }
         }
 
         catch(Exception exc){
-            Toast.makeText(this, "Job not created", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error: Job not created", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void returnMain(MenuItem menuItem){
+    public void returnMain(){
         final Intent mainIntent = new Intent(this, MainActivity.class);
         //http://stackoverflow.com/a/2478662/7087139
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

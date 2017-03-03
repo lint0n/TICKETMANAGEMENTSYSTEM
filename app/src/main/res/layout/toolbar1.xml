@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="#607D8B"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <EditText
+        android:id="@+id/lookupEditText"
+        android:layout_width="125dp"
+        android:layout_height="match_parent"
+        android:orderInCategory="1000"
+        android:gravity="center"
+        android:inputType="number"
+        android:hint="Enter Job ID"
+        android:ems="10"
+        android:layout_gravity="right"
+        />
+
+</android.support.v7.widget.Toolbar>
