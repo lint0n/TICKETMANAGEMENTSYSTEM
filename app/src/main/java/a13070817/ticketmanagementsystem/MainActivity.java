@@ -134,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
     void displayList() {
         lv = (ListView) findViewById(R.id.listview);
 
-        if(results.size() == 0){
+        if (results.size() == 0) {
             TextView tv = new TextView(this);
             tv.setTextSize(18);
-            tv.setPadding(10,10,10,10);
+            tv.setPadding(10, 10, 10, 10);
             tv.setGravity(Gravity.CENTER);
             tv.setText("You currently have no open jobs");
             lv.addHeaderView(tv);
@@ -146,7 +146,4 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
     }
-
-
-
 }
