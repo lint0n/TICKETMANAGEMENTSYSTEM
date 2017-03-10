@@ -105,7 +105,7 @@ public class JobLookup extends AppCompatActivity{
             String descriptionText = cursor.getString(5);
             Integer complete = cursor.getInt(6);
             String dateTime = cursor.getString(7);
-            String updateTime = cursor.getString(8);
+//            String updateTime = cursor.getString(8);
 
             //Retrieves String equivalent from db then parses into Date representation
             //Takes Date representation then converts to long
@@ -113,32 +113,11 @@ public class JobLookup extends AppCompatActivity{
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 date1 = format.parse(dateTime);
-                date2 = format.parse(updateTime);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
             long createWhen = date1.getTime();
             int flags = 0;
-
-            //if Update is set to null, the job will fail to lookup. To work around this update is
-            if(updateTime != null){
-                long updateWhen = date2.getTime();
-
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
-                flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
-                flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
-
-                String finalUpdateDateTime = android.text.format.DateUtils.formatDateTime(this,
-                        updateWhen + TimeZone.getDefault().getOffset(updateWhen), flags);
-
-                jobUpdate.setText(finalUpdateDateTime);
-
-            } else {
-                //do nothing
-            }
-
             flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
             flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
             flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
@@ -146,8 +125,6 @@ public class JobLookup extends AppCompatActivity{
 
             String finalDateTime = android.text.format.DateUtils.formatDateTime(this,
                     createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
-
-
 
             //ensures that EditText elements are empty before setting text
             jobDescription.setText("");
