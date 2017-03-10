@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.SearchView;
@@ -39,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        lv = (ListView) findViewById(R.id.listview);
         listQueryDB();
         displayList();
     }
@@ -52,10 +54,6 @@ public class MainActivity extends AppCompatActivity {
         new ComponentName(this, JobLookup.class);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
-//
-//        SearchView sv = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.main_searchview));
-//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-//        sv.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
 
     }
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
             db = dbHelper.getWritableDatabase();
-            String severity = new String();
+            String severity;
             //http://www.1keydata.com/sql/sqlorderby.html
             Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.JOB_TABLE_NAME +
             " WHERE COMPLETE = 0 ORDER BY SEVERITY ASC", null);
@@ -132,8 +130,6 @@ public class MainActivity extends AppCompatActivity {
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
-        lv = (ListView) findViewById(R.id.listview);
-
         if (results.size() == 0) {
             TextView tv = new TextView(this);
             tv.setTextSize(18);
@@ -142,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
             tv.setText("You currently have no open jobs");
             lv.addHeaderView(tv);
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
     }

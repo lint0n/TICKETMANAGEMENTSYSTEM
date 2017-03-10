@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
-    static final int DATABASE_VERSION = 6;
+    static final int DATABASE_VERSION = 9;
     static final String DATABASE_NAME = "ticketDatabase.db";
 
     //Job table columns
@@ -31,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String JOB_SEVERITY = "SEVERITY";
     static final String JOB_STATUS = "COMPLETE";
     static final String JOB_DATE = "DATE_CREATED";
+    static final String JOB_DATE_UPDATED = "DATE_UPDATED";
 
     //    Asset table variables
     static final String ASSET_TABLE_NAME = "ASSET";
@@ -63,7 +64,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     JOB_ASSET + " TEXT," +
                     JOB_STATUS + " INTEGER," +
                     JOB_SEVERITY + " INTEGER," +
-                    JOB_DATE + " DATE," +
+                    JOB_DATE + " INTEGER," +
+                    JOB_DATE_UPDATED + " INTEGER," +
                     "FOREIGN KEY(" + JOB_ASSET + ") REFERENCES " + ASSET_TABLE_NAME + "(TAG)" + ")";
 
     //creates an asset table

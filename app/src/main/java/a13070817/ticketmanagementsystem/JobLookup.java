@@ -25,15 +25,20 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class JobLookup extends AppCompatActivity{
 
     //Fields
-    private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate;
+    private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate;
     private FloatingActionButton updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
+    private Date date1, date2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +56,13 @@ public class JobLookup extends AppCompatActivity{
         jobCustomer = (EditText) findViewById(R.id.JobCustomer);
         jobDescription = (EditText) findViewById(R.id.JobDescription);
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
+        jobDate = (EditText) findViewById(R.id.dateCreated);
+        jobUpdate = (EditText) findViewById(R.id.dateUpdated);
 
-        //Button instances
+        //Button instance
         updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
 
         //CheckBox instance
-        lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
 
 
@@ -88,7 +94,7 @@ public class JobLookup extends AppCompatActivity{
         try {
 
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
 
             cursor.moveToFirst();
             String idText = cursor.getString(0);
@@ -98,6 +104,50 @@ public class JobLookup extends AppCompatActivity{
             String customerText = cursor.getString(4);
             String descriptionText = cursor.getString(5);
             Integer complete = cursor.getInt(6);
+            String dateTime = cursor.getString(7);
+            String updateTime = cursor.getString(8);
+
+            //Retrieves String equivalent from db then parses into Date representation
+            //Takes Date representation then converts to long
+            //http://stackoverflow.com/a/14256017
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            try {
+                date1 = format.parse(dateTime);
+                date2 = format.parse(updateTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            long createWhen = date1.getTime();
+            int flags = 0;
+
+            //if Update is set to null, the job will fail to lookup. To work around this update is
+            if(updateTime != null){
+                long updateWhen = date2.getTime();
+
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
+                flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
+
+                String finalUpdateDateTime = android.text.format.DateUtils.formatDateTime(this,
+                        updateWhen + TimeZone.getDefault().getOffset(updateWhen), flags);
+
+                jobUpdate.setText(finalUpdateDateTime);
+
+            } else {
+                //do nothing
+            }
+
+            flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+            flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
+            flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
+            flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
+
+            String finalDateTime = android.text.format.DateUtils.formatDateTime(this,
+                    createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
+
+
 
             //ensures that EditText elements are empty before setting text
             jobDescription.setText("");
@@ -114,6 +164,7 @@ public class JobLookup extends AppCompatActivity{
             jobAsset.setText(assetText);
             jobCustomer.setText(customerText);
             jobDescription.setText(descriptionText);
+            jobDate.setText(finalDateTime);
 
             //stops user from accessing these EditTexts once a job had been looked up
             jobLookup.setFocusable(false);
@@ -145,6 +196,8 @@ public class JobLookup extends AppCompatActivity{
     public void updateJob(View view) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+        Date date = new Date();
 
         //takes the EditText and puts them to String
         try{
@@ -163,6 +216,7 @@ public class JobLookup extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_ASSET, ja);
             values.put(DatabaseHelper.JOB_CUSTOMER, jc);
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
+            values.put(DatabaseHelper.JOB_DATE_UPDATED, dateFormat.format(date));
 
             //if the CheckBox is checked then change the entitity's COMPLETE column to 1 otherwise leave as 0
             if(lookupCheckbox.isChecked()){

@@ -29,6 +29,9 @@ import android.widget.Toast;
 
 import org.xml.sax.DTDHandler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CreateJob extends AppCompatActivity{
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
@@ -36,6 +39,7 @@ public class CreateJob extends AppCompatActivity{
     private SQLiteDatabase db;
     private Toolbar toolbar;
     private Spinner spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,8 @@ public class CreateJob extends AppCompatActivity{
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
     }
 
     @Override
@@ -65,35 +71,19 @@ public class CreateJob extends AppCompatActivity{
         return true;
     }
 
-    //http://www.androidhive.info/2015/09/android-material-design-floating-labels-for-edittext/
-//    private boolean validateTitle() {
-//        if (jobTitle.getText().toString().trim().isEmpty()) {
-//            layoutTitle.setError(getString(R.string.error_title));
-////            requestFocus(jobTitle);
-//            return false;
-//        } else {
-//            layoutTitle.setErrorEnabled(false);
-//        }
-//
-//        return true;
-//    }
-
     //http://stackoverflow.com/a/4780009/7087139
     @Override
     public void onBackPressed(){
         returnMain();
     }
 
-//    @Override
-//    public void onClick(View view) {
-//        InputMethodManager imm = (InputMethodManager) view.getContext()
-//                .getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//    }
-
     public void insertData(MenuItem menuItem) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
+
+        //https://developer.android.com/reference/java/text/SimpleDateFormat.html
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+        Date date = new Date();
         try {
             String jd = jobDescription.getText().toString();
             String jt = jobTitle.getText().toString();
@@ -111,7 +101,7 @@ public class CreateJob extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_CUSTOMER, jc);
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
             values.put(DatabaseHelper.JOB_STATUS, 0);
-            values.put(DatabaseHelper.JOB_DATE, System.currentTimeMillis());
+            values.put(DatabaseHelper.JOB_DATE, dateFormat.format(date));
             if (sev.contains("1-Critical")) {
                 values.put(DatabaseHelper.JOB_SEVERITY, 1);
             } else if (sev.contains("2-High")) {

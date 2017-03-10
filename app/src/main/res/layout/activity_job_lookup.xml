@@ -152,5 +152,27 @@
         android:layout_centerHorizontal="true"
          />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/dateCreated"
+        android:hint="Date Created"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/JobDescription"
+        android:layout_alignStart="@+id/JobDescription" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_below="@+id/dateCreated"
+        android:layout_alignEnd="@+id/dateCreated"
+        android:layout_marginTop="11dp"
+        android:id="@+id/dateUpdated"
+        android:hint="Date Updated" />
+
 
 </RelativeLayout>
