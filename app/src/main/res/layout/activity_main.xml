@@ -28,15 +28,15 @@
         style="@style/Widget.AppCompat.ListView" />
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_create_white_48dp"
         android:id="@+id/fabCreate"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="34dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="createJob"
+        style="@style/Widget.Design.FloatingActionButton"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="createJob"
-        style="@style/Widget.Design.FloatingActionButton" />
+        android:layout_marginBottom="7dp" />
 </RelativeLayout>

@@ -142,19 +142,6 @@
             android:layout_height="100dp" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="updateJob"
-        app:fabSize="normal"
-        app:srcCompat="@drawable/ic_update_white_48dp"
-        android:id="@+id/fabUpdate"
-        android:layout_marginEnd="34dp"
-        android:layout_marginTop="14dp"
-        android:layout_below="@+id/TIL_Description"
-        android:layout_alignParentEnd="true" />
-
     <CheckBox
         android:text="Complete"
         android:layout_width="wrap_content"
@@ -163,8 +150,21 @@
         style="@style/Widget.AppCompat.CompoundButton.CheckBox"
         android:checked="false"
         android:layout_marginBottom="9dp"
+        android:layout_marginStart="18dp"
         android:layout_alignBottom="@+id/fabUpdate"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp" />
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="updateJob"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_update_white_48dp"
+        android:id="@+id/fabUpdate"
+        android:layout_marginEnd="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>
