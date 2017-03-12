@@ -105,7 +105,7 @@ public class JobLookup extends AppCompatActivity{
             String customerText = cursor.getString(4);
             String descriptionText = cursor.getString(5);
             Integer complete = cursor.getInt(6);
-            String severity = cursor.getString(7);
+            Integer severity = cursor.getInt(7);
             String dateTime = cursor.getString(8);
 //            String updateTime = cursor.getString(9);
 
@@ -145,8 +145,19 @@ public class JobLookup extends AppCompatActivity{
             jobCustomer.setText(customerText);
             jobDescription.setText(descriptionText);
             jobDate.setText(finalDateTime);
-            jobSeverity.setText(severity);
 
+            if(severity == 4){
+                jobSeverity.setText("Low");
+            }
+            else if (severity == 3) {
+                jobSeverity.setText("Medium");
+            }
+            else if (severity == 2) {
+                jobSeverity.setText("High");
+            }
+            else if (severity == 1) {
+                jobSeverity.setText("Critical");
+            }
             //stops user from accessing these EditTexts once a job had been looked up
             jobLookup.setFocusable(false);
             jobLookup.setClickable(false);
