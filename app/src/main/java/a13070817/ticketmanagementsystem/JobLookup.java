@@ -34,7 +34,7 @@ import java.util.TimeZone;
 public class JobLookup extends AppCompatActivity{
 
     //Fields
-    private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate;
+    private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
     private FloatingActionButton updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
@@ -57,7 +57,8 @@ public class JobLookup extends AppCompatActivity{
         jobDescription = (EditText) findViewById(R.id.JobDescription);
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
         jobDate = (EditText) findViewById(R.id.dateCreated);
-        jobUpdate = (EditText) findViewById(R.id.dateUpdated);
+        jobSeverity = (EditText) findViewById(R.id.JobSeverity);
+        //jobUpdate = (EditText) findViewById(R.id.dateUpdated);
 
         //Button instance
         updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
@@ -94,7 +95,7 @@ public class JobLookup extends AppCompatActivity{
         try {
 
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
 
             cursor.moveToFirst();
             String idText = cursor.getString(0);
@@ -104,8 +105,9 @@ public class JobLookup extends AppCompatActivity{
             String customerText = cursor.getString(4);
             String descriptionText = cursor.getString(5);
             Integer complete = cursor.getInt(6);
-            String dateTime = cursor.getString(7);
-//            String updateTime = cursor.getString(8);
+            String severity = cursor.getString(7);
+            String dateTime = cursor.getString(8);
+//            String updateTime = cursor.getString(9);
 
             //Retrieves String equivalent from db then parses into Date representation
             //Takes Date representation then converts to long
@@ -133,6 +135,7 @@ public class JobLookup extends AppCompatActivity{
             jobID.setText("");
             jobAsset.setText("");
             jobCustomer.setText("");
+            jobSeverity.setText("");
 
             //sets text using local String variables
             jobID.setText(idText);
@@ -142,12 +145,15 @@ public class JobLookup extends AppCompatActivity{
             jobCustomer.setText(customerText);
             jobDescription.setText(descriptionText);
             jobDate.setText(finalDateTime);
+            jobSeverity.setText(severity);
 
             //stops user from accessing these EditTexts once a job had been looked up
             jobLookup.setFocusable(false);
             jobLookup.setClickable(false);
             jobID.setFocusable(false);
             jobID.setClickable(false);
+            jobSeverity.setFocusable(false);
+            jobSeverity.setClickable(false);
 
             //hides virtual keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(
@@ -166,7 +172,7 @@ public class JobLookup extends AppCompatActivity{
 
         //if the try statement causes an exception. Returns a Toast
         catch (Exception exc) {
-            Toast.makeText(this, "Error: Job " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Job " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -213,7 +219,7 @@ public class JobLookup extends AppCompatActivity{
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query
         catch(Exception exc){
-            Toast.makeText(this, "Error: Job not updated", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job not updated", Toast.LENGTH_LONG).show();
         }
     }
 

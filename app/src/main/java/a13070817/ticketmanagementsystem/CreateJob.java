@@ -128,7 +128,7 @@ public class CreateJob extends AppCompatActivity{
         }
 
         catch(Exception exc){
-            Toast.makeText(this, "Error: Job not created", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Job not created, try again", Toast.LENGTH_LONG).show();
         }
     }
 
