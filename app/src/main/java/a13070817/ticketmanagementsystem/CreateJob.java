@@ -1,45 +1,33 @@
 package a13070817.ticketmanagementsystem;
 
 /**
- * Created by Sam on 24/02/2017.
+ * Created by Samuel Linton 13070817 on 24/02/2017.
  */
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import org.xml.sax.DTDHandler;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CreateJob extends AppCompatActivity{
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
-    private TextInputLayout layoutTitle;
     private SQLiteDatabase db;
     private Toolbar toolbar;
     private Spinner spinner;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +45,8 @@ public class CreateJob extends AppCompatActivity{
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
     @Override
@@ -111,22 +96,18 @@ public class CreateJob extends AppCompatActivity{
             } else if (sev.contains("4-Low")) {
                 values.put(DatabaseHelper.JOB_SEVERITY, 4);
             }
-
-
-
             //if editText contains unpopulated fields do not create job otherwise create
             if(sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty())))))
             {
                 throw new Exception();
             }
             else {
-                long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
+                Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
                 Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
         }
-
         catch(Exception exc){
             Toast.makeText(this, "Job not created, try again", Toast.LENGTH_LONG).show();
         }
@@ -149,7 +130,6 @@ public class CreateJob extends AppCompatActivity{
                 }
             }
         };
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
         builder.setMessage("Input will not be saved. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
@@ -161,21 +141,18 @@ public class CreateJob extends AppCompatActivity{
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
-                        //yes
+                        //yes - erase
                         jobDescription.setText("");
                         jobTitle.setText("");
                         jobEngineer.setText("");
                         jobAsset.setText("");
                         jobCustomer.setText("");
-
-
                     case DialogInterface.BUTTON_NEGATIVE:
                         //no
                         break;
                 }
             }
         };
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Erase data");
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();

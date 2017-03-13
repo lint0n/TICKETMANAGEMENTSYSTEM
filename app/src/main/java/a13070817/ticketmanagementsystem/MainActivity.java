@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import android.support.v7.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.support.design.R.id.center;
 
@@ -55,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         return true;
-
     }
 
     //http://stackoverflow.com/a/3725042/7087139
@@ -104,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             if (c != null){
                 if (c.moveToFirst()){
                     do {
-
                         if (c.getInt(c.getColumnIndex("SEVERITY")) == 1){
                             severity = "[Critical]";
                         } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 2) {
@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             severity = null;
                         }
-
                         int ID = c.getInt(c.getColumnIndex("ID"));
                         String Title = c.getString(c.getColumnIndex("TITLE"));
                         results.add(severity + " - ID: " + ID + " - " + Title);
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
+        final Intent jobLookup = new Intent(this, JobLookup.class);
         if (results.size() == 0) {
             TextView tv = new TextView(this);
             tv.setTextSize(18);
@@ -138,7 +138,16 @@ public class MainActivity extends AppCompatActivity {
             tv.setText("You currently have no open jobs");
             lv.addHeaderView(tv);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(jobLookup);
+            }
+        });
     }
+
+
+
 }

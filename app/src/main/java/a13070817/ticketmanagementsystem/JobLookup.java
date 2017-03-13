@@ -34,7 +34,8 @@ import java.util.TimeZone;
 public class JobLookup extends AppCompatActivity{
 
     //Fields
-    private EditText jobLookup, jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
+    private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
+    EditText jobLookup;
     private FloatingActionButton updateButton;
     CheckBox lookupCheckbox;
     private SQLiteDatabase db;
@@ -58,15 +59,12 @@ public class JobLookup extends AppCompatActivity{
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
         jobDate = (EditText) findViewById(R.id.dateCreated);
         jobSeverity = (EditText) findViewById(R.id.JobSeverity);
-        //jobUpdate = (EditText) findViewById(R.id.dateUpdated);
 
         //Button instance
         updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
 
         //CheckBox instance
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
-
-
     }
 
     //http://stackoverflow.com/a/4780009/7087139
@@ -173,7 +171,6 @@ public class JobLookup extends AppCompatActivity{
 
             //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
             if(complete == 1){
-
                 lookupCheckbox.setChecked(true);
             }
 
@@ -249,7 +246,6 @@ public class JobLookup extends AppCompatActivity{
                 }
             }
         };
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
         builder.setMessage("Input will not be updated. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
