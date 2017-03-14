@@ -39,11 +39,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="textCapWords"
             android:ems="6"
             android:id="@+id/job_customer"
             android:maxLines="1"
-            android:maxLength="6"
             android:hint="@string/create_job_customer"
             style="@style/FullWidthEditText"
             android:layout_below="@+id/job_engineer"
@@ -58,7 +57,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="textCapCharacters"
             android:ems="6"
             android:id="@+id/job_asset"
             android:maxLines="1"
