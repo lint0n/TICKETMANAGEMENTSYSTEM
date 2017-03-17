@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" >
+<RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_about"
@@ -12,4 +16,81 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/dayCount"
+        android:id="@+id/weekCount" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/weekCountText"
+            android:gravity="center"
+            />
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardviewJobs"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/dashboardtext"
+        android:layout_centerHorizontal="true"
+        card_view:cardCornerRadius="5dp">
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardviewSeverity"
+        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/cardviewJobs"
+        android:layout_centerHorizontal="true"
+        card_view:cardCornerRadius="5dp">
+        <com.github.mikephil.charting.charts.PieChart
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/piechartseverity" >
+        </com.github.mikephil.charting.charts.PieChart>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:text="Dashboard"
+        android:id="@+id/dashboardtext"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:id="@+id/dayCount"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/cardviewSeverity"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/dayCountText"
+            />
+
+    </android.support.v7.widget.CardView>
+
+
 </RelativeLayout>
+</ScrollView>
