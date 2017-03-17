@@ -6,10 +6,14 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -31,11 +35,11 @@ public class About extends AppCompatActivity {
     //Pie chart variables
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
+    private ArrayList<HorizontalBarChart> weekEntries = new ArrayList<>();
     private PieChart pieChartJob, pieChartSeverity;
     private PieData dataJob, dataSeverity;
     private PieDataSet dataSetJob, dataSetSeverity;
-
-    private TextView weekCountText, dayCountText;
+    private TextView openCountText, closedCountText;
 
 
     @Override
@@ -43,6 +47,7 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Statistics");
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this.getApplicationContext());
         db = dbHelper.getWritableDatabase();
@@ -100,25 +105,29 @@ public class About extends AppCompatActivity {
         dataSeverity.setValueTextSize(18);
 
         /**
-         * Queries the number of jobs created in the last 24 hours and the last week
+         * Queries the number of jobs created and closed in the last week
          * http://www.sqlite.org/lang_datefunc.html
          */
         Cursor weekCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
-        Cursor dayCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-1 day')", null);
+        Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND COMPLETE = 1", null);
         int weekCursorCount = weekCursor.getCount();
-        int dayCursorCount = dayCursor.getCount();
-        String week = "Jobs Opened This Week: \n\n" + Integer.toString(weekCursorCount);
-        String day = "Jobs Opened Today: \n\n" + Integer.toString(dayCursorCount);
+        int weekClosedCursorCount = weekClosedCursor.getCount();
+        String weekCount = "Jobs Created Past 7 Days: \n\n" + weekCursorCount;
+        String weekClosedCount = "Jobs Closed Past 7 Days: \n\n" + weekClosedCursorCount;
+
+        openCountText = (TextView) findViewById(R.id.openCountText);
+        openCountText.setText(weekCount);
+        openCountText.setTextSize(24);
+        openCountText.setTextColor(Color.BLACK);
+        openCountText.setGravity(Gravity.CENTER);
+
+        closedCountText = (TextView) findViewById(R.id.closedCountText);
+        closedCountText.setText(weekClosedCount);
+        closedCountText.setTextSize(24);
+        closedCountText.setTextColor(Color.BLACK);
+        closedCountText.setGravity(Gravity.CENTER);
 
 
-        dayCountText = (TextView) findViewById(R.id.dayCountText);
-        weekCountText = (TextView) findViewById(R.id.weekCountText);
-        dayCountText.setText(day);
-        weekCountText.setText(week);
-        dayCountText.setTextSize(24);
-        weekCountText.setTextSize(24);
-        dayCountText.setTextColor(Color.BLACK);
-        weekCountText.setTextColor(Color.BLACK);
 
     }
 

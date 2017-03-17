@@ -47,6 +47,7 @@ public class JobLookup extends AppCompatActivity{
         setContentView(R.layout.activity_job_lookup);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Lookup");
         setSupportActionBar(toolbar);
 
         //EditText instances
@@ -163,6 +164,8 @@ public class JobLookup extends AppCompatActivity{
             jobID.setClickable(false);
             jobSeverity.setFocusable(false);
             jobSeverity.setClickable(false);
+            jobDate.setFocusable(false);
+            jobDate.setClickable(false);
 
             //hides virtual keyboard
             InputMethodManager imm = (InputMethodManager) getSystemService(

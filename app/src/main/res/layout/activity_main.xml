@@ -19,24 +19,24 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="wrap_content"
-        android:layout_height="83dp"
-        android:layout_weight="0.98"
+        style="@style/Widget.AppCompat.ListView"
         android:layout_below="@+id/toolbar"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        style="@style/Widget.AppCompat.ListView" />
+        android:layout_height="450dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:id="@+id/fabCreate"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_create_white_48dp"
-        android:id="@+id/fabCreate"
-        android:layout_marginEnd="32dp"
         android:onClick="createJob"
-        style="@style/Widget.Design.FloatingActionButton"
+        app:layout_anchor="@id/listview"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="7dp" />
+        android:layout_alignParentEnd="true">
+
+    </android.support.design.widget.FloatingActionButton>
 </RelativeLayout>

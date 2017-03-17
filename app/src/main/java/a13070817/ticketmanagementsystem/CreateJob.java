@@ -46,6 +46,7 @@ public class CreateJob extends AppCompatActivity{
         spinner.setAdapter(adapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Create");
         setSupportActionBar(toolbar);
     }
 
