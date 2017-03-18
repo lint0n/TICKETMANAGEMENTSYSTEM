@@ -33,10 +33,10 @@
     </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:layout_height="wrap_content"
         android:layout_below="@+id/TIL_ID"
-        android:id="@+id/TIL_Date">
+        android:id="@+id/TIL_Date"
+            android:layout_width="175dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -50,10 +50,10 @@
 
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TIL_Date"
-        android:id="@+id/TIL_Engineer">
+        android:id="@+id/TIL_Engineer"
+        android:layout_width="175dp">
 
         <EditText
             android:layout_height="wrap_content"
@@ -66,11 +66,11 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TIL_Asset"
         android:layout_below="@+id/TIL_Customer"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_width="175dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -83,10 +83,10 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TIL_Severity"
-        android:layout_below="@+id/TIL_Asset">
+        android:layout_below="@+id/TIL_Asset"
+        android:layout_width="175dp">
 
         <EditText
             android:layout_width="match_parent"
@@ -98,24 +98,7 @@
             android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TIL_Engineer"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/TIL_Customer">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="User"
-            android:id="@+id/JobCustomer"
-            android:layout_below="@+id/JobEngineer"
-            style="@style/FullWidthEditText"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
+        <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/TIL_Severity"
@@ -161,6 +144,23 @@
             android:layout_below="@+id/TIL_Description"
             android:layout_alignParentStart="true"
             android:layout_marginTop="8dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:id="@+id/TIL_Customer"
+            android:layout_below="@+id/TIL_Engineer"
+            android:layout_alignParentStart="true"
+            android:layout_width="175dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User"
+                android:id="@+id/JobCustomer"
+                android:layout_below="@+id/JobEngineer"
+                style="@style/FullWidthEditText"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
 
     <LinearLayout

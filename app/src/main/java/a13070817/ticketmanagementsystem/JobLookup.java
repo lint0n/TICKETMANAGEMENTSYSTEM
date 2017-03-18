@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -35,21 +36,19 @@ public class JobLookup extends AppCompatActivity{
 
     //Fields
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
-    EditText jobLookup;
+    private EditText jobLookup;
     private FloatingActionButton updateButton;
-    CheckBox lookupCheckbox;
+    private CheckBox lookupCheckbox;
     private SQLiteDatabase db;
-    private Date date1, date2;
+    private Date date1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_lookup);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Lookup");
         setSupportActionBar(toolbar);
-
         //EditText instances
         jobLookup = (EditText) findViewById(R.id.lookupEditText);
         jobID = (EditText) findViewById(R.id.JobID);
@@ -60,12 +59,18 @@ public class JobLookup extends AppCompatActivity{
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
         jobDate = (EditText) findViewById(R.id.dateCreated);
         jobSeverity = (EditText) findViewById(R.id.JobSeverity);
-
         //Button instance
         updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
-
         //CheckBox instance
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
+
+        try{
+            String s = getIntent().getExtras().getString("string");
+            jobLookup.setText(s);
+            lookupJob(null);
+        } catch(Exception e) {
+            new JobLookup();
+        }
     }
 
     //http://stackoverflow.com/a/4780009/7087139
@@ -92,7 +97,6 @@ public class JobLookup extends AppCompatActivity{
 
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
-
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
             Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
 
@@ -106,7 +110,6 @@ public class JobLookup extends AppCompatActivity{
             Integer complete = cursor.getInt(6);
             Integer severity = cursor.getInt(7);
             String dateTime = cursor.getString(8);
-//            String updateTime = cursor.getString(9);
 
             //Retrieves String equivalent from db then parses into Date representation
             //Takes Date representation then converts to long
@@ -182,7 +185,8 @@ public class JobLookup extends AppCompatActivity{
         }
 
         //if the try statement causes an exception. Returns a Toast
-        catch (Exception exc) {
+        catch (SQLiteException exc) {
+            exc.printStackTrace();
             Toast.makeText(this, "Job " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
         }
     }
@@ -226,6 +230,8 @@ public class JobLookup extends AppCompatActivity{
             //take user back to home screen
             Intent mainIntent = new Intent(this, MainActivity.class);
             startActivity(mainIntent);
+
+            db.close();
         }
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query

@@ -1,36 +1,27 @@
 package a13070817.ticketmanagementsystem;
 
-import android.app.Activity;
-import android.app.ListActivity;
-import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.SearchView;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.support.design.R.id.center;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SQLiteDatabase db;
     private ArrayList<String> results = new ArrayList<String>();
-    ListView lv;
+    private ListView lv;
+    private RelativeLayout relativeLayout;
+    private String queryResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                         int ID = c.getInt(c.getColumnIndex("ID"));
                         String Title = c.getString(c.getColumnIndex("TITLE"));
-                        results.add(severity + " - ID: " + ID + " - " + Title);
+                        String IDtoString = Integer.toString(ID);
+                        queryResult = (severity + " - ID: " + IDtoString + " - " + Title);
+                        results.add(queryResult);
                     }while (c.moveToNext());
                 }
             }
@@ -143,11 +139,23 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                //takes item from ArrayList, removes the head of string up to "ID:".
+                    //e.g. "[High] - ID: 1 - Title"    ->    "1 - Title"
+                String r1 = results.get(i);
+                String r2 = r1.substring(r1.lastIndexOf(":")+1);
+                //removes the end of string from "-" onwards then trims String whitespace
+                    //e.g. "1 - Title"    ->    "1"
+                String r3 = r1.substring(r1.lastIndexOf("-"));
+                String r4 = r2.replace(r3, "");
+                r4.trim();
+                jobLookup.putExtra("string", r4);
                 startActivity(jobLookup);
+                finish();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
-
-
-
 }
