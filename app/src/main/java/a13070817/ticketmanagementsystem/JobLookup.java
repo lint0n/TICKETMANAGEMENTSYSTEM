@@ -4,7 +4,6 @@ package a13070817.ticketmanagementsystem;
  * Created by Sam on 24/02/2017.
  */
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,10 +35,10 @@ public class JobLookup extends AppCompatActivity{
     //Fields
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
     private EditText jobLookup;
-    private FloatingActionButton updateButton;
     private CheckBox lookupCheckbox;
     private SQLiteDatabase db;
     private Date date1;
+    private String jl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +57,6 @@ public class JobLookup extends AppCompatActivity{
         jobEngineer = (EditText) findViewById(R.id.JobEngineer);
         jobDate = (EditText) findViewById(R.id.dateCreated);
         jobSeverity = (EditText) findViewById(R.id.JobSeverity);
-        //Button instance
-        updateButton = (FloatingActionButton) findViewById(R.id.fabUpdate);
         //CheckBox instance
         lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
 
@@ -89,99 +85,101 @@ public class JobLookup extends AppCompatActivity{
     public void lookupJob(MenuItem menuItem) {
 
         //Local String instance getting text from JobLookup EditText
-        String jl = jobLookup.getText().toString();
+            jl = jobLookup.getText().toString();
 
         //Local instance of DatabaseHelper class
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getReadableDatabase();
+
 
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
             Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
 
-            cursor.moveToFirst();
-            String idText = cursor.getString(0);
-            String titleText = cursor.getString(1);
-            String assetText = cursor.getString(2);
-            String engineerText = cursor.getString(3);
-            String customerText = cursor.getString(4);
-            String descriptionText = cursor.getString(5);
-            Integer complete = cursor.getInt(6);
-            Integer severity = cursor.getInt(7);
-            String dateTime = cursor.getString(8);
+                if(cursor.moveToFirst()){
+                String idText = cursor.getString(0);
+                String titleText = cursor.getString(1);
+                String assetText = cursor.getString(2);
+                String engineerText = cursor.getString(3);
+                String customerText = cursor.getString(4);
+                String descriptionText = cursor.getString(5);
+                Integer complete = cursor.getInt(6);
+                Integer severity = cursor.getInt(7);
+                String dateTime = cursor.getString(8);
 
-            //Retrieves String equivalent from db then parses into Date representation
-            //Takes Date representation then converts to long
-            //http://stackoverflow.com/a/14256017
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                date1 = format.parse(dateTime);
-            } catch (ParseException e) {
-                e.printStackTrace();
+                //Retrieves String equivalent from db then parses into Date representation
+                //Takes Date representation then converts to long
+                //http://stackoverflow.com/a/14256017
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    date1 = format.parse(dateTime);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                long createWhen = date1.getTime();
+                int flags = 0;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
+                flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
+                flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
+
+                String finalDateTime = android.text.format.DateUtils.formatDateTime(this,
+                        createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
+
+                //ensures that EditText elements are empty before setting text
+                jobDescription.setText("");
+                jobTitle.setText("");
+                jobEngineer.setText("");
+                jobID.setText("");
+                jobAsset.setText("");
+                jobCustomer.setText("");
+                jobSeverity.setText("");
+
+                //sets text using local String variables
+                jobID.setText(idText);
+                jobTitle.setText(titleText);
+                jobEngineer.setText(engineerText);
+                jobAsset.setText(assetText);
+                jobCustomer.setText(customerText);
+                jobDescription.setText(descriptionText);
+                jobDate.setText(finalDateTime);
+
+                if (severity == 4) {
+                    jobSeverity.setText("Low");
+                } else if (severity == 3) {
+                    jobSeverity.setText("Medium");
+                } else if (severity == 2) {
+                    jobSeverity.setText("High");
+                } else if (severity == 1) {
+                    jobSeverity.setText("Critical");
+                }
+                //stops user from accessing these EditTexts once a job had been looked up
+                jobLookup.setFocusable(false);
+                jobLookup.setClickable(false);
+                jobID.setFocusable(false);
+                jobID.setClickable(false);
+                jobSeverity.setFocusable(false);
+                jobSeverity.setClickable(false);
+                jobDate.setFocusable(false);
+                jobDate.setClickable(false);
+
+                //hides virtual keyboard
+                InputMethodManager imm = (InputMethodManager) getSystemService(
+                        INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
+                if (complete == 1) {
+                    lookupCheckbox.setChecked(true);
+                }
+                    cursor.close();
+                    db.close();
+            } else {
+                    cursor.close();
+                    db.close();
+                    throw new SQLiteException();
             }
-            long createWhen = date1.getTime();
-            int flags = 0;
-            flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
-            flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
-            flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
-            flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
-
-            String finalDateTime = android.text.format.DateUtils.formatDateTime(this,
-                    createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
-
-            //ensures that EditText elements are empty before setting text
-            jobDescription.setText("");
-            jobTitle.setText("");
-            jobEngineer.setText("");
-            jobID.setText("");
-            jobAsset.setText("");
-            jobCustomer.setText("");
-            jobSeverity.setText("");
-
-            //sets text using local String variables
-            jobID.setText(idText);
-            jobTitle.setText(titleText);
-            jobEngineer.setText(engineerText);
-            jobAsset.setText(assetText);
-            jobCustomer.setText(customerText);
-            jobDescription.setText(descriptionText);
-            jobDate.setText(finalDateTime);
-
-            if(severity == 4){
-                jobSeverity.setText("Low");
-            }
-            else if (severity == 3) {
-                jobSeverity.setText("Medium");
-            }
-            else if (severity == 2) {
-                jobSeverity.setText("High");
-            }
-            else if (severity == 1) {
-                jobSeverity.setText("Critical");
-            }
-            //stops user from accessing these EditTexts once a job had been looked up
-            jobLookup.setFocusable(false);
-            jobLookup.setClickable(false);
-            jobID.setFocusable(false);
-            jobID.setClickable(false);
-            jobSeverity.setFocusable(false);
-            jobSeverity.setClickable(false);
-            jobDate.setFocusable(false);
-            jobDate.setClickable(false);
-
-            //hides virtual keyboard
-            InputMethodManager imm = (InputMethodManager) getSystemService(
-                    INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
-            //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
-            if(complete == 1){
-                lookupCheckbox.setChecked(true);
-            }
-
-            cursor.close();
-            db.close();
         }
 
         //if the try statement causes an exception. Returns a Toast
@@ -239,7 +237,6 @@ public class JobLookup extends AppCompatActivity{
             Toast.makeText(this, "Job not updated", Toast.LENGTH_LONG).show();
         }
     }
-
     public void returnMain(){
         final Intent mainIntent = new Intent(this, MainActivity.class);
         //http://stackoverflow.com/a/2478662/7087139

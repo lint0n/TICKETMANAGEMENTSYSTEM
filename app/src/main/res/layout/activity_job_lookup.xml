@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_job_lookup"
@@ -7,180 +8,235 @@
     android:layout_height="match_parent"
     tools:context="a13070817.ticketmanagementsystem.JobLookup">
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+    <!-- Includes Toolbar -->
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar1" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_height="wrap_content"
-        android:id="@+id/TIL_ID"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentStart="true"
-        android:layout_width="100dp">
-
-        <EditText
+        <!-- LookupRL1 - ID and Title -->
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID"
-            android:id="@+id/JobID"
-            style="@style/FullWidthEditText" />
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/Card1"
+            android:layout_below="@+id/toolbar"
+            card_view:cardElevation="5dp"
+            card_view:cardCornerRadius="1dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_height="wrap_content"
-        android:layout_below="@+id/TIL_ID"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/LookupRL1">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TIL_Title"
+                    android:layout_gravity="bottom|end"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/TIL_ID"
+                    android:layout_centerHorizontal="true"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:layout_height="wrap_content"
+                        android:hint="Title"
+                        android:id="@+id/JobTitle"
+                        style="@style/FullWidthEditText"
+                        android:layout_width="match_parent"
+                        android:maxLines="1"
+                        android:inputType="textCapWords"
+                        android:textSize="24sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TIL_ID"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="ID"
+                        android:id="@+id/JobID"
+                        style="@style/FullWidthEditText"
+                        android:textSize="22sp"/>
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- LookupRL2 - Other Fields -->
+
+
+    <!-- Checkbox -->
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/Card2"
+        app:layout_anchorGravity="right|end|bottom"
+        android:onClick="updateJob"
+        app:srcCompat="@drawable/ic_update_white_48dp"
+        android:id="@+id/fabUpdate"
+        android:layout_marginEnd="14dp"
+        android:layout_alignTop="@+id/Card1"
+        android:layout_alignEnd="@+id/Card1"
+        android:layout_marginTop="97dp" />
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Card2"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="5dp"
+        android:layout_below="@+id/Card1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/LookupRL2"
+        android:layout_below="@+id/Card1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp">
+
+    <!--Date-->
+    <android.support.design.widget.TextInputLayout
+        android:layout_height="wrap_content"
         android:id="@+id/TIL_Date"
-            android:layout_width="175dp">
-
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/TIL_Customer"
+        android:layout_marginTop="15dp"
+        android:layout_width="180dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Created"
             android:id="@+id/dateCreated"
-            android:layout_below="@+id/JobID"
             style="@style/FullWidthEditText"
             android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
+    <!--Engineer-->
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TIL_Date"
-        android:id="@+id/TIL_Engineer"
-        android:layout_width="175dp">
+        <!--Asset-->
 
-        <EditText
+        <!--Severity-->
+
+        <!--Description-->
+
+        <!--Customer-->
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:hint="Engineer"
-            android:id="@+id/JobEngineer"
-            style="@style/FullWidthEditText"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/dateCreated"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/TIL_Customer"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="15dp"
+            android:layout_width="160dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User"
+                android:id="@+id/JobCustomer"
+                style="@style/FullWidthEditText"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_height="wrap_content"
-        android:id="@+id/TIL_Asset"
-        android:layout_below="@+id/TIL_Customer"
-        android:layout_alignParentStart="true"
-        android:layout_width="175dp">
-
-        <EditText
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:hint="Asset"
-            android:layout_below="@+id/JobCustomer"
-            android:id="@+id/JobAsset"
-            style="@style/FullWidthEditText"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/TIL_Asset"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/TIL_Date"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/TIL_Customer"
+            android:layout_alignEnd="@+id/TIL_Date">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Asset"
+                android:id="@+id/JobAsset"
+                style="@style/FullWidthEditText"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_height="wrap_content"
-        android:id="@+id/TIL_Severity"
-        android:layout_below="@+id/TIL_Asset"
-        android:layout_width="175dp">
-
-        <EditText
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
             android:layout_height="wrap_content"
-            android:id="@+id/JobSeverity"
-            android:hint="Severity"
-            android:layout_below="@+id/JobAsset"
-            style="@style/FullWidthEditText"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/TIL_Engineer"
+            android:layout_below="@+id/TIL_Customer"
+            android:layout_alignParentEnd="true"
+            android:layout_width="160dp">
+            <EditText
+                android:layout_height="wrap_content"
+                android:hint="Engineer"
+                android:id="@+id/JobEngineer"
+                style="@style/FullWidthEditText"
+                android:layout_width="match_parent"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_height="wrap_content"
+            android:id="@+id/TIL_Severity"
+            android:layout_below="@+id/TIL_Description"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/checkBox"
+            android:layout_width="100dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/JobSeverity"
+                android:hint="Severity"
+                style="@style/FullWidthEditText"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/TIL_Severity"
-        android:layout_alignParentStart="true"
-        android:id="@+id/TIL_Description">
-        <EditText
+            android:id="@+id/TIL_Description"
+            android:layout_below="@+id/TIL_Asset"
+            android:layout_alignParentStart="true"
+            android:layout_height="125dp">
+
+            <EditText
             android:layout_width="match_parent"
             android:hint="Description"
-            android:layout_below="@+id/JobS"
             android:id="@+id/JobDescription"
             style="@style/FullWidthEditText"
-            android:layout_height="125dp"
-            android:inputType="textCapSentences|textAutoCorrect|textAutoComplete" />
-    </android.support.design.widget.TextInputLayout>
+            android:inputType="textCapSentences|textAutoCorrect|textAutoComplete|textMultiLine"
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/TIL_Title"
-                android:layout_above="@+id/TIL_Date"
-                android:layout_alignParentEnd="true"
-                android:layout_toEndOf="@+id/TIL_ID">
-
-                <EditText
-                    android:layout_height="wrap_content"
-                    android:hint="Title"
-                    android:id="@+id/JobTitle"
-                    style="@style/FullWidthEditText"
-                    android:layout_width="match_parent"
-                    android:maxLines="1" />
-
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
 
         <CheckBox
             android:text="Complete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/checkBox"
-            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+            style="@android:style/Widget.Material.CompoundButton.CheckBox"
             android:checked="false"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:layout_below="@+id/TIL_Description"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/TIL_Severity" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_height="wrap_content"
-            android:id="@+id/TIL_Customer"
-            android:layout_below="@+id/TIL_Engineer"
-            android:layout_alignParentStart="true"
-            android:layout_width="175dp">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="User"
-                android:id="@+id/JobCustomer"
-                android:layout_below="@+id/JobEngineer"
-                style="@style/FullWidthEditText"
-                android:maxLines="1" />
-        </android.support.design.widget.TextInputLayout>
     </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:windowSoftInputMode="adjustNothing"
-        android:layout_marginBottom="17dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true">
+    <!-- FAB -->
 
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="updateJob"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_update_white_48dp"
-            android:id="@+id/fabUpdate"
-            />
-    </LinearLayout>
-
+    <!-- File End -->
 </RelativeLayout>
