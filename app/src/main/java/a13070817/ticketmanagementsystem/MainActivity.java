@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lv = (ListView) findViewById(R.id.listview);
+        lv.setCacheColorHint(Color.WHITE);
         listQueryDB();
         displayList();
     }
@@ -74,11 +76,6 @@ public class MainActivity extends AppCompatActivity {
     public void jobLookup(MenuItem menuItem) {
         Intent newLookup = new Intent(this, JobLookup.class);
         startActivity(newLookup);
-    }
-
-    public void displayList(View view) {
-        Intent newList = new Intent(this, JobList.class);
-        startActivity(newList);
     }
 
     public void about(MenuItem menuItem) {
@@ -118,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     }while (c.moveToNext());
                 }
             }
+            c.close();
         } catch (SQLiteException exc) {
             Toast.makeText(this, "No jobs could be found", Toast.LENGTH_LONG).show();
         }
@@ -134,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             tv.setText("You currently have no open jobs");
             lv.addHeaderView(tv);
         }
+        //http://stackoverflow.com/a/18903852
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

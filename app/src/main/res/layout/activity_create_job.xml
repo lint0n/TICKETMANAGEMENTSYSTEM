@@ -9,6 +9,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:clickable="true"
+    android:background="#fafafa"
     tools:context="a13070817.ticketmanagementsystem.CreateJob">
     <include
         android:id="@+id/toolbar"
@@ -29,7 +30,9 @@
         style="@style/FullWidthEditText"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -47,7 +50,9 @@
             style="@style/FullWidthEditText"
             android:layout_below="@+id/job_engineer"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="14dp" />
+            android:layout_marginTop="14dp"
+            android:textColor="#000000"
+            android:textColorHint="#000000"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -65,7 +70,9 @@
             android:hint="@string/create_job_asset"
             style="@style/FullWidthEditText"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:textColorHint="#000000"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -83,7 +90,9 @@
         android:maxLines="1"
         android:maxLength="6"
         android:hint="@string/create_job_engineer"
-        style="@style/FullWidthEditText" />
+        style="@style/FullWidthEditText"
+        android:textColor="#000000"
+        android:textColorHint="#000000"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -100,7 +109,8 @@
             android:hint="@string/create_job_description"
             style="@style/FullWidthEditText"
             android:layout_height="100dp"
-            android:singleLine="false" />
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
     </android.support.design.widget.TextInputLayout>
 
     <Spinner

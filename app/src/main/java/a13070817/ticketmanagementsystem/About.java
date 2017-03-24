@@ -3,6 +3,7 @@ package a13070817.ticketmanagementsystem;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.BarEntry;
@@ -41,7 +43,6 @@ public class About extends AppCompatActivity {
     private PieDataSet dataSetJob, dataSetSeverity;
     private TextView openCountText, closedCountText;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,7 @@ public class About extends AppCompatActivity {
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this.getApplicationContext());
         db = dbHelper.getWritableDatabase();
+
 
         /**
          * Queries Job table for jobs both complete and incomplete and assigns to respective Cursor,
@@ -75,6 +77,9 @@ public class About extends AppCompatActivity {
         pieChartJob.invalidate();
         dataJob.setValueTextColor(Color.WHITE);
         dataJob.setValueTextSize(18);
+
+        openCursor.close();
+        closedCursor.close();
 
         /**
          * Queries Job table for jobs based on severity which is then cast to bar chart
@@ -104,6 +109,10 @@ public class About extends AppCompatActivity {
         dataSeverity.setValueTextColor(Color.WHITE);
         dataSeverity.setValueTextSize(18);
 
+        lowCursor.close();
+        mediumCursor.close();
+        highCursor.close();
+        criticalCursor.close();
         /**
          * Queries the number of jobs created and closed in the last week
          * http://www.sqlite.org/lang_datefunc.html
@@ -127,7 +136,8 @@ public class About extends AppCompatActivity {
         closedCountText.setTextColor(Color.BLACK);
         closedCountText.setGravity(Gravity.CENTER);
 
-
+        weekCursor.close();
+        weekClosedCursor.close();
 
     }
 
