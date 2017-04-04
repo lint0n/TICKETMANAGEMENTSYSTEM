@@ -8,14 +8,12 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        new ComponentName(this, JobLookup.class);
+        new ComponentName(this, Search.class);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -65,21 +63,21 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-    //onclick take user to CreateJob activity
+    //onclick take user to Create activity
     //http://stackoverflow.com/a/17396896/7087139
     public void createJob(View view) {
-        Intent newCreate = new Intent(this, CreateJob.class);
+        Intent newCreate = new Intent(this, Create.class);
         startActivity(newCreate);
     }
 
-    //onclick take user to JobLookup activity
+    //onclick take user to Search activity
     public void jobLookup(MenuItem menuItem) {
-        Intent newLookup = new Intent(this, JobLookup.class);
+        Intent newLookup = new Intent(this, Search.class);
         startActivity(newLookup);
     }
 
     public void about(MenuItem menuItem) {
-        Intent newAbout = new Intent(this, About.class);
+        Intent newAbout = new Intent(this, Statistics.class);
         startActivity(newAbout);
     }
 
@@ -96,21 +94,10 @@ public class MainActivity extends AppCompatActivity {
             if (c != null){
                 if (c.moveToFirst()){
                     do {
-                        if (c.getInt(c.getColumnIndex("SEVERITY")) == 1){
-                            severity = "[Critical]";
-                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 2) {
-                            severity = "[High]";
-                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 3) {
-                            severity = "[Medium]";
-                        } else if (c.getInt(c.getColumnIndex("SEVERITY")) == 4) {
-                            severity = "[Low]";
-                        } else {
-                            severity = null;
-                        }
                         int ID = c.getInt(c.getColumnIndex("ID"));
                         String Title = c.getString(c.getColumnIndex("TITLE"));
                         String IDtoString = Integer.toString(ID);
-                        queryResult = (severity + " - ID: " + IDtoString + " - " + Title);
+                        queryResult = ("#" + IDtoString + " - " + Title);
                         results.add(queryResult);
                     }while (c.moveToNext());
                 }
@@ -123,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
-        final Intent jobLookup = new Intent(this, JobLookup.class);
+        final Intent jobLookup = new Intent(this, Search.class);
         if (results.size() == 0) {
             TextView tv = new TextView(this);
             tv.setTextSize(18);
@@ -142,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 //takes item from ArrayList, removes the head of string up to "ID:".
                     //e.g. "[High] - ID: 1 - Title"    ->    "1 - Title"
                 String r1 = results.get(i);
-                String r2 = r1.substring(r1.lastIndexOf(":")+1);
+                String r2 = r1.substring(r1.lastIndexOf("#")+1);
                 //removes the end of string from "-" onwards then trims String whitespace
                     //e.g. "1 - Title"    ->    "1"
                 String r3 = r1.substring(r1.lastIndexOf("-"));

@@ -3,7 +3,6 @@ package a13070817.ticketmanagementsystem;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -23,12 +20,10 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
-public class About extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class Statistics extends AppCompatActivity {
 
     private Toolbar toolbar;
     private SQLiteDatabase db;
@@ -38,7 +33,7 @@ public class About extends AppCompatActivity {
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
     private ArrayList<HorizontalBarChart> weekEntries = new ArrayList<>();
-    private PieChart pieChartJob, pieChartSeverity;
+    private PieChart pieChartTicket, pieChartSeverity;
     private PieData dataJob, dataSeverity;
     private PieDataSet dataSetJob, dataSetSeverity;
     private TextView openCountText, closedCountText;
@@ -46,7 +41,7 @@ public class About extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_statistics);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Statistics");
         setSupportActionBar(toolbar);
@@ -64,17 +59,17 @@ public class About extends AppCompatActivity {
         int closed = closedCursor.getCount();
 
         //https://github.com/PhilJay/MPAndroidChart/wiki/Setting-Data
-        pieChartJob = (PieChart) findViewById(R.id.piechart);
+        pieChartTicket = (PieChart) findViewById(R.id.piechart);
         jobEntries.add(new PieEntry(open, "Open"));
         jobEntries.add(new PieEntry(closed, "Closed"));
         dataSetJob = new PieDataSet(jobEntries, "");
         dataJob = new PieData(dataSetJob);
-        pieChartJob.setData(dataJob);
-        pieChartJob.getDescription().setText("");
+        pieChartTicket.setData(dataJob);
+        pieChartTicket.getDescription().setText("");
         dataSetJob.setColors(ColorTemplate.MATERIAL_COLORS);
-        pieChartJob.setEntryLabelTextSize(16);
-        pieChartJob.setCenterText("Number of Calls");
-        pieChartJob.invalidate();
+        pieChartTicket.setEntryLabelTextSize(16);
+        pieChartTicket.setCenterText("Number of Calls");
+        pieChartTicket.invalidate();
         dataJob.setValueTextColor(Color.WHITE);
         dataJob.setValueTextSize(18);
 
@@ -144,7 +139,7 @@ public class About extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_about, menu);
+        menuInflater.inflate(R.menu.menu_statistics, menu);
         return true;
     }
 
@@ -157,12 +152,9 @@ public class About extends AppCompatActivity {
 
     public void saveToGallery(MenuItem menuItem){
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
-            String string = dateFormat.format(date);
-            string.replaceAll("\\s+", "");
-            pieChartJob.saveToGallery("Ticket_Job_Chart_" + string, 100);
-            Toast.makeText(this, "Image downloaded to gallery", Toast.LENGTH_LONG).show();
+            pieChartTicket.saveToGallery("Tickets", 100);
+            pieChartSeverity.saveToGallery("Severity", 100);
+            Toast.makeText(this, "Images downloaded to gallery", Toast.LENGTH_LONG).show();
         } catch (Exception e){
             Toast.makeText(this, "Image could not be downloaded", Toast.LENGTH_LONG).show();
         }

@@ -6,7 +6,7 @@
     android:id="@+id/activity_job_lookup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="a13070817.ticketmanagementsystem.JobLookup">
+    tools:context="a13070817.ticketmanagementsystem.Search">
 
     <!-- Includes Toolbar -->
     <include
@@ -57,7 +57,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="ID"
+                        android:hint="#"
                         android:id="@+id/JobID"
                         style="@style/FullWidthEditText"
                         android:textSize="22sp"/>

@@ -8,7 +8,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +19,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CreateJob extends AppCompatActivity{
+public class Create extends AppCompatActivity {
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
     private SQLiteDatabase db;
@@ -33,7 +33,7 @@ public class CreateJob extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_job);
+        setContentView(R.layout.activity_create);
         jobDescription = (EditText) findViewById(R.id.job_description);
         jobTitle = (EditText) findViewById(R.id.job_title);
         jobEngineer = (EditText) findViewById(R.id.job_engineer);
@@ -52,7 +52,7 @@ public class CreateJob extends AppCompatActivity{
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_create, menu);
         return true;
@@ -60,7 +60,7 @@ public class CreateJob extends AppCompatActivity{
 
     //http://stackoverflow.com/a/4780009/7087139
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         returnMain();
     }
 
@@ -99,29 +99,26 @@ public class CreateJob extends AppCompatActivity{
                 values.put(DatabaseHelper.JOB_SEVERITY, 4);
             }
             //if editText contains unpopulated fields do not create job otherwise create
-            if(sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty())))))
-            {
+            if (sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))) {
                 throw new Exception();
-            }
-            else {
+            } else {
                 Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
                 Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             }
-        }
-        catch(Exception exc){
+        } catch (Exception exc) {
             Toast.makeText(this, "Job not created, try again", Toast.LENGTH_LONG).show();
         }
     }
 
-    public void returnMain(){
+    public void returnMain() {
         final Intent mainIntent = new Intent(this, MainActivity.class);
         //http://stackoverflow.com/a/2478662/7087139
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         //yes
                         startActivity(mainIntent);
@@ -137,11 +134,11 @@ public class CreateJob extends AppCompatActivity{
         builder.setMessage("Input will not be saved. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 
-    public void erase(MenuItem menuItem){
+    public void erase(MenuItem menuItem) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which){
+                switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         //yes - erase
                         jobDescription.setText("");

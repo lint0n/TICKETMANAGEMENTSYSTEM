@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ITSM</string>
+    <string name="app_name">Help Desk</string>
     <string name="welcome">Welcome, what would you like to do?</string>
     <string name="create_job">Create Job</string>
     <string name="job_lookup">Job Lookup</string>
@@ -31,7 +31,7 @@
     <string name="title_activity_about">About</string>
     <string name="error_title">Enter a title</string>
 
-    <!-- string array for CreateJob Severity -->
+    <!-- string array for Create Severity -->
     <string-array name="create_severity">
         <item>[Select severity]</item>
         <item>1-Critical</item>

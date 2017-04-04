@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true"
     android:clickable="true"
     android:background="#fafafa"
-    tools:context="a13070817.ticketmanagementsystem.CreateJob">
+    tools:context="a13070817.ticketmanagementsystem.Create">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
@@ -117,6 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/createspinner"
-        android:spinnerMode="dialog" />
+        android:spinnerMode="dialog"
+        android:padding="10dp" />
 
 </LinearLayout>

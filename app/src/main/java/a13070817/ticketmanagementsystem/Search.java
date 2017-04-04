@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class JobLookup extends AppCompatActivity{
+public class Search extends AppCompatActivity{
 
     //Fields
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
@@ -44,9 +42,9 @@ public class JobLookup extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_lookup);
+        setContentView(R.layout.activity_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Lookup");
+        toolbar.setTitle("Search");
         setSupportActionBar(toolbar);
         //EditText instances
         jobLookup = (EditText) findViewById(R.id.lookupEditText);
@@ -66,7 +64,7 @@ public class JobLookup extends AppCompatActivity{
             jobLookup.setText(s);
             lookupJob(null);
         } catch(Exception e) {
-            new JobLookup();
+            new Search();
         }
     }
 
@@ -74,7 +72,7 @@ public class JobLookup extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_update, menu);
+        menuInflater.inflate(R.menu.menu_search, menu);
         return true;
     }
 
@@ -85,7 +83,7 @@ public class JobLookup extends AppCompatActivity{
 
     public void lookupJob(MenuItem menuItem) {
 
-        //Local String instance getting text from JobLookup EditText
+        //Local String instance getting text from Search EditText
             jl = jobLookup.getText().toString();
 
         //Local instance of DatabaseHelper class
