@@ -12,7 +12,6 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar1" />
-
         <!-- LookupRL1 - ID and Title -->
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -21,7 +20,6 @@
             android:id="@+id/Card1"
             android:layout_below="@+id/toolbar"
             android:layout_margin="5dp"
-            card_view:cardCornerRadius="5dp"
             card_view:cardElevation="5dp">
 
             <RelativeLayout
@@ -57,7 +55,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="#"
+                        android:hint="Ticket #"
                         android:id="@+id/JobID"
                         style="@style/FullWidthEditText"
                         android:textSize="22sp"/>
@@ -71,7 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Card2"
-        card_view:cardCornerRadius="5dp"
         card_view:cardElevation="5dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
@@ -216,8 +213,4 @@
         app:layout_anchorGravity="center"
         android:layout_alignTop="@+id/Card1"
         android:layout_alignEnd="@+id/Card1" />
-
-    <!-- FAB -->
-
-    <!-- File End -->
 </RelativeLayout>

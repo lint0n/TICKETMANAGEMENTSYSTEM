@@ -184,7 +184,7 @@ public class Search extends AppCompatActivity{
         //if the try statement causes an exception. Returns a Toast
         catch (SQLiteException exc) {
             exc.printStackTrace();
-            Toast.makeText(this, "Job " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ticket " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -222,7 +222,7 @@ public class Search extends AppCompatActivity{
 
             //Toast confirming job + jobID has been updated
             db.update(DatabaseHelper.JOB_TABLE_NAME, values, DatabaseHelper.JOB_ID + "=" + ji, null);
-            Toast.makeText(this, "Job " + ji + " updated", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ticket " + ji + " updated", Toast.LENGTH_LONG).show();
 
             //take user back to home screen
             Intent mainIntent = new Intent(this, MainActivity.class);
@@ -233,7 +233,7 @@ public class Search extends AppCompatActivity{
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query
         catch(Exception exc){
-            Toast.makeText(this, "Job not updated", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ticket not updated", Toast.LENGTH_LONG).show();
         }
     }
     public void returnMain(){
@@ -253,6 +253,6 @@ public class Search extends AppCompatActivity{
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
-        builder.setMessage("Input will not be updated. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage("Changes will not be updated. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 }

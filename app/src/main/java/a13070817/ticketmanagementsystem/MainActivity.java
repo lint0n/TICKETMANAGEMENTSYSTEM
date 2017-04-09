@@ -113,10 +113,11 @@ public class MainActivity extends AppCompatActivity {
         final Intent jobLookup = new Intent(this, Search.class);
         if (results.size() == 0) {
             TextView tv = new TextView(this);
+            lv.setDivider(null);
             tv.setTextSize(18);
             tv.setPadding(10, 10, 10, 10);
             tv.setGravity(Gravity.CENTER);
-            tv.setText("You currently have no open jobs");
+            tv.setText("No unresolved tickets");
             lv.addHeaderView(tv);
         }
         //http://stackoverflow.com/a/18903852

@@ -13,7 +13,7 @@
         android:orderInCategory="1000"
         android:gravity="center"
         android:inputType="number"
-        android:hint="Enter Job #"
+        android:hint="Ticket #"
         android:ems="10"
         android:layout_gravity="right"
         android:textColorHint="#FFFFFF"
