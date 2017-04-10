@@ -1,24 +1,19 @@
 package a13070817.ticketmanagementsystem;
-
-/**
- * Created by Sam on 24/02/2017.
- */
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.view.View;
 import android.widget.Toast;
 
 /**
- * Created by Samuel Linton 13070817 on 08/02/2017.
+ * Created by Samuel Linton SRN 13070817 on 08/02/2017.
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
-    static final int DATABASE_VERSION = 9;
-    static final String DATABASE_NAME = "ticketDatabase.db";
+    private static final int DATABASE_VERSION = 9;
+    private static final String DATABASE_NAME = "ticketDatabase.db";
 
     //Job table columns
     static final String JOB_TABLE_NAME = "JOB";
@@ -33,26 +28,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String JOB_DATE = "DATE_CREATED";
     static final String JOB_DATE_UPDATED = "DATE_UPDATED";
 
-    //    Asset table variables
-    static final String ASSET_TABLE_NAME = "ASSET";
-    static final String ASSET_DESCRIPTION = "DESCRIPTION";
-    static final String ASSET_TAG = "TAG";
-    static final String ASSET_CLIENT = "CLIENT_ID";
-    static final String ASSET_LOCATION = "LOCATION";
-
-    static final String CLIENT_TABLE_NAME = "CLIENT";
-    static final String CLIENT_NAME = "NAME";
-    static final String CLIENT_ID = "CLIENT_ID";
-    static final String CLIENT_LOCATION = "LOCATION";
-    static final String CLIENT_PHONE = "PHONE_NUMBER";
-    static final String CLIENT_EMAIL = "EMAIL";
-
-    static final String LOCATION_TABLE_NAME = "LOCATION";
-    static final String LOCATION_ID = "LOCATION_ID";
-    static final String LOCATION_NAME = "LOCATION_NAME";
-
-    SQLiteDatabase db;
-
     //Create Job table
     private static final String CREATE_JOB_TABLE =
             "CREATE TABLE " + JOB_TABLE_NAME + " (" +
@@ -65,38 +40,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     JOB_STATUS + " INTEGER," +
                     JOB_SEVERITY + " INTEGER," +
                     JOB_DATE + " INTEGER," +
-                    JOB_DATE_UPDATED + " INTEGER," +
-                    "FOREIGN KEY(" + JOB_ASSET + ") REFERENCES " + ASSET_TABLE_NAME + "(TAG)" + ")";
-
-    //creates an asset table
-    private static final String CREATE_ASSET_TABLE =
-            "CREATE TABLE " + ASSET_TABLE_NAME + " (" +
-                    ASSET_TAG + " TEXT PRIMARY KEY," +
-                    ASSET_DESCRIPTION + " TEXT," +
-                    ASSET_CLIENT + " TEXT," +
-                    ASSET_LOCATION + " TEXT," +
-                    "FOREIGN KEY(" + ASSET_CLIENT + ") REFERENCES " + CLIENT_TABLE_NAME + "(ID)" + ")";
-
-    //creates a client table
-    private static final String CREATE_CLIENT_TABLE =
-            "CREATE TABLE " + CLIENT_TABLE_NAME + " (" +
-                    CLIENT_ID + " INTEGER PRIMARY KEY," +
-                    CLIENT_NAME + " TEXT," +
-                    CLIENT_LOCATION + " TEXT," +
-                    CLIENT_PHONE + " INTEGER," +
-                    CLIENT_EMAIL + " TEXT)";
-
-    //creates a location table
-    private static final String CREATE_LOCATION_TABLE =
-            "CREATE TABLE " + LOCATION_TABLE_NAME + " (" +
-                    LOCATION_ID + " INTEGER PRIMARY KEY," +
-                    LOCATION_NAME + " TEXT)";
+                    JOB_DATE_UPDATED + " INTEGER)";
 
     //Delete table
     private static final String DELETE_JOB_TABLE = "DROP TABLE IF EXISTS " + JOB_TABLE_NAME;
-    private static final String DELETE_ASSET_TABLE = "DROP TABLE IF EXISTS " + ASSET_TABLE_NAME;
-    private static final String DELETE_CLIENT_TABLE = "DROP TABLE IF EXISTS " + CLIENT_TABLE_NAME;
-    private static final String DELETE_LOCATION_TABLE = "DROP TABLE IF EXISTS " + LOCATION_TABLE_NAME;
 
     //Constructor
     public DatabaseHelper(Context context){
@@ -106,17 +53,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_JOB_TABLE);
-        db.execSQL(CREATE_ASSET_TABLE);
-        db.execSQL(CREATE_CLIENT_TABLE);
-        db.execSQL(CREATE_LOCATION_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DELETE_JOB_TABLE);
-        db.execSQL(DELETE_ASSET_TABLE);
-        db.execSQL(DELETE_CLIENT_TABLE);
-        db.execSQL(DELETE_LOCATION_TABLE);
         onCreate(db);
     }
 }

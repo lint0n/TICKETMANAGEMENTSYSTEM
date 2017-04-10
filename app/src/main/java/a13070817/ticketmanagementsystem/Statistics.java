@@ -3,6 +3,9 @@ package a13070817.ticketmanagementsystem;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +21,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -154,9 +158,30 @@ public class Statistics extends AppCompatActivity {
         try {
             pieChartTicket.saveToGallery("Tickets", 100);
             pieChartSeverity.saveToGallery("Severity", 100);
-            Toast.makeText(this, "Images downloaded to gallery", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Images downloaded to gallery", Snackbar.LENGTH_LONG);
+            snackbar.setAction("Open", new openDCIM());
+            snackbar.show();
         } catch (Exception e){
-            Toast.makeText(this, "Image could not be downloaded", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Image could not be downloaded", Snackbar.LENGTH_LONG);
+            snackbar.show();
+        }
+    }
+
+    private class openDCIM implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v){
+            Uri uri = Uri.parse(Environment.getExternalStorageDirectory() + "/myFolder/");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, "resource/folder");
+
+            if ( intent.resolveActivityInfo(getPackageManager(), 0) != null){
+                startActivity(intent);
+            }
+            else {
+                //no file
+            }
+
         }
     }
 }

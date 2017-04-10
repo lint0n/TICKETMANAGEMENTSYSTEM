@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,8 +19,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -103,12 +102,12 @@ public class Create extends AppCompatActivity {
                 throw new Exception();
             } else {
                 Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
-                Toast.makeText(this, "Job " + newRowId + " created", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created", Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         } catch (Exception exc) {
-            Toast.makeText(this, "Job not created, try again", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again" , Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 

@@ -1,7 +1,7 @@
 package a13070817.ticketmanagementsystem;
 
 /**
- * Created by Sam on 24/02/2017.
+ * Created by Samuel Linton SRN 13070817 on 24/02/2017.
  */
 
 import android.content.ContentValues;
@@ -11,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,8 +22,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +30,6 @@ import java.util.TimeZone;
 
 public class Search extends AppCompatActivity{
 
-    //Fields
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
     private EditText jobLookup;
     private CheckBox lookupCheckbox;
@@ -82,20 +80,15 @@ public class Search extends AppCompatActivity{
     }
 
     public void lookupJob(MenuItem menuItem) {
-
         //Local String instance getting text from Search EditText
-            jl = jobLookup.getText().toString();
-
+        jl = jobLookup.getText().toString();
         //Local instance of DatabaseHelper class
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getReadableDatabase();
-
-
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
             Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
-
                 if(cursor.moveToFirst()){
                 String idText = cursor.getString(0);
                 String titleText = cursor.getString(1);
@@ -184,7 +177,9 @@ public class Search extends AppCompatActivity{
         //if the try statement causes an exception. Returns a Toast
         catch (SQLiteException exc) {
             exc.printStackTrace();
-            Toast.makeText(this, "Ticket " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Ticket " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + jl + " cannot be found in the database", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
@@ -213,32 +208,34 @@ public class Search extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
             values.put(DatabaseHelper.JOB_DATE_UPDATED, dateFormat.format(date));
 
-            //if the CheckBox is checked then change the entitity's COMPLETE column to 1 otherwise leave as 0
+            //if the CheckBox is checked then change the entity's COMPLETE column to 1 otherwise leave as 0
             if(lookupCheckbox.isChecked()){
                 values.put(DatabaseHelper.JOB_STATUS, 1);
             } else {
                 values.put(DatabaseHelper.JOB_STATUS, 0);
             }
-
-            //Toast confirming job + jobID has been updated
             db.update(DatabaseHelper.JOB_TABLE_NAME, values, DatabaseHelper.JOB_ID + "=" + ji, null);
-            Toast.makeText(this, "Ticket " + ji + " updated", Toast.LENGTH_LONG).show();
 
-            //take user back to home screen
-            Intent mainIntent = new Intent(this, MainActivity.class);
-            startActivity(mainIntent);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + ji + " updated." , Snackbar.LENGTH_LONG);
+            snackbar.setAction("Home", new returnMainSnackBar());
+            snackbar.show();
 
             db.close();
         }
 
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query
         catch(Exception exc){
-            Toast.makeText(this, "Ticket not updated", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Ticket not updated", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket not updated" , Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
+
+    /**
+     * http://stackoverflow.com/a/2478662/7087139
+     */
     public void returnMain(){
         final Intent mainIntent = new Intent(this, MainActivity.class);
-        //http://stackoverflow.com/a/2478662/7087139
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -254,5 +251,16 @@ public class Search extends AppCompatActivity{
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
         builder.setMessage("Changes will not be updated. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+    }
+
+    /**
+     * Nested class used for Snackbar return home action
+     */
+    private class returnMainSnackBar implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(Search.this, MainActivity.class));
+        }
     }
 }

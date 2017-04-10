@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -19,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
             }
             c.close();
         } catch (SQLiteException exc) {
-            Toast.makeText(this, "No jobs could be found", Toast.LENGTH_LONG).show();
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No tickets could be found", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
@@ -114,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
         if (results.size() == 0) {
             TextView tv = new TextView(this);
             lv.setDivider(null);
-            tv.setTextSize(18);
-            tv.setPadding(10, 10, 10, 10);
+            tv.setTextSize(20);
+            tv.setPadding(15, 15, 15, 15);
             tv.setGravity(Gravity.CENTER);
             tv.setText("No unresolved tickets");
             lv.addHeaderView(tv);
@@ -141,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 } catch (Exception e){
                     e.printStackTrace();
+
                 }
             }
         });
