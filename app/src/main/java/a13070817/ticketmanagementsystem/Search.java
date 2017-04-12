@@ -226,7 +226,7 @@ public class Search extends AppCompatActivity{
         //catch Exception, take input and convert to String. Then display as Toast informing of an unsuccessful query
         catch(Exception exc){
             //Toast.makeText(this, "Ticket not updated", Toast.LENGTH_LONG).show();
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket not updated" , Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket not updated." , Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

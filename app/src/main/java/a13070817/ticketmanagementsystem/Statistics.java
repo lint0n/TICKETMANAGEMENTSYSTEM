@@ -173,7 +173,7 @@ public class Statistics extends AppCompatActivity {
         public void onClick(View v){
             Uri uri = Uri.parse(Environment.getExternalStorageDirectory() + "/myFolder/");
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "resource/folder");
+            intent.setDataAndType(uri, "resource/fold1er");
 
             if ( intent.resolveActivityInfo(getPackageManager(), 0) != null){
                 startActivity(intent);
