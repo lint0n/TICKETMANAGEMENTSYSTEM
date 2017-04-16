@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -26,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     //https://www.youtube.com/watch?v=LpiIBjLzhh4
     private Toolbar toolbar;
-    private SQLiteDatabase db;
+    DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
     private ArrayList<String> results = new ArrayList<String>();
     private ListView lv;
-    private RelativeLayout relativeLayout;
     private String queryResult;
 
 
@@ -84,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
     //http://saigeethamn.blogspot.co.uk/2011/02/listview-of-data-from-sqlitedatabase.html
     void listQueryDB() {
         try {
-            DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
-            db = dbHelper.getWritableDatabase();
-            String severity;
             //http://www.1keydata.com/sql/sqlorderby.html
             Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.JOB_TABLE_NAME +
             " WHERE COMPLETE = 0 ORDER BY SEVERITY ASC", null);

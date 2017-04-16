@@ -33,9 +33,11 @@ public class Search extends AppCompatActivity{
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
     private EditText jobLookup;
     private CheckBox lookupCheckbox;
-    private SQLiteDatabase db;
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
+    private SQLiteDatabase db = dbHelper.getReadableDatabase();
     private Date date1;
     private String jl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +85,7 @@ public class Search extends AppCompatActivity{
         //Local String instance getting text from Search EditText
         jl = jobLookup.getText().toString();
         //Local instance of DatabaseHelper class
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-        db = dbHelper.getReadableDatabase();
+
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.

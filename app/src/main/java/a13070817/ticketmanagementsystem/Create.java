@@ -25,7 +25,8 @@ import java.util.Date;
 public class Create extends AppCompatActivity {
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
-    private SQLiteDatabase db;
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
     private Toolbar toolbar;
     private Spinner spinner;
 
@@ -64,9 +65,6 @@ public class Create extends AppCompatActivity {
     }
 
     public void insertData(MenuItem menuItem) {
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
-        db = dbHelper.getWritableDatabase();
-
         //https://developer.android.com/reference/java/text/SimpleDateFormat.html
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
         Date date = new Date();
