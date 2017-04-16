@@ -178,7 +178,7 @@ public class Search extends AppCompatActivity{
         catch (SQLiteException exc) {
             exc.printStackTrace();
             //Toast.makeText(this, "Ticket " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + jl + " cannot be found in the database", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + jl + " cannot be found in the database.", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

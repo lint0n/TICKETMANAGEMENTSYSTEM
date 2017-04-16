@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
             c.close();
         } catch (SQLiteException exc) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No tickets could be found", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No tickets could be found.", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

@@ -102,11 +102,11 @@ public class Create extends AppCompatActivity {
                 throw new Exception();
             } else {
                 Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created.", Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
         } catch (Exception exc) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again" , Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again." , Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }
