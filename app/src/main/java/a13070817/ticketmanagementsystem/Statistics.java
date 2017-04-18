@@ -29,18 +29,18 @@ import java.util.ArrayList;
 
 public class Statistics extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private SQLiteDatabase db;
-    private DatabaseHelper dbHelper;
+    Toolbar toolbar;
+    SQLiteDatabase db;
+    DatabaseHelper dbHelper;
 
     //Pie chart variables
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
     private ArrayList<HorizontalBarChart> weekEntries = new ArrayList<>();
     private PieChart pieChartTicket, pieChartSeverity;
-    private PieData dataJob, dataSeverity;
-    private PieDataSet dataSetJob, dataSetSeverity;
-    private TextView openCountText, closedCountText;
+    PieData dataJob, dataSeverity;
+    PieDataSet dataSetJob, dataSetSeverity;
+    TextView openCountText, closedCountText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,10 +112,10 @@ public class Statistics extends AppCompatActivity {
         mediumCursor.close();
         highCursor.close();
         criticalCursor.close();
-        /**
-         * Queries the number of jobs created and closed in the last week
-         * http://www.sqlite.org/lang_datefunc.html
-         */
+
+        //Queries the number of jobs created and closed in the last week
+        //http://www.sqlite.org/lang_datefunc.html
+
         Cursor weekCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
         Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND COMPLETE = 1", null);
         int weekCursorCount = weekCursor.getCount();
@@ -173,7 +173,7 @@ public class Statistics extends AppCompatActivity {
         public void onClick(View v){
             Uri uri = Uri.parse(Environment.getExternalStorageDirectory() + "/myFolder/");
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "resource/fold1er");
+            intent.setDataAndType(uri, "resource/fold1oer");
 
             if ( intent.resolveActivityInfo(getPackageManager(), 0) != null){
                 startActivity(intent);

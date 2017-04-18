@@ -33,11 +33,9 @@ public class Search extends AppCompatActivity{
     private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
     private EditText jobLookup;
     private CheckBox lookupCheckbox;
-    DatabaseHelper dbHelper = new DatabaseHelper(this);
-    private SQLiteDatabase db = dbHelper.getReadableDatabase();
+    private SQLiteDatabase db;
     private Date date1;
     private String jl;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +83,12 @@ public class Search extends AppCompatActivity{
         //Local String instance getting text from Search EditText
         jl = jobLookup.getText().toString();
         //Local instance of DatabaseHelper class
-
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        db = dbHelper.getReadableDatabase();
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED", "DATE_UPDATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
                 if(cursor.moveToFirst()){
                 String idText = cursor.getString(0);
                 String titleText = cursor.getString(1);
@@ -207,7 +206,6 @@ public class Search extends AppCompatActivity{
             values.put(DatabaseHelper.JOB_ASSET, ja);
             values.put(DatabaseHelper.JOB_CUSTOMER, jc);
             values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
-            values.put(DatabaseHelper.JOB_DATE_UPDATED, dateFormat.format(date));
 
             //if the CheckBox is checked then change the entity's COMPLETE column to 1 otherwise leave as 0
             if(lookupCheckbox.isChecked()){

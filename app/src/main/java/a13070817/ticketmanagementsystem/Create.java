@@ -16,17 +16,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Create extends AppCompatActivity {
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
-    DatabaseHelper dbHelper = new DatabaseHelper(this);
-    SQLiteDatabase db = dbHelper.getWritableDatabase();
+    SQLiteDatabase db;
     private Toolbar toolbar;
     private Spinner spinner;
 
@@ -65,6 +66,9 @@ public class Create extends AppCompatActivity {
     }
 
     public void insertData(MenuItem menuItem) {
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        db = dbHelper.getWritableDatabase();
+
         //https://developer.android.com/reference/java/text/SimpleDateFormat.html
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
         Date date = new Date();
@@ -101,10 +105,11 @@ public class Create extends AppCompatActivity {
             } else {
                 Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
                 Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created.", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Home", new Create.returnMainSnackBar());
                 snackbar.show();
             }
         } catch (Exception exc) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again." , Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again.", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }
@@ -152,5 +157,13 @@ public class Create extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Erase data");
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+    }
+
+    private class returnMainSnackBar implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v){
+            startActivity(new Intent(Create.this, MainActivity.class));
+        }
     }
 }

@@ -1,18 +1,16 @@
 package a13070817.ticketmanagementsystem;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 /**
  * Created by Samuel Linton SRN 13070817 on 08/02/2017.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 12;
     private static final String DATABASE_NAME = "ticketDatabase.db";
 
     //Job table columns
@@ -26,7 +24,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String JOB_SEVERITY = "SEVERITY";
     static final String JOB_STATUS = "COMPLETE";
     static final String JOB_DATE = "DATE_CREATED";
-    static final String JOB_DATE_UPDATED = "DATE_UPDATED";
 
     //Create Job table
     private static final String CREATE_JOB_TABLE =
@@ -39,8 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     JOB_ASSET + " TEXT," +
                     JOB_STATUS + " INTEGER," +
                     JOB_SEVERITY + " INTEGER," +
-                    JOB_DATE + " INTEGER," +
-                    JOB_DATE_UPDATED + " INTEGER)";
+                    JOB_DATE + " INTEGER)";
 
     //Delete table
     private static final String DELETE_JOB_TABLE = "DROP TABLE IF EXISTS " + JOB_TABLE_NAME;
