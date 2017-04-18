@@ -57,8 +57,8 @@ public class Statistics extends AppCompatActivity {
          * Queries Job table for jobs both complete and incomplete and assigns to respective Cursor,
          * then stored as int by accessing number of rows from each Cursor.
          */
-        Cursor openCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE COMPLETE = 0", null);
-        Cursor closedCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE COMPLETE = 1", null);
+        Cursor openCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE COMPLETE = 0", null);
+        Cursor closedCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE COMPLETE = 1", null);
         int open = openCursor.getCount();
         int closed = closedCursor.getCount();
 
@@ -83,10 +83,10 @@ public class Statistics extends AppCompatActivity {
         /**
          * Queries Job table for jobs based on severity which is then cast to bar chart
          */
-        Cursor lowCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE SEVERITY = 4 AND COMPLETE = 0", null);
-        Cursor mediumCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE SEVERITY = 3 AND COMPLETE = 0", null);
-        Cursor highCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE SEVERITY = 2 AND COMPLETE = 0", null);
-        Cursor criticalCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE SEVERITY = 1 AND COMPLETE = 0", null);
+        Cursor lowCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE SEVERITY = 4 AND COMPLETE = 0", null);
+        Cursor mediumCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE SEVERITY = 3 AND COMPLETE = 0", null);
+        Cursor highCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE SEVERITY = 2 AND COMPLETE = 0", null);
+        Cursor criticalCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE SEVERITY = 1 AND COMPLETE = 0", null);
 
         int low = lowCursor.getCount();
         int medium = mediumCursor.getCount();
@@ -116,8 +116,8 @@ public class Statistics extends AppCompatActivity {
         //Queries the number of jobs created and closed in the last week
         //http://www.sqlite.org/lang_datefunc.html
 
-        Cursor weekCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
-        Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + dbHelper.JOB_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND COMPLETE = 1", null);
+        Cursor weekCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
+        Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + dbHelper.TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND COMPLETE = 1", null);
         int weekCursorCount = weekCursor.getCount();
         int weekClosedCursorCount = weekClosedCursor.getCount();
         String weekCount = "Jobs Created Past 7 Days: \n\n" + weekCursorCount;
