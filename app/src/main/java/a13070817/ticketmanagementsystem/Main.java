@@ -22,7 +22,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+import static a13070817.ticketmanagementsystem.DatabaseHelper.TICKET_TABLE_NAME;
+
+public class Main extends AppCompatActivity {
 
     //https://www.youtube.com/watch?v=LpiIBjLzhh4
     Toolbar toolbar;
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        new ComponentName(this, Search.class);
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
         return true;
@@ -86,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             db = dbHelper.getWritableDatabase();
             String severity;
             //http://www.1keydata.com/sql/sqlorderby.html
-            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.TICKET_TABLE_NAME +
-            " WHERE COMPLETE = 0 ORDER BY SEVERITY ASC", null);
+            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + TICKET_TABLE_NAME +
+            " WHERE STATUS = 0 ORDER BY SEVERITY ASC", null);
 
             if (c != null){
                 if (c.moveToFirst()){
@@ -100,17 +101,20 @@ public class MainActivity extends AppCompatActivity {
                     }while (c.moveToNext());
                 }
             }
+
             c.close();
+
         } catch (SQLiteException exc) {
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No tickets could be found.", Snackbar.LENGTH_LONG);
             snackbar.show();
+            exc.printStackTrace();
         }
     }
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
         final Intent intent = new Intent(this, Search.class);
-        if (results.size() == 0) {
+        if (results.isEmpty()) {
             TextView tv = new TextView(this);
             lv.setDivider(null);
             tv.setTextSize(20);
@@ -127,20 +131,18 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
                 //takes item from ArrayList, removes the head of string up to "ID:".
-                    //e.g. "[High] - ID: 1 - Title"    ->    "1 - Title"
+                    //e.g. "#1 - Title"    ->    "1 - Title"
                 String r1 = results.get(i);
                 String r2 = r1.substring(r1.lastIndexOf("#")+1);
                 //removes the end of string from "-" onwards then trims String whitespace
                     //e.g. "1 - Title"    ->    "1"
                 String r3 = r1.substring(r1.lastIndexOf("-"));
                 String r4 = r2.replace(r3, "");
-                r4.trim();
                 intent.putExtra("string", r4);
                 startActivity(intent);
                 finish();
                 } catch (Exception e){
                     e.printStackTrace();
-
                 }
             }
         });

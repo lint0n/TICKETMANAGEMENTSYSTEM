@@ -114,7 +114,7 @@ public class Create extends AppCompatActivity {
     }
 
     public void returnMain() {
-        final Intent mainIntent = new Intent(this, MainActivity.class);
+        final Intent mainIntent = new Intent(this, Main.class);
         //http://stackoverflow.com/a/2478662/7087139
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -162,7 +162,7 @@ public class Create extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(Create.this, MainActivity.class));
+            startActivity(new Intent(Create.this, Main.class));
         }
     }
 }

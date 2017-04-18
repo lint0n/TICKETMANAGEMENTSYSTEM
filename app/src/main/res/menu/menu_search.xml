@@ -8,6 +8,6 @@
         android:icon="@drawable/ic_search_white_24dp"
         android:id="@+id/lookupEditText"
         app:showAsAction="always"
-        android:onClick="lookupJob"
+        android:onClick="lookupTicket"
         />
 </menu>

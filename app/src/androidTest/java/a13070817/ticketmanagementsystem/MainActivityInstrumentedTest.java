@@ -31,7 +31,7 @@ import static org.hamcrest.Matchers.is;
 public class MainActivityInstrumentedTest {
 
     @Rule
-    public IntentsTestRule<MainActivity> activityIntentsTestRule = new IntentsTestRule<>(MainActivity.class);
+    public IntentsTestRule<Main> activityIntentsTestRule = new IntentsTestRule<>(Main.class);
 
     @Test
     public void validateIntentSentToCreate() {

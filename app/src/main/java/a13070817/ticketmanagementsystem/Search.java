@@ -45,7 +45,7 @@ public class Search extends AppCompatActivity{
         toolbar.setTitle("Search");
         setSupportActionBar(toolbar);
         //EditText instances
-        ticketLookup = (EditText) findViewById(R.id.lookupEditText);
+        ticketLookup = (EditText) findViewById(R.id.searchLookup);
         ticketID = (EditText) findViewById(R.id.JobID);
         ticketTitle = (EditText) findViewById(R.id.JobTitle);
         ticketAsset = (EditText) findViewById(R.id.JobAsset);
@@ -58,9 +58,9 @@ public class Search extends AppCompatActivity{
         ticketStatus = (CheckBox) findViewById(R.id.checkBox);
 
         try{
-            String s = getIntent().getExtras().getString("string");
-            ticketLookup.setText(s);
-            lookupJob(null);
+            String intentResult = getIntent().getExtras().getString("string");
+            ticketLookup.setText(intentResult);
+            lookupTicket(null);
         } catch(Exception e) {
             new Search();
         }
@@ -79,7 +79,7 @@ public class Search extends AppCompatActivity{
         returnMain();
     }
 
-    public void lookupJob(MenuItem menuItem) {
+    public void lookupTicket(MenuItem menuItem) {
         //Local String instance getting text from Search EditText
         jl = ticketLookup.getText().toString();
         //Local instance of DatabaseHelper class
@@ -234,7 +234,7 @@ public class Search extends AppCompatActivity{
      * http://stackoverflow.com/a/2478662/7087139
      */
     public void returnMain(){
-        final Intent mainIntent = new Intent(this, MainActivity.class);
+        final Intent mainIntent = new Intent(this, Main.class);
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -259,7 +259,7 @@ public class Search extends AppCompatActivity{
 
         @Override
         public void onClick(View v){
-            startActivity(new Intent(Search.this, MainActivity.class));
+            startActivity(new Intent(Search.this, Main.class));
         }
     }
 }

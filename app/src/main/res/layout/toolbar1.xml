@@ -5,7 +5,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <EditText
-        android:id="@+id/lookupEditText"
+        android:id="@+id/searchLookup"
         android:layout_width="125dp"
         android:layout_height="match_parent"
         android:orderInCategory="1000"
