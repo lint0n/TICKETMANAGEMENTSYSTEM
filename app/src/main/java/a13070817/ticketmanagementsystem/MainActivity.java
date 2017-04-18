@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     private ListView lv;
     String queryResult;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             db = dbHelper.getWritableDatabase();
             String severity;
             //http://www.1keydata.com/sql/sqlorderby.html
-            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.JOB_TABLE_NAME +
+            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + dbHelper.TICKET_TABLE_NAME +
             " WHERE COMPLETE = 0 ORDER BY SEVERITY ASC", null);
 
             if (c != null){
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
     //http://stackoverflow.com/a/34328384/7087139
     void displayList() {
-        final Intent jobLookup = new Intent(this, Search.class);
+        final Intent intent = new Intent(this, Search.class);
         if (results.size() == 0) {
             TextView tv = new TextView(this);
             lv.setDivider(null);
@@ -136,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
                 String r3 = r1.substring(r1.lastIndexOf("-"));
                 String r4 = r2.replace(r3, "");
                 r4.trim();
-                jobLookup.putExtra("string", r4);
-                startActivity(jobLookup);
+                intent.putExtra("string", r4);
+                startActivity(intent);
                 finish();
                 } catch (Exception e){
                     e.printStackTrace();

@@ -30,9 +30,9 @@ import java.util.TimeZone;
 
 public class Search extends AppCompatActivity{
 
-    private EditText jobID, jobTitle, jobAsset, jobCustomer, jobDescription, jobEngineer, jobDate, jobUpdate, jobSeverity;
-    private EditText jobLookup;
-    private CheckBox lookupCheckbox;
+    private EditText ticketID, ticketTitle, ticketAsset, ticketCustomer, ticketDescription, ticketEngineer, ticketDate, jobUpdate, ticketSeverity;
+    private EditText ticketLookup;
+    private CheckBox ticketStatus;
     private SQLiteDatabase db;
     private Date date1;
     private String jl;
@@ -45,21 +45,21 @@ public class Search extends AppCompatActivity{
         toolbar.setTitle("Search");
         setSupportActionBar(toolbar);
         //EditText instances
-        jobLookup = (EditText) findViewById(R.id.lookupEditText);
-        jobID = (EditText) findViewById(R.id.JobID);
-        jobTitle = (EditText) findViewById(R.id.JobTitle);
-        jobAsset = (EditText) findViewById(R.id.JobAsset);
-        jobCustomer = (EditText) findViewById(R.id.JobCustomer);
-        jobDescription = (EditText) findViewById(R.id.JobDescription);
-        jobEngineer = (EditText) findViewById(R.id.JobEngineer);
-        jobDate = (EditText) findViewById(R.id.dateCreated);
-        jobSeverity = (EditText) findViewById(R.id.JobSeverity);
+        ticketLookup = (EditText) findViewById(R.id.lookupEditText);
+        ticketID = (EditText) findViewById(R.id.JobID);
+        ticketTitle = (EditText) findViewById(R.id.JobTitle);
+        ticketAsset = (EditText) findViewById(R.id.JobAsset);
+        ticketCustomer = (EditText) findViewById(R.id.JobCustomer);
+        ticketDescription = (EditText) findViewById(R.id.JobDescription);
+        ticketEngineer = (EditText) findViewById(R.id.JobEngineer);
+        ticketDate = (EditText) findViewById(R.id.dateCreated);
+        ticketSeverity = (EditText) findViewById(R.id.JobSeverity);
         //CheckBox instance
-        lookupCheckbox = (CheckBox) findViewById(R.id.checkBox);
+        ticketStatus = (CheckBox) findViewById(R.id.checkBox);
 
         try{
             String s = getIntent().getExtras().getString("string");
-            jobLookup.setText(s);
+            ticketLookup.setText(s);
             lookupJob(null);
         } catch(Exception e) {
             new Search();
@@ -81,7 +81,7 @@ public class Search extends AppCompatActivity{
 
     public void lookupJob(MenuItem menuItem) {
         //Local String instance getting text from Search EditText
-        jl = jobLookup.getText().toString();
+        jl = ticketLookup.getText().toString();
         //Local instance of DatabaseHelper class
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getReadableDatabase();
@@ -120,41 +120,41 @@ public class Search extends AppCompatActivity{
                         createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
 
                 //ensures that EditText elements are empty before setting text
-                jobDescription.setText("");
-                jobTitle.setText("");
-                jobEngineer.setText("");
-                jobID.setText("");
-                jobAsset.setText("");
-                jobCustomer.setText("");
-                jobSeverity.setText("");
+                ticketDescription.setText("");
+                ticketTitle.setText("");
+                ticketEngineer.setText("");
+                ticketID.setText("");
+                ticketAsset.setText("");
+                ticketCustomer.setText("");
+                ticketSeverity.setText("");
 
                 //sets text using local String variables
-                jobID.setText(idText);
-                jobTitle.setText(titleText);
-                jobEngineer.setText(engineerText);
-                jobAsset.setText(assetText);
-                jobCustomer.setText(customerText);
-                jobDescription.setText(descriptionText);
-                jobDate.setText(finalDateTime);
+                ticketID.setText(idText);
+                ticketTitle.setText(titleText);
+                ticketEngineer.setText(engineerText);
+                ticketAsset.setText(assetText);
+                ticketCustomer.setText(customerText);
+                ticketDescription.setText(descriptionText);
+                ticketDate.setText(finalDateTime);
 
                 if (severity == 4) {
-                    jobSeverity.setText("Low");
+                    ticketSeverity.setText("Low");
                 } else if (severity == 3) {
-                    jobSeverity.setText("Medium");
+                    ticketSeverity.setText("Medium");
                 } else if (severity == 2) {
-                    jobSeverity.setText("High");
+                    ticketSeverity.setText("High");
                 } else if (severity == 1) {
-                    jobSeverity.setText("Critical");
+                    ticketSeverity.setText("Critical");
                 }
                 //stops user from accessing these EditTexts once a job had been looked up
-                jobLookup.setFocusable(false);
-                jobLookup.setClickable(false);
-                jobID.setFocusable(false);
-                jobID.setClickable(false);
-                jobSeverity.setFocusable(false);
-                jobSeverity.setClickable(false);
-                jobDate.setFocusable(false);
-                jobDate.setClickable(false);
+                ticketLookup.setFocusable(false);
+                ticketLookup.setClickable(false);
+                ticketID.setFocusable(false);
+                ticketID.setClickable(false);
+                ticketSeverity.setFocusable(false);
+                ticketSeverity.setClickable(false);
+                ticketDate.setFocusable(false);
+                ticketDate.setClickable(false);
 
                 //hides virtual keyboard
                 InputMethodManager imm = (InputMethodManager) getSystemService(
@@ -163,7 +163,7 @@ public class Search extends AppCompatActivity{
 
                 //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
                 if (complete == 1) {
-                    lookupCheckbox.setChecked(true);
+                    ticketStatus.setChecked(true);
                 }
                     cursor.close();
                     db.close();
@@ -191,29 +191,29 @@ public class Search extends AppCompatActivity{
 
         //takes the EditText and puts them to String
         try{
-            String jd = jobDescription.getText().toString();
-            String jt = jobTitle.getText().toString();
-            String je = jobEngineer.getText().toString();
-            String ja = jobAsset.getText().toString();
-            String jc = jobCustomer.getText().toString();
-            String ji = jobID.getText().toString();
+            String jd = ticketDescription.getText().toString();
+            String jt = ticketTitle.getText().toString();
+            String je = ticketEngineer.getText().toString();
+            String ja = ticketAsset.getText().toString();
+            String jc = ticketCustomer.getText().toString();
+            String ji = ticketID.getText().toString();
 
             //ContentValues that takes the String variables and then puts them to their respective table column
             ContentValues values = new ContentValues();
-            values.put(DatabaseHelper.JOB_ID, ji);
-            values.put(DatabaseHelper.JOB_TITLE, jt);
-            values.put(DatabaseHelper.JOB_ENGINEER, je);
-            values.put(DatabaseHelper.JOB_ASSET, ja);
-            values.put(DatabaseHelper.JOB_CUSTOMER, jc);
-            values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
+            values.put(DatabaseHelper.TICKET_ID, ji);
+            values.put(DatabaseHelper.TICKET_TITLE, jt);
+            values.put(DatabaseHelper.TICKET_ENGINEER, je);
+            values.put(DatabaseHelper.TICKET_ASSET, ja);
+            values.put(DatabaseHelper.TICKET_CUSTOMER, jc);
+            values.put(DatabaseHelper.TICKET_DESCRIPTION, jd);
 
             //if the CheckBox is checked then change the entity's COMPLETE column to 1 otherwise leave as 0
-            if(lookupCheckbox.isChecked()){
-                values.put(DatabaseHelper.JOB_STATUS, 1);
+            if(ticketStatus.isChecked()){
+                values.put(DatabaseHelper.TICKET_STATUS, 1);
             } else {
-                values.put(DatabaseHelper.JOB_STATUS, 0);
+                values.put(DatabaseHelper.TICKET_STATUS, 0);
             }
-            db.update(DatabaseHelper.JOB_TABLE_NAME, values, DatabaseHelper.JOB_ID + "=" + ji, null);
+            db.update(DatabaseHelper.TICKET_TABLE_NAME, values, DatabaseHelper.TICKET_ID + "=" + ji, null);
 
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + ji + " updated." , Snackbar.LENGTH_LONG);
             snackbar.setAction("Home", new returnMainSnackBar());

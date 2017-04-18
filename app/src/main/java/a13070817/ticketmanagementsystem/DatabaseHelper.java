@@ -14,32 +14,32 @@ class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ticketDatabase.db";
 
     //Job table columns
-    static final String JOB_TABLE_NAME = "JOB";
-    static final String JOB_ID = "ID";
-    static final String JOB_ENGINEER = "ENGINEER";
-    static final String JOB_TITLE = "TITLE";
-    static final String JOB_ASSET = "ASSET";
-    static final String JOB_CUSTOMER = "CUSTOMER";
-    static final String JOB_DESCRIPTION = "DESCRIPTION";
-    static final String JOB_SEVERITY = "SEVERITY";
-    static final String JOB_STATUS = "COMPLETE";
-    static final String JOB_DATE = "DATE_CREATED";
+    static final String TICKET_TABLE_NAME = "TICKET";
+    static final String TICKET_ID = "ID";
+    static final String TICKET_ENGINEER = "ENGINEER";
+    static final String TICKET_TITLE = "TITLE";
+    static final String TICKET_ASSET = "ASSET";
+    static final String TICKET_CUSTOMER = "CUSTOMER";
+    static final String TICKET_DESCRIPTION = "DESCRIPTION";
+    static final String TICKET_SEVERITY = "SEVERITY";
+    static final String TICKET_STATUS = "STATUS";
+    static final String TICKET_DATE = "DATE_CREATED";
 
     //Create Job table
-    private static final String CREATE_JOB_TABLE =
-            "CREATE TABLE " + JOB_TABLE_NAME + " (" +
-                    JOB_ID + " INTEGER PRIMARY KEY," +
-                    JOB_TITLE + " TEXT," +
-                    JOB_ENGINEER + " TEXT," +
-                    JOB_CUSTOMER + " TEXT," +
-                    JOB_DESCRIPTION + " TEXT," +
-                    JOB_ASSET + " TEXT," +
-                    JOB_STATUS + " INTEGER," +
-                    JOB_SEVERITY + " INTEGER," +
-                    JOB_DATE + " INTEGER)";
+    private static final String CREATE_TICKET_TABLE =
+            "CREATE TABLE " + TICKET_TABLE_NAME + " (" +
+                     TICKET_ID + " INTEGER PRIMARY KEY," +
+                    TICKET_TITLE + " TEXT," +
+                    TICKET_ENGINEER + " TEXT," +
+                    TICKET_CUSTOMER + " TEXT," +
+                    TICKET_DESCRIPTION + " TEXT," +
+                    TICKET_ASSET + " TEXT," +
+                    TICKET_STATUS + " INTEGER," +
+                    TICKET_SEVERITY + " INTEGER," +
+                    TICKET_DATE + " INTEGER)";
 
     //Delete table
-    private static final String DELETE_JOB_TABLE = "DROP TABLE IF EXISTS " + JOB_TABLE_NAME;
+    private static final String DELETE_TICKET_TABLE = "DROP TABLE IF EXISTS " + TICKET_TABLE_NAME;
 
     //Constructor
     public DatabaseHelper(Context context){
@@ -48,12 +48,12 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_JOB_TABLE);
+        db.execSQL(CREATE_TICKET_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DELETE_JOB_TABLE);
+        db.execSQL(DELETE_TICKET_TABLE);
         onCreate(db);
     }
 }

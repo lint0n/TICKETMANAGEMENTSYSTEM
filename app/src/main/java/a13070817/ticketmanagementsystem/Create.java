@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,7 +27,7 @@ public class Create extends AppCompatActivity {
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
     SQLiteDatabase db;
-    private Toolbar toolbar;
+    Toolbar toolbar;
     private Spinner spinner;
 
     @Override
@@ -83,27 +82,27 @@ public class Create extends AppCompatActivity {
             String sev = String.valueOf(spinner.getSelectedItem());
 
             ContentValues values = new ContentValues();
-            values.put(DatabaseHelper.JOB_TITLE, jt);
-            values.put(DatabaseHelper.JOB_ENGINEER, je);
-            values.put(DatabaseHelper.JOB_ASSET, ja);
-            values.put(DatabaseHelper.JOB_CUSTOMER, jc);
-            values.put(DatabaseHelper.JOB_DESCRIPTION, jd);
-            values.put(DatabaseHelper.JOB_STATUS, 0);
-            values.put(DatabaseHelper.JOB_DATE, dateFormat.format(date));
+            values.put(DatabaseHelper.TICKET_TITLE, jt);
+            values.put(DatabaseHelper.TICKET_ENGINEER, je);
+            values.put(DatabaseHelper.TICKET_ASSET, ja);
+            values.put(DatabaseHelper.TICKET_CUSTOMER, jc);
+            values.put(DatabaseHelper.TICKET_DESCRIPTION, jd);
+            values.put(DatabaseHelper.TICKET_STATUS, 0);
+            values.put(DatabaseHelper.TICKET_DATE, dateFormat.format(date));
             if (sev.contains("1-Critical")) {
-                values.put(DatabaseHelper.JOB_SEVERITY, 1);
+                values.put(DatabaseHelper.TICKET_SEVERITY, 1);
             } else if (sev.contains("2-High")) {
-                values.put(DatabaseHelper.JOB_SEVERITY, 2);
+                values.put(DatabaseHelper.TICKET_SEVERITY, 2);
             } else if (sev.contains("3-Medium")) {
-                values.put(DatabaseHelper.JOB_SEVERITY, 3);
+                values.put(DatabaseHelper.TICKET_SEVERITY, 3);
             } else if (sev.contains("4-Low")) {
-                values.put(DatabaseHelper.JOB_SEVERITY, 4);
+                values.put(DatabaseHelper.TICKET_SEVERITY, 4);
             }
             //if editText contains unpopulated fields do not create job otherwise create
             if (sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))) {
                 throw new Exception();
             } else {
-                Long newRowId = db.insert(DatabaseHelper.JOB_TABLE_NAME, null, values);
+                Long newRowId = db.insert(DatabaseHelper.TICKET_TABLE_NAME, null, values);
                 Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("Home", new Create.returnMainSnackBar());
                 snackbar.show();
@@ -159,10 +158,10 @@ public class Create extends AppCompatActivity {
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
 
-    private class returnMainSnackBar implements View.OnClickListener{
+    private class returnMainSnackBar implements View.OnClickListener {
 
         @Override
-        public void onClick(View v){
+        public void onClick(View v) {
             startActivity(new Intent(Create.this, MainActivity.class));
         }
     }
