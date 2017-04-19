@@ -80,15 +80,14 @@ public class Search extends AppCompatActivity{
     }
 
     public void lookupTicket(MenuItem menuItem) {
-        //Local String instance getting text from Search EditText
         jl = ticketLookup.getText().toString();
-        //Local instance of DatabaseHelper class
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getReadableDatabase();
-        //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
-            //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("TICKET", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "STATUS", "SEVERITY", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("TICKET", new String[]{"ID", "TITLE",  "ASSET",
+                    "ENGINEER", "CUSTOMER", "DESCRIPTION",
+                    "STATUS", "SEVERITY", "DATE_CREATED"},
+                    "ID = ?", new String[]{jl}, null, null, null, null);
                 if(cursor.moveToFirst()){
                 String idText = cursor.getString(0);
                 String titleText = cursor.getString(1);
@@ -99,9 +98,6 @@ public class Search extends AppCompatActivity{
                 Integer complete = cursor.getInt(6);
                 Integer severity = cursor.getInt(7);
                 String dateTime = cursor.getString(8);
-
-                //Retrieves String equivalent from db then parses into Date representation
-                //Takes Date representation then converts to long
                 //http://stackoverflow.com/a/14256017
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
@@ -115,11 +111,8 @@ public class Search extends AppCompatActivity{
                 flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
                 flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
                 flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
-
                 String finalDateTime = android.text.format.DateUtils.formatDateTime(this,
                         createWhen + TimeZone.getDefault().getOffset(createWhen), flags);
-
-                //ensures that EditText elements are empty before setting text
                 ticketDescription.setText("");
                 ticketTitle.setText("");
                 ticketEngineer.setText("");
@@ -127,7 +120,6 @@ public class Search extends AppCompatActivity{
                 ticketAsset.setText("");
                 ticketCustomer.setText("");
                 ticketSeverity.setText("");
-
                 //sets text using local String variables
                 ticketID.setText(idText);
                 ticketTitle.setText(titleText);
@@ -136,7 +128,6 @@ public class Search extends AppCompatActivity{
                 ticketCustomer.setText(customerText);
                 ticketDescription.setText(descriptionText);
                 ticketDate.setText(finalDateTime);
-
                 if (severity == 4) {
                     ticketSeverity.setText("Low");
                 } else if (severity == 3) {
@@ -155,12 +146,10 @@ public class Search extends AppCompatActivity{
                 ticketSeverity.setClickable(false);
                 ticketDate.setFocusable(false);
                 ticketDate.setClickable(false);
-
                 //hides virtual keyboard
                 InputMethodManager imm = (InputMethodManager) getSystemService(
                         INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
                 //if the entities' COMPLETE column is set to 1, sets CheckBox to checked otherwise will leave unchecked
                 if (complete == 1) {
                     ticketStatus.setChecked(true);
@@ -173,7 +162,6 @@ public class Search extends AppCompatActivity{
                     throw new SQLiteException();
             }
         }
-
         //if the try statement causes an exception. Returns a Toast
         catch (SQLiteException exc) {
             exc.printStackTrace();
@@ -183,7 +171,7 @@ public class Search extends AppCompatActivity{
         }
     }
 
-    public void updateJob(View view) {
+    public void updateTicket(View view) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");

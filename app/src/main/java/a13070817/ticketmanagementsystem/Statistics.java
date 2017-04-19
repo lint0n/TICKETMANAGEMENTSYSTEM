@@ -57,11 +57,14 @@ public class Statistics extends AppCompatActivity {
          * then stored as int by accessing number of rows from each Cursor.
          */
         try {
-            Cursor openCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE STATUS = 0", null);
-            Cursor closedCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE STATUS = 1", null);
+            Cursor openCursor = db.rawQuery("SELECT * FROM "
+                    + TICKET_TABLE_NAME
+                    + " WHERE STATUS = 0", null);
+            Cursor closedCursor = db.rawQuery("SELECT * FROM "
+                    + TICKET_TABLE_NAME
+                    + " WHERE STATUS = 1", null);
             int open = openCursor.getCount();
             int closed = closedCursor.getCount();
-
             //https://github.com/PhilJay/MPAndroidChart/wiki/Setting-Data
             pieChartTicket = (PieChart) findViewById(R.id.piechart);
             jobEntries.add(new PieEntry(open, "Open"));
@@ -72,21 +75,24 @@ public class Statistics extends AppCompatActivity {
             pieChartTicket.getDescription().setText("");
             dataSetJob.setColors(ColorTemplate.MATERIAL_COLORS);
             pieChartTicket.setEntryLabelTextSize(16);
-            pieChartTicket.setCenterText("Number of Calls");
+            pieChartTicket.setCenterText("Number of Tickets");
             pieChartTicket.invalidate();
             dataJob.setValueTextColor(Color.WHITE);
             dataJob.setValueTextSize(18);
-
             openCursor.close();
             closedCursor.close();
 
             /**
              * Queries Job table for jobs based on severity which is then cast to bar chart
              */
-            Cursor lowCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE SEVERITY = 4 AND STATUS = 0", null);
-            Cursor mediumCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE SEVERITY = 3 AND STATUS = 0", null);
-            Cursor highCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE SEVERITY = 2 AND STATUS = 0", null);
-            Cursor criticalCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE SEVERITY = 1 AND STATUS = 0", null);
+            Cursor lowCursor = db.rawQuery("SELECT * FROM " +
+                    TICKET_TABLE_NAME + " WHERE SEVERITY = 4 AND STATUS = 0", null);
+            Cursor mediumCursor = db.rawQuery("SELECT * FROM " +
+                    TICKET_TABLE_NAME + " WHERE SEVERITY = 3 AND STATUS = 0", null);
+            Cursor highCursor = db.rawQuery("SELECT * FROM " +
+                    TICKET_TABLE_NAME + " WHERE SEVERITY = 2 AND STATUS = 0", null);
+            Cursor criticalCursor = db.rawQuery("SELECT * FROM " +
+                    TICKET_TABLE_NAME + " WHERE SEVERITY = 1 AND STATUS = 0", null);
 
             int low = lowCursor.getCount();
             int medium = mediumCursor.getCount();
@@ -103,7 +109,7 @@ public class Statistics extends AppCompatActivity {
             pieChartSeverity.getDescription().setText("");
             dataSetSeverity.setColors(ColorTemplate.MATERIAL_COLORS);
             pieChartSeverity.setEntryLabelTextSize(16);
-            pieChartSeverity.setCenterText("Open Calls by Severity");
+            pieChartSeverity.setCenterText("Open Tickets by Severity");
             pieChartSeverity.invalidate();
             dataSeverity.setValueTextColor(Color.WHITE);
             dataSeverity.setValueTextSize(18);
@@ -120,8 +126,8 @@ public class Statistics extends AppCompatActivity {
             Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND STATUS = 1", null);
             int weekCursorCount = weekCursor.getCount();
             int weekClosedCursorCount = weekClosedCursor.getCount();
-            String weekCount = "Jobs Created Past 7 Days: \n\n" + weekCursorCount;
-            String weekClosedCount = "Jobs Closed Past 7 Days: \n\n" + weekClosedCursorCount;
+            String weekCount = "Tickets Created Past 7 Days: \n\n" + weekCursorCount;
+            String weekClosedCount = "Tickets Closed Past 7 Days: \n\n" + weekClosedCursorCount;
 
             openCountText = (TextView) findViewById(R.id.openCountText);
             openCountText.setText(weekCount);

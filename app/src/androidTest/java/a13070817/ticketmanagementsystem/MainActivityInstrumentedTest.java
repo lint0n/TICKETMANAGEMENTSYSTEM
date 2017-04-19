@@ -54,7 +54,7 @@ public class MainActivityInstrumentedTest {
     @Test
     public void validateTicketCreate() {
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 1; i < 25; i++) {
             onView(withId(R.id.fabCreate)).perform(click());
             onView(withId(R.id.job_title)).perform(typeText("Test " + i));
             onView(withId(R.id.job_title)).perform(closeSoftKeyboard());
