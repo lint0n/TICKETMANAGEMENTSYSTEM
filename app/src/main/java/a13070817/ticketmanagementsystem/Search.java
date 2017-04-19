@@ -58,7 +58,7 @@ public class Search extends AppCompatActivity{
         ticketStatus = (CheckBox) findViewById(R.id.checkBox);
 
         try{
-            String intentResult = getIntent().getExtras().getString("string");
+            String intentResult = getIntent().getExtras().getString("ticketToSearch");
             ticketLookup.setText(intentResult);
             lookupTicket(null);
         } catch(Exception e) {

@@ -12,7 +12,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
     //Database variables
     private static final int DATABASE_VERSION = 13;
     private static final String DATABASE_NAME = "ticketDatabase.db";
-
     //Job table columns
     static final String TICKET_TABLE_NAME = "TICKET";
     static final String TICKET_ID = "ID";
@@ -24,7 +23,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
     static final String TICKET_SEVERITY = "SEVERITY";
     static final String TICKET_STATUS = "STATUS";
     static final String TICKET_DATE = "DATE_CREATED";
-
     //Create Job table
     private static final String CREATE_TICKET_TABLE =
             "CREATE TABLE " + TICKET_TABLE_NAME + " (" +

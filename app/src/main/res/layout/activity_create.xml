@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapSentences|textAutoCorrect"
@@ -34,43 +34,44 @@
         style="@style/FullWidthEditText"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="12dp" />
+        android:layout_alignParentLeft="true" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
-        <EditText
+
+        <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:ems="6"
             android:id="@+id/job_customer"
             android:maxLines="1"
             android:hint="@string/create_job_customer"
             style="@style/FullWidthEditText"
             android:layout_below="@+id/job_engineer"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="14dp" />
+            android:layout_alignParentLeft="true"
+             />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
-        <EditText
+
+        <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters"
-            android:ems="6"
             android:id="@+id/job_asset"
             android:maxLines="1"
-            android:maxLength="6"
             android:hint="@string/create_job_asset"
             style="@style/FullWidthEditText"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -79,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapWords"
@@ -96,7 +97,7 @@
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:id="@+id/job_description"
             android:inputType="textCapSentences|textMultiLine"

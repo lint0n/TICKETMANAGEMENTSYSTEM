@@ -21,6 +21,7 @@
         style="@style/Widget.AppCompat.ListView"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_height="450dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -30,7 +31,7 @@
         android:id="@+id/fabCreate"
         app:fabSize="normal"
         app:srcCompat="@drawable/ic_create_white_48dp"
-        android:onClick="createJob"
+        android:onClick="createTicket"
         app:layout_anchor="@id/listview"
         app:layout_anchorGravity="bottom|center"
         android:layout_marginLeft="16dp"

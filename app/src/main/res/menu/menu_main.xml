@@ -8,7 +8,7 @@
         android:title="@string/job_lookup"
         android:icon="@drawable/ic_search_white_24dp"
         app:showAsAction="always"
-        android:onClick="jobLookup"/>
+        android:onClick="ticketLookup"/>
 
 
     <item
@@ -16,5 +16,5 @@
         android:title="@string/about"
         android:icon="@drawable/ic_info_outline_white_24dp"
         app:showAsAction="ifRoom"
-        android:onClick="about"/>
+        android:onClick="statistics"/>
 </menu>

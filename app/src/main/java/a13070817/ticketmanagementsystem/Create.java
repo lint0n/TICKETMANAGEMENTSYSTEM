@@ -67,7 +67,6 @@ public class Create extends AppCompatActivity {
     public void insertData(MenuItem menuItem) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
-
         //https://developer.android.com/reference/java/text/SimpleDateFormat.html
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
         Date date = new Date();
@@ -77,10 +76,8 @@ public class Create extends AppCompatActivity {
             String je = jobEngineer.getText().toString();
             String ja = jobAsset.getText().toString();
             String jc = jobCustomer.getText().toString();
-
             //Head First Android Chapter 2 p 63
             String sev = String.valueOf(spinner.getSelectedItem());
-
             ContentValues values = new ContentValues();
             values.put(DatabaseHelper.TICKET_TITLE, jt);
             values.put(DatabaseHelper.TICKET_ENGINEER, je);
@@ -99,16 +96,18 @@ public class Create extends AppCompatActivity {
                 values.put(DatabaseHelper.TICKET_SEVERITY, 4);
             }
             //if editText contains unpopulated fields do not create job otherwise create
-            if (sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty() || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))) {
+            if (sev.contains("[Select severity]") || jt.isEmpty() || (je.isEmpty()
+                    || (ja.isEmpty() || (jc.isEmpty() || (jd.isEmpty()))))) {
                 throw new Exception();
             } else {
                 Long newRowId = db.insert(DatabaseHelper.TICKET_TABLE_NAME, null, values);
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job " + newRowId + " created.", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+                        "Ticket " + newRowId + " created.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("Home", new Create.returnMainSnackBar());
                 snackbar.show();
             }
         } catch (Exception exc) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Job not created, try again.", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket not created, try again.", Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }
@@ -132,7 +131,10 @@ public class Create extends AppCompatActivity {
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
-        builder.setMessage("Input will not be saved. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage("Input will not be saved. Are you sure?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener)
+                .show();
     }
 
     public void erase(MenuItem menuItem) {
@@ -155,7 +157,10 @@ public class Create extends AppCompatActivity {
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Erase data");
-        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage("Are you sure?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener)
+                .show();
     }
 
     private class returnMainSnackBar implements View.OnClickListener {
