@@ -88,7 +88,7 @@ public class Search extends AppCompatActivity{
         //try catch block - if job exists in database return data. If job doesn't not exist, catch Exception and return Toast text.
         try {
             //Cursor storing SQLite query, accessing ID/TITLE/ASSET/ENGINEER/CUSTOMER/DESCRIPTION/COMPLETE columns.
-            Cursor cursor = db.query("JOB", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "COMPLETE", "SEVERITY", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
+            Cursor cursor = db.query("TICKET", new String[]{"ID", "TITLE",  "ASSET", "ENGINEER", "CUSTOMER", "DESCRIPTION", "STATUS", "SEVERITY", "DATE_CREATED"}, "ID = ?", new String[]{jl}, null, null, null, null);
                 if(cursor.moveToFirst()){
                 String idText = cursor.getString(0);
                 String titleText = cursor.getString(1);
@@ -249,7 +249,10 @@ public class Search extends AppCompatActivity{
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Exit");
-        builder.setMessage("Changes will not be updated. Are you sure?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage("Changes will not be updated. Are you sure?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener)
+                .show();
     }
 
     /**

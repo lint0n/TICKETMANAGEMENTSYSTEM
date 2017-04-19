@@ -164,7 +164,6 @@ public class Create extends AppCompatActivity {
     }
 
     private class returnMainSnackBar implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
             startActivity(new Intent(Create.this, Main.class));

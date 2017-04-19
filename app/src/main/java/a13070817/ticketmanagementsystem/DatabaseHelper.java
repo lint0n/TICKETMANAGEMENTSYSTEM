@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "ticketDatabase.db";
     //Job table columns
     static final String TICKET_TABLE_NAME = "TICKET";
