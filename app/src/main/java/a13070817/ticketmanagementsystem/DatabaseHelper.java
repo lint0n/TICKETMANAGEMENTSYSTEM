@@ -7,10 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Samuel Linton SRN 13070817 on 08/02/2017.
  */
 
-class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 15;
     private static final String DATABASE_NAME = "ticketDatabase.db";
     //Job table columns
     static final String TICKET_TABLE_NAME = "TICKET";
@@ -54,4 +54,5 @@ class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DELETE_TICKET_TABLE);
         onCreate(db);
     }
+
 }

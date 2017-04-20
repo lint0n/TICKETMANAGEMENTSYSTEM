@@ -162,10 +162,8 @@ public class Search extends AppCompatActivity{
                     throw new SQLiteException();
             }
         }
-        //if the try statement causes an exception. Returns a Toast
         catch (SQLiteException exc) {
             exc.printStackTrace();
-            //Toast.makeText(this, "Ticket " + jl + " cannot be found in the database", Toast.LENGTH_SHORT).show();
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Ticket " + jl + " cannot be found in the database.", Snackbar.LENGTH_LONG);
             snackbar.show();
         }

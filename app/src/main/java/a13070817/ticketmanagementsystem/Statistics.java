@@ -1,17 +1,21 @@
 package a13070817.ticketmanagementsystem;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,15 +27,15 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.jar.Manifest;
 
 import static a13070817.ticketmanagementsystem.DatabaseHelper.TICKET_TABLE_NAME;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class Statistics extends AppCompatActivity {
-
     Toolbar toolbar;
     SQLiteDatabase db;
     DatabaseHelper dbHelper;
-
     //Pie chart variables
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
@@ -40,7 +44,6 @@ public class Statistics extends AppCompatActivity {
     PieData dataJob, dataSeverity;
     PieDataSet dataSetJob, dataSetSeverity;
     TextView openCountText, closedCountText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +53,8 @@ public class Statistics extends AppCompatActivity {
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this.getApplicationContext());
         db = dbHelper.getWritableDatabase();
-
-
-        /**
-         * Queries Job table for jobs both complete and incomplete and assigns to respective Cursor,
-         * then stored as int by accessing number of rows from each Cursor.
-         */
+         //Queries Job table for jobs both complete and incomplete and assigns to respective Cursor,
+         //then stored as int by accessing number of rows from each Cursor.
         try {
             Cursor openCursor = db.rawQuery("SELECT * FROM "
                     + TICKET_TABLE_NAME
@@ -65,6 +64,7 @@ public class Statistics extends AppCompatActivity {
                     + " WHERE STATUS = 1", null);
             int open = openCursor.getCount();
             int closed = closedCursor.getCount();
+
             //https://github.com/PhilJay/MPAndroidChart/wiki/Setting-Data
             pieChartTicket = (PieChart) findViewById(R.id.piechart);
             jobEntries.add(new PieEntry(open, "Open"));
@@ -82,9 +82,7 @@ public class Statistics extends AppCompatActivity {
             openCursor.close();
             closedCursor.close();
 
-            /**
-             * Queries Job table for jobs based on severity which is then cast to bar chart
-             */
+            //Queries Job table for jobs based on severity which is then cast to pie charts
             Cursor lowCursor = db.rawQuery("SELECT * FROM " +
                     TICKET_TABLE_NAME + " WHERE SEVERITY = 4 AND STATUS = 0", null);
             Cursor mediumCursor = db.rawQuery("SELECT * FROM " +
@@ -121,7 +119,6 @@ public class Statistics extends AppCompatActivity {
 
             //Queries the number of jobs created and closed in the last week
             //http://www.sqlite.org/lang_datefunc.html
-
             Cursor weekCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
             Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND STATUS = 1", null);
             int weekCursorCount = weekCursor.getCount();
@@ -165,9 +162,13 @@ public class Statistics extends AppCompatActivity {
 
     public void saveToGallery(MenuItem menuItem) {
         try {
-            pieChartTicket.saveToGallery("Tickets", 100);
-            pieChartSeverity.saveToGallery("Severity", 100);
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Images downloaded to gallery.", Snackbar.LENGTH_LONG);
+            int permissionCheck = ContextCompat.checkSelfPermission(Statistics.this, WRITE_EXTERNAL_STORAGE);
+            if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(Statistics.this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
+            }
+            pieChartTicket.saveToGallery("Tickets.jpg", 100);
+            pieChartSeverity.saveToGallery("Severity.jpg", 100);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Images downloaded to internal storage.", Snackbar.LENGTH_LONG);
             snackbar.show();
         } catch (Exception e) {
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Image could not be downloaded.", Snackbar.LENGTH_LONG);
