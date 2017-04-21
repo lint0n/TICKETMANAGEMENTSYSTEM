@@ -32,6 +32,12 @@ import java.util.jar.Manifest;
 import static a13070817.ticketmanagementsystem.DatabaseHelper.TICKET_TABLE_NAME;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+/**
+ * Statistics Dashboard activity.
+ * Utilises MPAndroidChart piecharts to graphically display relative metrics
+ *
+ * Created by Samuel Linton SRN 13070817
+ */
 public class Statistics extends AppCompatActivity {
     Toolbar toolbar;
     SQLiteDatabase db;

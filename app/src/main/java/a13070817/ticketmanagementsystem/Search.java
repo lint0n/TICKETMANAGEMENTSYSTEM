@@ -1,7 +1,8 @@
 package a13070817.ticketmanagementsystem;
 
 /**
- * Created by Samuel Linton SRN 13070817 on 24/02/2017.
+ * Search activity. Contains two functions; 1 - Search ticket in db, 2 - update ticket to db.
+ * Created by Samuel Linton SRN 13070817
  */
 
 import android.content.ContentValues;

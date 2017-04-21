@@ -141,7 +141,6 @@
                 style="@style/FullWidthEditText"
                 android:layout_width="match_parent"
                 android:maxLines="1"
-                android:singleLine="true"
                 android:maxLength="25" />
         </android.support.design.widget.TextInputLayout>
 
