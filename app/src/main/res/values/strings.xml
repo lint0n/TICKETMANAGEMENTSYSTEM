@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">Help Desk</string>
     <string name="job_lookup">Ticket Lookup</string>
     <string name="assets">Assets</string>
     <string name="create_job_title">Title</string>
