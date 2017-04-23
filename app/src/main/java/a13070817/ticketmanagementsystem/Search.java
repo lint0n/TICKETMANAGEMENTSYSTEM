@@ -1,10 +1,5 @@
 package a13070817.ticketmanagementsystem;
 
-/**
- * Search activity. Contains two functions; 1 - Search ticket in db, 2 - update ticket to db.
- * Created by Samuel Linton SRN 13070817
- */
-
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,9 +24,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * @author Samuel Linton 13070817
+ */
 public class Search extends AppCompatActivity{
 
-    private EditText ticketID, ticketTitle, ticketAsset, ticketCustomer, ticketDescription, ticketEngineer, ticketDate, jobUpdate, ticketSeverity;
+    private EditText ticketID, ticketTitle, ticketAsset, ticketCustomer, ticketDescription, ticketEngineer, ticketDate, ticketSeverity;
     private EditText ticketLookup;
     private CheckBox ticketStatus;
     private SQLiteDatabase db;
@@ -67,7 +65,6 @@ public class Search extends AppCompatActivity{
         }
     }
 
-    //http://stackoverflow.com/a/4780009/7087139
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
@@ -80,6 +77,10 @@ public class Search extends AppCompatActivity{
         returnMain();
     }
 
+    /**
+     * Searches database for specified ticket
+     * @param menuItem MenuItem interface object
+     */
     public void lookupTicket(MenuItem menuItem) {
         jl = ticketLookup.getText().toString();
         DatabaseHelper dbHelper = new DatabaseHelper(this);

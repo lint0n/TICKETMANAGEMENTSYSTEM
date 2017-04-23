@@ -15,7 +15,6 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,29 +26,25 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.jar.Manifest;
 
 import static a13070817.ticketmanagementsystem.DatabaseHelper.TICKET_TABLE_NAME;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 /**
- * Statistics Dashboard activity.
- * Utilises MPAndroidChart piecharts to graphically display relative metrics
- *
- * Created by Samuel Linton SRN 13070817
+ * @author Samuel Linton 13070817
  */
 public class Statistics extends AppCompatActivity {
     Toolbar toolbar;
-    SQLiteDatabase db;
-    DatabaseHelper dbHelper;
-    //Pie chart variables
+    SQLiteDatabase sqLiteDatabase;
+    DatabaseHelper databaseHelper;
+    TextView openCountText, closedCountText;
+    //MPAndroidChart variables
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
-    private ArrayList<HorizontalBarChart> weekEntries = new ArrayList<>();
     private PieChart pieChartTicket, pieChartSeverity;
     PieData dataJob, dataSeverity;
     PieDataSet dataSetJob, dataSetSeverity;
-    TextView openCountText, closedCountText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,20 +52,21 @@ public class Statistics extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Statistics");
         setSupportActionBar(toolbar);
-        dbHelper = new DatabaseHelper(this.getApplicationContext());
-        db = dbHelper.getWritableDatabase();
+        databaseHelper = new DatabaseHelper(this.getApplicationContext());
+        sqLiteDatabase = databaseHelper.getWritableDatabase();
          //Queries Job table for jobs both complete and incomplete and assigns to respective Cursor,
-         //then stored as int by accessing number of rows from each Cursor.
+         //it is then stored as int by accessing number of rows from each Cursor.
         try {
-            Cursor openCursor = db.rawQuery("SELECT * FROM "
+            Cursor openCursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                     + TICKET_TABLE_NAME
                     + " WHERE STATUS = 0", null);
-            Cursor closedCursor = db.rawQuery("SELECT * FROM "
+            Cursor closedCursor = sqLiteDatabase.rawQuery("SELECT * FROM "
                     + TICKET_TABLE_NAME
                     + " WHERE STATUS = 1", null);
             int open = openCursor.getCount();
             int closed = closedCursor.getCount();
 
+            //MPAndroidChart library
             //https://github.com/PhilJay/MPAndroidChart/wiki/Setting-Data
             pieChartTicket = (PieChart) findViewById(R.id.piechart);
             jobEntries.add(new PieEntry(open, "Open"));
@@ -89,13 +85,13 @@ public class Statistics extends AppCompatActivity {
             closedCursor.close();
 
             //Queries Job table for jobs based on severity which is then cast to pie charts
-            Cursor lowCursor = db.rawQuery("SELECT * FROM " +
+            Cursor lowCursor = sqLiteDatabase.rawQuery("SELECT * FROM " +
                     TICKET_TABLE_NAME + " WHERE SEVERITY = 4 AND STATUS = 0", null);
-            Cursor mediumCursor = db.rawQuery("SELECT * FROM " +
+            Cursor mediumCursor = sqLiteDatabase.rawQuery("SELECT * FROM " +
                     TICKET_TABLE_NAME + " WHERE SEVERITY = 3 AND STATUS = 0", null);
-            Cursor highCursor = db.rawQuery("SELECT * FROM " +
+            Cursor highCursor = sqLiteDatabase.rawQuery("SELECT * FROM " +
                     TICKET_TABLE_NAME + " WHERE SEVERITY = 2 AND STATUS = 0", null);
-            Cursor criticalCursor = db.rawQuery("SELECT * FROM " +
+            Cursor criticalCursor = sqLiteDatabase.rawQuery("SELECT * FROM " +
                     TICKET_TABLE_NAME + " WHERE SEVERITY = 1 AND STATUS = 0", null);
 
             int low = lowCursor.getCount();
@@ -117,33 +113,28 @@ public class Statistics extends AppCompatActivity {
             pieChartSeverity.invalidate();
             dataSeverity.setValueTextColor(Color.WHITE);
             dataSeverity.setValueTextSize(18);
-
             lowCursor.close();
             mediumCursor.close();
             highCursor.close();
             criticalCursor.close();
-
             //Queries the number of jobs created and closed in the last week
             //http://www.sqlite.org/lang_datefunc.html
-            Cursor weekCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
-            Cursor weekClosedCursor = db.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND STATUS = 1", null);
+            Cursor weekCursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day')", null);
+            Cursor weekClosedCursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TICKET_TABLE_NAME + " WHERE DATE_CREATED >= date('now', '-7 day') AND STATUS = 1", null);
             int weekCursorCount = weekCursor.getCount();
             int weekClosedCursorCount = weekClosedCursor.getCount();
             String weekCount = "Tickets Created Past 7 Days: \n\n" + weekCursorCount;
             String weekClosedCount = "Tickets Closed Past 7 Days: \n\n" + weekClosedCursorCount;
-
             openCountText = (TextView) findViewById(R.id.openCountText);
             openCountText.setText(weekCount);
             openCountText.setTextSize(24);
             openCountText.setTextColor(Color.BLACK);
             openCountText.setGravity(Gravity.CENTER);
-
             closedCountText = (TextView) findViewById(R.id.closedCountText);
             closedCountText.setText(weekClosedCount);
             closedCountText.setTextSize(24);
             closedCountText.setTextColor(Color.BLACK);
             closedCountText.setGravity(Gravity.CENTER);
-
             weekCursor.close();
             weekClosedCursor.close();
         } catch (Exception e) {
@@ -159,13 +150,16 @@ public class Statistics extends AppCompatActivity {
         return true;
     }
 
-    //http://stackoverflow.com/a/4780009/7087139
     @Override
     public void onBackPressed() {
         Intent newCreate = new Intent(this, Main.class);
         startActivity(newCreate);
     }
 
+    /**
+     * Utilises MPAndroidChart method that saves chart graphics as .jpeg files to internal storage
+     * @param menuItem MenuItem interface object
+     */
     public void saveToGallery(MenuItem menuItem) {
         try {
             int permissionCheck = ContextCompat.checkSelfPermission(Statistics.this, WRITE_EXTERNAL_STORAGE);

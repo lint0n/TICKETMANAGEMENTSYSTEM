@@ -20,17 +20,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import static a13070817.ticketmanagementsystem.DatabaseHelper.TICKET_TABLE_NAME;
-import static android.R.attr.author;
 
 /**
- * Created by Samuel Linton SRN 13070817
+ * @author Samuel Linton 13070817
  */
-
 public class Main extends AppCompatActivity {
     Toolbar toolbar;
-    SQLiteDatabase db;
-    private ArrayList<String> results = new ArrayList<String>();
-    private ListView lv;
+    SQLiteDatabase sqLiteDatabase;
+    private ArrayList<String> results = new ArrayList<>();
+    private ListView listView;
     String queryResult;
 
     @Override
@@ -39,9 +37,9 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        lv = (ListView) findViewById(R.id.listview);
-        lv.setCacheColorHint(Color.WHITE);
-        listQueryDB();
+        listView = (ListView) findViewById(R.id.listview);
+        listView.setCacheColorHint(Color.WHITE);
+        listQueryDb();
         displayList();
     }
 
@@ -52,7 +50,6 @@ public class Main extends AppCompatActivity {
         return true;
     }
 
-    //http://stackoverflow.com/a/3725042/7087139
     @Override
     public void onBackPressed() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
@@ -62,14 +59,11 @@ public class Main extends AppCompatActivity {
         finish();
     }
 
-    //onclick take user to Create activity
-    //http://stackoverflow.com/a/17396896/7087139
     public void createTicket(View view) {
         Intent newCreate = new Intent(this, Create.class);
         startActivity(newCreate);
     }
 
-    //onclick take user to Search activity
     public void ticketLookup(MenuItem menuItem) {
         Intent newLookup = new Intent(this, Search.class);
         startActivity(newLookup);
@@ -80,25 +74,28 @@ public class Main extends AppCompatActivity {
         startActivity(newAbout);
     }
 
-    //http://saigeethamn.blogspot.co.uk/2011/02/listview-of-data-from-sqlitedatabase.html
-    void listQueryDB() {
+    /**
+     * Ticket database query. Orders incomplete tickets based on severity.
+     * Code adapted from: http://saigeethamn.blogspot.co.uk/2011/02/listview-of-data-from-sqlitedatabase.html
+     */
+    void listQueryDb() {
         try {
-            DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
-            db = dbHelper.getWritableDatabase();
-            Cursor c = db.rawQuery("SELECT ID, TITLE, DESCRIPTION, SEVERITY FROM " + TICKET_TABLE_NAME +
+            DatabaseHelper databaseHelper = new DatabaseHelper(this.getApplicationContext());
+            sqLiteDatabase = databaseHelper.getWritableDatabase();
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT ID, TITLE, SEVERITY FROM " + TICKET_TABLE_NAME +
                     " WHERE STATUS = 0 ORDER BY SEVERITY ASC", null);
-            if (c != null) {
-                if (c.moveToFirst()) {
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
                     do {
-                        int ID = c.getInt(c.getColumnIndex("ID"));
-                        String Title = c.getString(c.getColumnIndex("TITLE"));
-                        String IDtoString = Integer.toString(ID);
-                        queryResult = ("#" + IDtoString + " - " + Title);
+                        int id = cursor.getInt(cursor.getColumnIndex("ID"));
+                        String title = cursor.getString(cursor.getColumnIndex("TITLE"));
+                        String idToString = Integer.toString(id);
+                        queryResult = ("#" + idToString + " - " + title);
                         results.add(queryResult);
-                    } while (c.moveToNext());
+                    } while (cursor.moveToNext());
                 }
             }
-            c.close();
+            cursor.close();
         } catch (SQLiteException exc) {
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "No tickets could be found.", Snackbar.LENGTH_LONG);
             snackbar.show();
@@ -106,30 +103,32 @@ public class Main extends AppCompatActivity {
         }
     }
 
-    //http://stackoverflow.com/a/34328384/7087139
+    /**
+     * Displays the resulting ArrayAdapter using results gained from listQueryDb().
+     * Code adapted from: http://stackoverflow.com/a/34328384/7087139
+     */
     void displayList() {
         final Intent intent = new Intent(this, Search.class);
         if (results.isEmpty()) {
-            TextView tv = new TextView(this);
-            lv.setDivider(null);
-            tv.setTextSize(20);
-            tv.setPadding(15, 15, 15, 15);
-            tv.setGravity(Gravity.CENTER);
-            tv.setText("No unresolved tickets");
-            lv.addHeaderView(tv);
+            TextView textView = new TextView(this);
+            listView.setDivider(null);
+            textView.setTextSize(20);
+            textView.setPadding(15, 15, 15, 15);
+            textView.setGravity(Gravity.CENTER);
+            textView.setText("No unresolved tickets");
+            listView.addHeaderView(textView);
         }
-        //http://stackoverflow.com/a/18903852
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, results);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, results);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
-                    String r1 = results.get(i);
-                    String r2 = r1.substring(r1.lastIndexOf("#") + 1);
-                    String r3 = r1.substring(r1.lastIndexOf("-"));
-                    String r4 = r2.replace(r3, "");
-                    intent.putExtra("ticketToSearch", r4);
+                    String temp1 = results.get(i);
+                    String temp2 = temp1.substring(temp1.lastIndexOf("#") + 1);
+                    String temp3 = temp1.substring(temp1.lastIndexOf("-"));
+                    String ticketToSearch = temp2.replace(temp3, "");
+                    intent.putExtra("ticketToSearch", ticketToSearch);
                     startActivity(intent);
                     finish();
                 } catch (Exception e) {

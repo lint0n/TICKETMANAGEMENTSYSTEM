@@ -1,17 +1,18 @@
 package a13070817.ticketmanagementsystem;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by Samuel Linton SRN 13070817 on 08/02/2017.
+ * @author Samuel Linton 13070817
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+class DatabaseHelper extends SQLiteOpenHelper {
 
     //Database variables
     private static final int DATABASE_VERSION = 16;
-    private static final String DATABASE_NAME = "ticketDatabase.db";
+    private static final String DATABASE_NAME = "ticketDatabase.sqLiteDatabase";
     //Job table columns
     static final String TICKET_TABLE_NAME = "TICKET";
     static final String TICKET_ID = "ID";

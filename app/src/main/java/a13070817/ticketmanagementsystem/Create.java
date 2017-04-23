@@ -1,9 +1,5 @@
 package a13070817.ticketmanagementsystem;
 
-/**
- * Created by Samuel Linton 13070817 on 24/02/2017.
- */
-
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,6 +19,9 @@ import android.widget.Spinner;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Samuel Linton 13070817
+ */
 public class Create extends AppCompatActivity {
 
     private EditText jobDescription, jobTitle, jobEngineer, jobAsset, jobCustomer;
@@ -39,13 +38,10 @@ public class Create extends AppCompatActivity {
         jobEngineer = (EditText) findViewById(R.id.job_engineer);
         jobAsset = (EditText) findViewById(R.id.job_asset);
         jobCustomer = (EditText) findViewById(R.id.job_customer);
-
-        //https://developer.android.com/guide/topics/ui/controls/spinner.html
         spinner = (Spinner) findViewById(R.id.createspinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.create_severity, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Create");
         setSupportActionBar(toolbar);
@@ -58,12 +54,15 @@ public class Create extends AppCompatActivity {
         return true;
     }
 
-    //http://stackoverflow.com/a/4780009/7087139
     @Override
     public void onBackPressed() {
         returnMain();
     }
 
+    /**
+     * Function used to insert data into ticket database
+     * @param menuItem MenuItem interface object
+     */
     public void insertData(MenuItem menuItem) {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
@@ -76,7 +75,6 @@ public class Create extends AppCompatActivity {
             String je = jobEngineer.getText().toString();
             String ja = jobAsset.getText().toString();
             String jc = jobCustomer.getText().toString();
-            //Head First Android Chapter 2 p 63
             String sev = String.valueOf(spinner.getSelectedItem());
             ContentValues values = new ContentValues();
             values.put(DatabaseHelper.TICKET_TITLE, jt);
@@ -112,6 +110,10 @@ public class Create extends AppCompatActivity {
         }
     }
 
+    /**
+     *  Event handler which confirms user's intention to leave activity
+     *  Adapted from: /http://stackoverflow.com/a/2478662/7087139
+     */
     public void returnMain() {
         final Intent mainIntent = new Intent(this, Main.class);
         //http://stackoverflow.com/a/2478662/7087139
@@ -137,6 +139,10 @@ public class Create extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     *  Event handler which confirms user's intentions then either clearing fields or do nothing
+     * @param menuItem MenuItem interface object
+     */
     public void erase(MenuItem menuItem) {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -163,6 +169,9 @@ public class Create extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     *  Used by Snackbar element to return to Main activity
+     */
     private class returnMainSnackBar implements View.OnClickListener {
         @Override
         public void onClick(View v) {
