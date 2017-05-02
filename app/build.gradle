@@ -1,13 +1,8 @@
 apply plugin: 'com.android.application'
-<<<<<<< HEAD
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile files('libs/jbcrypt-0.3m.jar')
 }
-=======
-apply plugin: 'realm-android'
-
->>>>>>> 86336d1ea0857e4555d4c403ce85061ca6499cc1
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
