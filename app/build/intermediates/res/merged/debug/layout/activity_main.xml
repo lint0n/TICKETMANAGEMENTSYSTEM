@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="a13070817.ticketmanagementsystem.Main"
+    android:baselineAligned="false"
+    android:background="#fafafa">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+    />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.ListView"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_height="450dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:id="@+id/fabCreate"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_create_white_48dp"
+        android:onClick="createTicket"
+        app:layout_anchor="@id/listview"
+        app:layout_anchorGravity="bottom|center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp">
+
+    </android.support.design.widget.FloatingActionButton>
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_create_clear"
+        android:title="Clear"
+        android:icon="@drawable/ic_clear_white_24dp"
+        app:showAsAction="always"
+        android:onClick="erase" />
+    <item
+        android:id="@+id/menu_create_create"
+        android:title="Create"
+        android:icon="@drawable/ic_create_white_24dp"
+        app:showAsAction="always"
+        android:onClick="realmInsert" />
+</menu>

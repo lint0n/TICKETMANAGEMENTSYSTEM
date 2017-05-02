@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_statistics.xml",
+        "source": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\src\\main\\res\\menu\\menu_statistics.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_search.xml",
+        "source": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\src\\main\\res\\menu\\menu_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_create.xml",
+        "source": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\src\\main\\res\\menu\\menu_create.xml"
+    }
+]

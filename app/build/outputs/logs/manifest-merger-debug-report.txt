@@ -1,0 +1,124 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:2:1-29:16
+	package
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:3:5-47
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:4:5-80
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:4:22-78
+application
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:6:5-28:19
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Sam\.android\build-cache\0dd6a76befbb8acae97a2e25fd61a3208bc67c68\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:design:25.3.1] C:\Users\Sam\.android\build-cache\b657c72b09526dd9f0d9764f6242abe420b29829\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sam\.android\build-cache\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\67e3e2c6bf35992d68a7c5c006316e2455233fcb\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\55ce6b4eab088c126fe24dd4ac0986416ab88993\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Sam\.android\build-cache\d75b960dff58be20bfe7c4313ac5dd0b9f03a43b\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sam\.android\build-cache\a1ab3c897eabfd496885e8f9e4883b46e5762e2c\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sam\.android\build-cache\af1da71fa1358f2ad629e3d024f8297b6a478be2\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sam\.android\build-cache\d62974cb5e0e57eae9c87e5bfb25032e6a18e2a4\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sam\.android\build-cache\baa865d4ab861cbf1ad4eb5679a06d7c32f7adf4\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sam\.android\build-cache\6c0bb61744ebad9ace4351db271713b98ea2e4b7\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sam\.android\build-cache\17db3620c8e55ffebdc44f72b0e5f6b57070c239\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Sam\.android\build-cache\ce9bb48fa93621ab0568e6bfeca2c8fdc39ee932\output\AndroidManifest.xml:9:5-20
+MERGED from [com.github.satyan:sugar:1.3] C:\Users\Sam\.android\build-cache\7878984214a7d7056c950e1a120d41b33f8371e5\output\AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.volley:volley:1.0.0] C:\Users\Sam\.android\build-cache\15ffb6487ba3f074da00b10a9b859e9cd486b7b0\output\AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:8:9-41
+	android:allowBackup
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:7:9-35
+	android:icon
+		ADDED from [com.github.satyan:sugar:1.3] C:\Users\Sam\.android\build-cache\7878984214a7d7056c950e1a120d41b33f8371e5\output\AndroidManifest.xml:13:9-45
+	android:theme
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:9:9-40
+activity#a13070817.ticketmanagementsystem.Main
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:11:9-20:20
+	android:screenOrientation
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:14:13-49
+	android:label
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:13:13-45
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:12:13-33
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:15:13-19:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:16:17-69
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:16:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:18:17-77
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:18:27-74
+activity#a13070817.ticketmanagementsystem.Statistics
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:21:9-22:51
+	android:screenOrientation
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:22:13-49
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:21:19-45
+activity#a13070817.ticketmanagementsystem.Search
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:23:9-24:51
+	android:screenOrientation
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:24:13-49
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:23:19-41
+activity#a13070817.ticketmanagementsystem.Create
+ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:25:9-26:51
+	android:screenOrientation
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:26:13-49
+	android:name
+		ADDED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml:25:19-41
+uses-sdk
+INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\Sam\.android\build-cache\0dd6a76befbb8acae97a2e25fd61a3208bc67c68\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:25.3.1] C:\Users\Sam\.android\build-cache\b657c72b09526dd9f0d9764f6242abe420b29829\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sam\.android\build-cache\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\67e3e2c6bf35992d68a7c5c006316e2455233fcb\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\55ce6b4eab088c126fe24dd4ac0986416ab88993\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Sam\.android\build-cache\a1911741290460e21d079289d813206398af36b1\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Sam\.android\build-cache\d75b960dff58be20bfe7c4313ac5dd0b9f03a43b\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sam\.android\build-cache\a1ab3c897eabfd496885e8f9e4883b46e5762e2c\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sam\.android\build-cache\af1da71fa1358f2ad629e3d024f8297b6a478be2\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sam\.android\build-cache\d62974cb5e0e57eae9c87e5bfb25032e6a18e2a4\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sam\.android\build-cache\baa865d4ab861cbf1ad4eb5679a06d7c32f7adf4\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sam\.android\build-cache\6c0bb61744ebad9ace4351db271713b98ea2e4b7\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sam\.android\build-cache\17db3620c8e55ffebdc44f72b0e5f6b57070c239\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Sam\.android\build-cache\ce9bb48fa93621ab0568e6bfeca2c8fdc39ee932\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.satyan:sugar:1.3] C:\Users\Sam\.android\build-cache\7878984214a7d7056c950e1a120d41b33f8371e5\output\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.volley:volley:1.0.0] C:\Users\Sam\.android\build-cache\15ffb6487ba3f074da00b10a9b859e9cd486b7b0\output\AndroidManifest.xml:7:5-43
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] C:\Users\Sam\.android\build-cache\b657c72b09526dd9f0d9764f6242abe420b29829\output\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sam\Desktop\TICKETMANAGEMENTSYSTEM\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Sam\.android\build-cache\0dd6a76befbb8acae97a2e25fd61a3208bc67c68\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:design:25.3.1] C:\Users\Sam\.android\build-cache\b657c72b09526dd9f0d9764f6242abe420b29829\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Sam\.android\build-cache\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\67e3e2c6bf35992d68a7c5c006316e2455233fcb\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Sam\.android\build-cache\55ce6b4eab088c126fe24dd4ac0986416ab88993\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\Sam\.android\build-cache\a1911741290460e21d079289d813206398af36b1\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\Sam\.android\build-cache\d75b960dff58be20bfe7c4313ac5dd0b9f03a43b\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Sam\.android\build-cache\a1ab3c897eabfd496885e8f9e4883b46e5762e2c\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Sam\.android\build-cache\af1da71fa1358f2ad629e3d024f8297b6a478be2\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Sam\.android\build-cache\d62974cb5e0e57eae9c87e5bfb25032e6a18e2a4\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Sam\.android\build-cache\baa865d4ab861cbf1ad4eb5679a06d7c32f7adf4\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Sam\.android\build-cache\6c0bb61744ebad9ace4351db271713b98ea2e4b7\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Sam\.android\build-cache\17db3620c8e55ffebdc44f72b0e5f6b57070c239\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Sam\.android\build-cache\0dd6a76befbb8acae97a2e25fd61a3208bc67c68\output\AndroidManifest.xml:24:9-31
+	android:name
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\Sam\.android\build-cache\0dd6a76befbb8acae97a2e25fd61a3208bc67c68\output\AndroidManifest.xml:23:9-47

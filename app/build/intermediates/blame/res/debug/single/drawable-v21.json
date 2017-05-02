@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\b657c72b09526dd9f0d9764f6242abe420b29829\\output\\res\\drawable-v21\\avd_hide_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\b657c72b09526dd9f0d9764f6242abe420b29829\\output\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\b657c72b09526dd9f0d9764f6242abe420b29829\\output\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\b657c72b09526dd9f0d9764f6242abe420b29829\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Sam\\Desktop\\TICKETMANAGEMENTSYSTEM\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
+        "source": "C:\\Users\\Sam\\.android\\build-cache\\81bb7aefc1e5541309b8d4de16034cbbd3f257c7\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    }
+]
