@@ -6,6 +6,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
+<<<<<<< HEAD
+=======
+        classpath "io.realm:realm-gradle-plugin:3.1.3"
+
+>>>>>>> 86336d1ea0857e4555d4c403ce85061ca6499cc1
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
