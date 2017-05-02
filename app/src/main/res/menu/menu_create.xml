@@ -13,5 +13,5 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
         android:title="Create"
         android:icon="@drawable/ic_create_white_24dp"
         app:showAsAction="always"
-        android:onClick="insertData" />
+        android:onClick="realmInsert" />
 </menu>
