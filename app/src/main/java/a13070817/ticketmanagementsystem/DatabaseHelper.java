@@ -27,7 +27,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     //Create Job table
     private static final String CREATE_TICKET_TABLE =
             "CREATE TABLE " + TICKET_TABLE_NAME + " (" +
-                     TICKET_ID + " INTEGER PRIMARY KEY," +
+                    TICKET_ID + " INTEGER PRIMARY KEY," +
                     TICKET_TITLE + " TEXT," +
                     TICKET_ENGINEER + " TEXT," +
                     TICKET_CUSTOMER + " TEXT," +

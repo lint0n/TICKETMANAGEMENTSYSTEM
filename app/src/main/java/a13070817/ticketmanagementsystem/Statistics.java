@@ -38,7 +38,6 @@ public class Statistics extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     DatabaseHelper databaseHelper;
     TextView openCountText, closedCountText;
-    //MPAndroidChart variables
     private ArrayList<PieEntry> jobEntries = new ArrayList<>();
     private ArrayList<PieEntry> severityEntries = new ArrayList<>();
     private PieChart pieChartTicket, pieChartSeverity;
